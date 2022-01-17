@@ -80,13 +80,10 @@ To join the project follow these simple steps.
 ### Trello
 
 Trello is the main organization needed to keep track of who is doing what
-* invite link 
-  https://trello.com/invite/b/gvCxfmu9/cedda34bbf96a103a60ab3c245f10b29/project
+
 
 ### Discord Server
 
-* testing server link
-  https://discord.gg/PBHCNGgf
 
 
 
