@@ -8,7 +8,7 @@ class fun(commands.Cog):
 
     @commands.Cog.listener()
     async def on_message(self, message):
-        if message.content.startswith("Good morning"):
+        if message.content.lower().startswith("good morning"):
             if message.author.id != 932687176997687316:
                 await message.reply("Good morning")
 
