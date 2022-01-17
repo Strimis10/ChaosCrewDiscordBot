@@ -11,6 +11,15 @@ TOKEN = "OTMyNjg3MTc2OTk3Njg3MzE2.YeWmnw.dp23z_eX2g_bNB1qkXYf_QRGXqM"
 async def on_ready():
     print("Ready")
 
+
+
+@client.command(name='kill', aliases=['k'])
+@commands.is_owner()
+async def unloadall(ctx):
+    exit()
+
+
+
 @client.command(name='reload', aliases=['r'])
 #@commands.is_owner()
 async def _reload(ctx, extension):
