@@ -14,10 +14,10 @@
 <br />
 <p align="center">
 
-  <h3 align="center">project_title</h3>
+  <h3 align="center">Untitled Bot</h3>
 
   <p align="center">
-    project_description
+    Untitled bot for use in Kennevo's discord.
     <br />
     <a href="https://github.com/DrHooBs/DiscBot"><strong>Explore the docs »</strong></a>
     <br />
