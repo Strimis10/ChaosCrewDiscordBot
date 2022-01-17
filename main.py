@@ -72,6 +72,10 @@ async def unloadall(ctx):
         await msg.edit(f'Error:\n```py\n{error}\n```')
 
 
+@client.command()
+async def ping(ctx):
+     await ctx.send(f'Pong! In {round(client.latency * 1000)}ms')
+
 @client.command(name='reloadall', aliases=['rla'])
 #@commands.is_owner()
 async def reloadall(ctx):
