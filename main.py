@@ -11,8 +11,8 @@ TOKEN = "OTMyNjg3MTc2OTk3Njg3MzE2.YeWmnw.dp23z_eX2g_bNB1qkXYf_QRGXqM"
 async def on_ready():
     print("Ready")
 
-@client.command(name='reload', aliases=['r'],hidden=True)
-@commands.is_owner()
+@client.command(name='reload', aliases=['r'])
+#@commands.is_owner()
 async def _reload(ctx, extension):
     try:
         msg = await ctx.send(f'Reloading {extension}...')
@@ -23,8 +23,8 @@ async def _reload(ctx, extension):
 
 
 
-@client.command(name='load', aliases=['l'],hidden=True)
-@commands.is_owner()
+@client.command(name='load', aliases=['l'])
+#@commands.is_owner()
 async def load(ctx, extension):
     try:
         msg = await ctx.send(f'Loading {extension}...')
@@ -35,8 +35,8 @@ async def load(ctx, extension):
 
 
 
-@client.command(name='unload', aliases=['u'],hidden=True)
-@commands.is_owner()
+@client.command(name='unload', aliases=['u'])
+#@commands.is_owner()
 async def unload(ctx, extension):
     try:
         msg = await ctx.send(f'Unloading {extension}...')
@@ -46,8 +46,8 @@ async def unload(ctx, extension):
         await ctx.send(f'Error:\n```py\n{error}\n```')
 
 
-@client.command(name='loadall', aliases=['la'], hidden=True)
-@commands.is_owner()
+@client.command(name='loadall', aliases=['la'])
+#@commands.is_owner()
 async def loadall(ctx):
     try:
         msg = await ctx.send(f"Loading")
@@ -59,8 +59,8 @@ async def loadall(ctx):
         await ctx.send(f'Error:\n```py\n{error}\n```')
 
 
-@client.command(name='unloadall', aliases=['ula'], hidden=True)
-@commands.is_owner()
+@client.command(name='unloadall', aliases=['ula'])
+#@commands.is_owner()
 async def unloadall(ctx):
     try:
         msg = await ctx.send(f"Unloading")
@@ -72,8 +72,8 @@ async def unloadall(ctx):
         await msg.edit(f'Error:\n```py\n{error}\n```')
 
 
-@client.command(name='reloadall', aliases=['rla'], hidden=True)
-@commands.is_owner()
+@client.command(name='reloadall', aliases=['rla'])
+#@commands.is_owner()
 async def reloadall(ctx):
     try:
         msg = await ctx.send(f"Reloading")
