@@ -1,3 +1,4 @@
+from http import client
 from discord.ext import commands
 import discord
 import discord.utils
@@ -10,6 +11,8 @@ class Members(commands.Cog):
     @commands.command(name='membercount')
     async def members(self, ctx):
         await ctx.send(ctx.guild.member_count)
+
+        
 
 def setup(bot):
     bot.add_cog(Members(bot))
