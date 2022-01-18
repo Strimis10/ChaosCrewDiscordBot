@@ -8,7 +8,8 @@ class Members(commands.Cog):
         self.bot = bot
 
     @commands.command(name='membercount')
-    async def members(self, ctx):
+    async def membercount(self, ctx):
+        guild = 932684556572700773
         member_count = 0
         for member in ctx.guild.members:
             member_count += 1
