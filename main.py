@@ -1,9 +1,10 @@
+from email import message
 import discord
 from discord.ext import commands
 import asyncio
 import random
 import os
-client = commands.Bot(command_prefix="?",owner_ids=[386826952599928842])
+client = commands.Bot(command_prefix="?",owner_ids=[386826952599928842, 427822985102098434] )
 
 TOKEN = "OTMyNjg3MTc2OTk3Njg3MzE2.YeWmnw.dp23z_eX2g_bNB1qkXYf_QRGXqM"
 
@@ -16,6 +17,7 @@ async def on_ready():
 @client.command(name='kill', aliases=['k'])
 @commands.is_owner()
 async def unloadall(ctx):
+    await ctx.send("Breaking")
     exit()
 
 
