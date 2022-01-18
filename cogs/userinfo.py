@@ -24,7 +24,7 @@ class fun(commands.Cog):
                 ("Username", str(target), True,),
                 ("Bot?", target.bot, True),
                 ("Top role", target.top_role.mention, True),
-                ("Status", str(target.status).title(), True),
+                #("Status", str(target.status).title(), True),
                 # ("Activity", f"{target.activity.name} {str(getattr(target.activity, 'type')).title()}", True)
                 ("Created at", target.created_at.strftime("%d/%m/%Y %H:%M:%S"), True),
                 ("Joined at", target.joined_at.strftime("%d/%m/%Y %H:%M:%S"), True),
