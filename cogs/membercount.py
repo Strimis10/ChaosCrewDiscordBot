@@ -9,11 +9,7 @@ class Members(commands.Cog):
 
     @commands.command(name='membercount')
     async def membercount(self, ctx):
-        guild = 932684556572700773
-        member_count = 0
-        for member in ctx.guild.members:
-            member_count += 1
-        await ctx.send(member_count)
+        await ctx.send(ctx.guild.member_count)
     #    print(ctx.guild.member_count)
     #    await ctx.send(f'test{len(ctx.guild.member_count)}')
     # @commands.command(name='membercount')
