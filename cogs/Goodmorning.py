@@ -2,7 +2,7 @@ from discord.ext import commands
 import discord
 import discord.utils
 
-class fun(commands.Cog):
+class good_morning(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
@@ -14,6 +14,4 @@ class fun(commands.Cog):
 
 
 def setup(bot):
-    bot.add_cog(fun(bot))
-
-
+    bot.add_cog(good_morning(bot))
