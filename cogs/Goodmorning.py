@@ -15,5 +15,13 @@ class good_morning(commands.Cog):
                 await message.reply("Good morning")
 
 
+    @commands.Cog.listener()
+    async def on_message(self, message):
+        if message.content.lower().startswith("good night"):
+            if message.author.id != 932687176997687316:
+                time.sleep(20)
+                await message.reply("Good Night")
+
+
 def setup(bot):
     bot.add_cog(good_morning(bot))
