@@ -18,7 +18,7 @@ class Birthday(commands.Cog):
     async def setBrithdayfinal(self, ctx, *, text: commands.clean_content = ''):
         target = ctx.author
         dictionary ={
-            target:{
+            ctx.author:{
                 }} 
 
         json_object = json.dumps(dictionary)

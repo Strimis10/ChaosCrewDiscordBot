@@ -9,7 +9,7 @@ class HumiliateStrimis(commands.Cog):
 
     @commands.command(name='sus',description='sus')
     async def sus(self, ctx):
-        file = discord.File("james_crossdress_pokemon.gif")
+        file = discord.File("pokemon.gif")
         await ctx.send(file=file)
 
 
