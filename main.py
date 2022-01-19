@@ -1,6 +1,6 @@
 from email import message
 import discord
-intents = discord.Intents(messages=True, guilds=True)
+intents = discord.Intents(messages=True, guilds=True, members=True)
 intents.reactions = True
 intents.members = True
 from discord.ext import commands
@@ -19,23 +19,6 @@ async def on_ready():
 
 
 
-@client.event
-async def on_member_join(ctx):
-    extension = "membercount"
-    try:
-        msg = await ctx.send(f'Reloading {extension}...')
-        client.reload_extension(f'cogs.{extension}')
-        await msg.edit(content=f"Reloaded {extension} succesfully")
-    except Exception as error:
-        await ctx.send(f'Error:\n```py\n{error}\n```')
-
-@client.event
-async def on_member_remove(ctx):
-    extension = "membercount"
-    try:
-        client.reload_extension(f'cogs.{extension}')
-    except Exception as error:
-        print("didn't work")
         
 
 @client.command(name="restart", aliases=["r"])
@@ -43,6 +26,7 @@ async def on_member_remove(ctx):
 async def restart(ctx):
     await ctx.send("Restarting")
     os.system("python main.py")
+
 
     
 
@@ -55,8 +39,6 @@ async def on_member_join(ctx):
 async def unloadall(ctx):
     await ctx.send("Breaking")
     exit()
-
-
 
 
 @client.command(name='reload')
