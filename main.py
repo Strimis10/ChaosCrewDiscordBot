@@ -21,11 +21,21 @@ async def on_ready():
 
 @client.event
 async def on_member_join(ctx):
-    os.system("python main.py")
+    extension = "membercount"
+    try:
+        msg = await ctx.send(f'Reloading {extension}...')
+        client.reload_extension(f'cogs.{extension}')
+        await msg.edit(content=f"Reloaded {extension} succesfully")
+    except Exception as error:
+        await ctx.send(f'Error:\n```py\n{error}\n```')
 
 @client.event
 async def on_member_remove(ctx):
-    os.system("python main.py")
+    extension = "membercount"
+    try:
+        client.reload_extension(f'cogs.{extension}')
+
+
 
 @client.command(name="restart", aliases=["r"])
 @commands.is_owner()
