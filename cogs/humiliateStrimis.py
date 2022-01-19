@@ -7,7 +7,7 @@ class HumiliateStrimis(commands.Cog):
         self.bot = bot
 
 
-    @commands.command(name='Shoot_Strimis',description='bot sends video of strimis getting shot',brief='bot sends video of strimis getting shot')
+    @commands.command(name='Shoot_Strimis', aliases=["humiliateStrimis"], description='bot sends video of strimis getting shot',brief='bot sends video of strimis getting shot')
     async def Shoot_Strimis(self, ctx):
         file = discord.File("bootleg_gatharu.mp4")
         await ctx.send(file=file)

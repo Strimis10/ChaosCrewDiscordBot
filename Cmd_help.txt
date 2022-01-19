@@ -1,0 +1,23 @@
+sus:
+    ?sus : sends bunny_kei's (piratekender) profilepicture (Pokemon James grabing his boobs)
+
+Funny:
+    ?Shoot_Strimis/ ?humiliateStrimis : sends a video of Strimis getting shot by a Discord nerf gun.
+
+Usefull:
+    ?Memberinfo/ ?ui : Sends information about a user.
+    ?membercount/ ?Mcount : Sends the number of members in the server.
+    ?Help : Shows this message.
+    ?Ping : Pings the bot.
+    ?say : Sends your message as it's own.
+
+Bot_Owners:
+    ?Kill : stalls the code.
+    ?restart/ ?r : restarts the code.
+    ?reloadall/ ?rla : Reloads all the cogs.
+    ?reload : reloads a specific cog.
+    ?load : loads a specific cog.
+    ?loadall : loads all the cogs.
+    ?unload : unloads a specific cog.
+    ?unloadall : unloads all the cogs.
+    
