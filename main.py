@@ -35,6 +35,7 @@ async def on_member_remove(ctx):
     try:
         client.reload_extension(f'cogs.{extension}')
     except Exception as error:
+        print("didn't work")
         
 
 @client.command(name="restart", aliases=["r"])
