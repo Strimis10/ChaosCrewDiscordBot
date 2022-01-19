@@ -1,6 +1,7 @@
 from discord.ext import commands
 import discord
 import discord.utils
+import time
 
 class good_morning(commands.Cog):
     def __init__(self, bot):
@@ -10,6 +11,7 @@ class good_morning(commands.Cog):
     async def on_message(self, message):
         if message.content.lower().startswith("good morning"):
             if message.author.id != 932687176997687316:
+                time.sleep(20)
                 await message.reply("Good morning")
 
 

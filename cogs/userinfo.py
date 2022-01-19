@@ -12,7 +12,7 @@ class fun(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command(name='User_info', aliases=["ui", "Memeber_info", "mi"],description='saves the date of birth',brief='saves the date of birth')
+    @commands.command(name='User_info', aliases=["ui", "Memeber_info", "mi"],description='gives a summary of the user')
     async def user_info(self, ctx, target: Optional[discord.Member]):
         target = target or ctx.author
 
