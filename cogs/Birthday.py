@@ -15,7 +15,7 @@ class Birthday(commands.Cog):
             await ctx.send("send your birthday like this: \a dd/mm/YYYY \a if you don't want to share the year type '0000' as the year. Send this with the 'setBrithdayfinal' command")
 
     @commands.command(name='setBrithdayfinal', aliases=["setBdayfinal"])
-    async def setBrithdayfinal(self, ctx, *, text: commands.clean_content = ''):
+    async def setBrithdayfinal(self, ctx, *, text: commands.clean_content = '', message):
         target = ctx.author
         dictionary ={
             ctx.author:{
