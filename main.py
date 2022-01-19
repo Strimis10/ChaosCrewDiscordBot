@@ -32,9 +32,10 @@ async def on_member_join(ctx):
 @client.event
 async def on_member_remove(ctx):
     extension = "membercount"
-    client.reload_extension(f'cogs.{extension}')
-
-
+    try:
+        client.reload_extension(f'cogs.{extension}')
+    except Exception as error:
+        
 
 @client.command(name="restart", aliases=["r"])
 @commands.is_owner()
