@@ -1,12 +1,15 @@
 from email import message
 import discord
+intents = discord.Intents(messages=True, guilds=True)
+intents.reactions = True
+intents.members = True
 from discord.ext import commands
 import time
 import asyncio
 import random
 import os
 import sys
-client = commands.Bot(command_prefix="?",owner_ids=[386826952599928842, 427822985102098434] )
+client = commands.Bot(command_prefix="?",owner_ids=[386826952599928842, 427822985102098434], intents=intents)
 
 TOKEN = "OTMyNjg3MTc2OTk3Njg3MzE2.YeWmnw.dp23z_eX2g_bNB1qkXYf_QRGXqM"
 
@@ -18,14 +21,7 @@ async def on_ready():
 
 @client.event
 async def on_member_join(ctx):
-    print("member has joined")
-    extension = "membercount"
-    try:
-        msg = await ctx.send(f'Reloading {extension}...')
-        client.reload_extension(f'cogs.{extension}')
-        await msg.edit(content=f"Reloaded {extension} succesfully")
-    except Exception as error:
-        await ctx.send(f'Error:\n```py\n{error}\n```')
+    os.system("python main.py")
 
 @client.event
 async def on_member_remove(ctx):
@@ -36,11 +32,11 @@ async def on_member_remove(ctx):
 async def restart(ctx):
     await ctx.send("Restarting")
     os.system("python main.py")
-    time.sleep(1)
+
     
 
 @client.event
-async def on_member_join(member, ctx):
+async def on_member_join(ctx):
     await ctx.send('ello')
 
 @client.command(name='kill', aliases=['k'])
