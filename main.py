@@ -1,9 +1,11 @@
 from email import message
 import discord
 from discord.ext import commands
+import time
 import asyncio
 import random
 import os
+import sys
 client = commands.Bot(command_prefix="?",owner_ids=[386826952599928842, 427822985102098434] )
 
 TOKEN = "OTMyNjg3MTc2OTk3Njg3MzE2.YeWmnw.dp23z_eX2g_bNB1qkXYf_QRGXqM"
@@ -14,6 +16,33 @@ async def on_ready():
 
 
 
+@client.event
+async def on_member_join(ctx):
+    print("member has joined")
+    extension = "membercount"
+    try:
+        msg = await ctx.send(f'Reloading {extension}...')
+        client.reload_extension(f'cogs.{extension}')
+        await msg.edit(content=f"Reloaded {extension} succesfully")
+    except Exception as error:
+        await ctx.send(f'Error:\n```py\n{error}\n```')
+
+@client.event
+async def on_member_remove(ctx):
+    os.system("python main.py")
+
+@client.command(name="restart", aliases=["r"])
+@commands.is_owner()
+async def restart(ctx):
+    await ctx.send("Restarting")
+    os.system("python main.py")
+    time.sleep(1)
+    
+
+@client.event
+async def on_member_join(member, ctx):
+    await ctx.send('ello')
+
 @client.command(name='kill', aliases=['k'])
 @commands.is_owner()
 async def unloadall(ctx):
@@ -22,9 +51,10 @@ async def unloadall(ctx):
 
 
 
-@client.command(name='reload', aliases=['r'])
+
+@client.command(name='reload')
 #@commands.is_owner()
-async def _reload(ctx, extension):
+async def reload(ctx, extension):
     try:
         msg = await ctx.send(f'Reloading {extension}...')
         client.reload_extension(f'cogs.{extension}')
