@@ -32,8 +32,7 @@ async def on_member_join(ctx):
 @client.event
 async def on_member_remove(ctx):
     extension = "membercount"
-    try:
-        client.reload_extension(f'cogs.{extension}')
+    client.reload_extension(f'cogs.{extension}')
 
 
 
