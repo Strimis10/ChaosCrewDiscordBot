@@ -3,20 +3,46 @@ from discord.ext import commands
 import discord
 import discord.utils
 import json
+import os
+a = []
+
+
 
 class fun(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-
     @commands.command(name='Ban_word',description='Bot bans a word from being used in text chat')
+    @commands.is_owner()
+    @commands.has_role([786014220721979445, 786014064533831690, 933127964248375337,  "Administrator"])
+    
     async def say(self, ctx, *, text: commands.clean_content = ''):
-        # with open('baned_words.json', 'w') as f:
-        #     data = json.load(f)
+        if not os.path.isfile("banned_words.json"):
+            a.append(text)
+            with open("banned_words.json", mode='w') as f:
+                f.write(json.dumps(a, indent=2))
+        else:
+            with open("banned_words.json") as feedsjson:
+                feeds = json.load(feedsjson)
+
+            feeds.append(text)
+            for i in range(len(feeds)):
+                feeds[i] = feeds[i].lower()
+                print(feeds)
+            
+            with open("banned_words.json", mode='w') as f:
+                f.write(json.dumps(feeds, indent=2))
+        
+        # with open("banned_words.json", mode='w') as f:
+        #     text = text.lower()
+        #     f.append(text, indent=2)
+            # json.dump(feeds, f)
+        #  with open("banned_words.json", "r+") as file:
+        #     data = json.load(file)
         #     data.update(text)
-        #     f.seek(0)
-        #     json.dump(data, f, indent=2)
-        with open('baned_words.json', 'w') as f:
-            json.dump(text, f, indent=2)
+        #     file.seek(0)
+        #     json.dump(data, file, indent=2)
+        # with open('baned_words.json', 'w') as f:
+        #     json.dump(text, f, indent=2)
        
 
 
