@@ -11,7 +11,7 @@ class good_morning(commands.Cog):
     async def on_message(self, message):
         if message.content.lower().startswith("good morning"):
             if message.author.id != 932687176997687316:
-                time.sleep(20)
+                time.sleep(10)
                 await message.reply("Good morning")
 
 
@@ -19,7 +19,7 @@ class good_morning(commands.Cog):
     async def on_message(self, message):
         if message.content.lower().startswith("good night"):
             if message.author.id != 932687176997687316:
-                time.sleep(20)
+                time.sleep(10)
                 await message.reply("Good Night")
 
 
