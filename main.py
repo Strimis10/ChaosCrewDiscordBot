@@ -21,7 +21,7 @@ async def on_ready():
 
         
 
-@client.command(name="restart", aliases=["r"])
+@client.command(name="restart")
 @commands.is_owner()
 async def restart(ctx):
     await ctx.send("Restarting")
@@ -41,7 +41,7 @@ async def unloadall(ctx):
     exit()
 
 
-@client.command(name='reload')
+@client.command(name='reload',aliases=["r"])
 #@commands.is_owner()
 async def reload(ctx, extension):
     try:
