@@ -13,7 +13,7 @@ class usefull(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
     @commands.command(name='ban_word',aliases=["bw"],description='Bot bans a word from being used in text chat')        
-    async def banWord(self, ctx, *, text: commands.clean_content = ''):  
+    async def banWord(self, ctx, *, text):  
         if commands.is_owner or commands.has_role([786014220721979445, 786014064533831690, 933127964248375337, "Administrator", "Developers"]) or commands.has_permissions(administrator=True):
                 if not os.path.isfile("banned_words.json"):
                     a.append(text)
@@ -36,7 +36,7 @@ class usefull(commands.Cog):
 
 
     @commands.command(name='bannedwords',aliases=["bws"],description='bot sends a list of all banned words')
-    async def bannedWords(self, ctx, *, text: commands.clean_content = ''):
+    async def bannedWords(self, ctx, *, text):
         with open("banned_words.json") as f:
             fe = json.load(f)
             if fe == []:
@@ -56,7 +56,7 @@ class usefull(commands.Cog):
                 await ctx.send(f"@{message.author} That is a banned word an may not be used")
 
     @commands.command(name='unban_word',aliases = ["uw"], description='Bot unbans a word from being used in text chat')
-    async def unbanWord(self, ctx, *, text: commands.clean_content = ''):
+    async def unbanWord(self, ctx, *, text):
         if commands.is_owner or commands.has_role([786014220721979445, 786014064533831690, 933127964248375337, "Administrator", "Developers"]) or commands.has_permissions(administrator=True):
             with open("banned_words.json") as feedsjson:
                 feeds = json.load(feedsjson)
