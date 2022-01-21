@@ -42,7 +42,7 @@ async def unloadall(ctx):
 
 
 @client.command(name='reload',aliases=["r"])
-#@commands.is_owner()
+@commands.is_owner()
 async def reload(ctx, extension):
     try:
         msg = await ctx.send(f'Reloading {extension}...')
@@ -54,7 +54,7 @@ async def reload(ctx, extension):
 
 
 @client.command(name='load', aliases=['l'])
-#@commands.is_owner()
+@commands.is_owner()
 async def load(ctx, extension):
     try:
         msg = await ctx.send(f'Loading {extension}...')
@@ -66,7 +66,7 @@ async def load(ctx, extension):
 
 
 @client.command(name='unload', aliases=['u'])
-#@commands.is_owner()
+@commands.is_owner()
 async def unload(ctx, extension):
     try:
         msg = await ctx.send(f'Unloading {extension}...')
@@ -77,7 +77,7 @@ async def unload(ctx, extension):
 
 
 @client.command(name='loadall', aliases=['la'])
-#@commands.is_owner()
+@commands.is_owner()
 async def loadall(ctx):
     try:
         msg = await ctx.send(f"Loading")
@@ -90,7 +90,7 @@ async def loadall(ctx):
 
 
 @client.command(name='unloadall', aliases=['ula'])
-#@commands.is_owner()
+@commands.is_owner()
 async def unloadall(ctx):
     try:
         msg = await ctx.send(f"Unloading")
@@ -107,7 +107,7 @@ async def ping(ctx):
      await ctx.send(f'Pong! In {round(client.latency * 1000)}ms')
 
 @client.command(name='reloadall', aliases=['rla'])
-#@commands.is_owner()
+@commands.is_owner()
 async def reloadall(ctx):
     try:
         msg = await ctx.send(f"Reloading")

@@ -14,7 +14,7 @@ class usefull(commands.Cog):
         self.bot = bot
     @commands.command(name='ban_word',aliases=["bw"],description='Bot bans a word from being used in text chat')        
     async def banWord(self, ctx, *, text):  
-        if commands.is_owner or commands.has_role([786014220721979445, 786014064533831690, 933127964248375337, "Administrator", "Developers"]) or commands.has_permissions(administrator=True):
+        if commands.is_owner() or commands.has_role([786014220721979445, 786014064533831690, 933127964248375337, "Administrator", "Developers"]) or commands.has_permissions(administrator=True):
                 if not os.path.isfile("banned_words.json"):
                     a.append(text)
                     with open("banned_words.json", mode='w') as f:
@@ -31,6 +31,7 @@ class usefull(commands.Cog):
                             f.write(json.dumps(feeds, indent=2))  
 
         else:
+            await ctx.send(bool(commands.is_owner))
             await ctx.send("Permission denied")
 
 
@@ -47,17 +48,17 @@ class usefull(commands.Cog):
 
 
 
-    @commands.Cog.listener()
-    async def bannedWordsListen(self, ctx, message):
-        with open("banned_words.json") as f:
-            fe = json.load(f)
-        if message.content.lower() in fe:
-            if message.author.id != 932687176997687316:
-                await ctx.send(f"@{message.author} That is a banned word an may not be used")
+    # @commands.Cog.listener()
+    # async def bannedWordsListen(self, ctx, message):
+    #     with open("banned_words.json") as f:
+    #         fe = json.load(f)
+    #     if message.content.lower() in fe:
+    #         if message.author.id != 932687176997687316:
+    #             await ctx.send(f"@{message.author} That is a banned word an may not be used")
 
     @commands.command(name='unban_word',aliases = ["uw"], description='Bot unbans a word from being used in text chat')
     async def unbanWord(self, ctx, *, text):
-        if commands.is_owner or commands.has_role([786014220721979445, 786014064533831690, 933127964248375337, "Administrator", "Developers"]) or commands.has_permissions(administrator=True):
+        if commands.is_owner() == True or commands.has_role([786014220721979445, 786014064533831690, 933127964248375337, "Administrator", "Developers"]) == True or commands.has_permissions(administrator=True) == True:
             with open("banned_words.json") as feedsjson:
                 feeds = json.load(feedsjson)
                 
@@ -70,6 +71,9 @@ class usefull(commands.Cog):
 
                 except ValueError:
                     await ctx.send(f"'{text}' is not a Banned word")
+        else:
+            await ctx.send(commands.is_owner)
+            await ctx.send("Permission denied")
 
         # with open("banned_words.json", mode='w') as f:
         #     text = text.lower()
