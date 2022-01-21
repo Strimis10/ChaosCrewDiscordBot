@@ -1,4 +1,5 @@
 from textwrap import indent
+from aiohttp import client
 from discord.ext import commands
 import discord
 import discord.utils
@@ -11,26 +12,48 @@ a = []
 class usefull(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-    @commands.command(name='Ban_word',description='Bot bans a word from being used in text chat')        
-    if commands.is_owner == True or commands.has_role([786014220721979445, 786014064533831690, 933127964248375337, "Administrator", "Developers"]) == True or commands.has_permissions(administrator=True) == True:
-        async def ban_word(self, ctx, *, text: commands.clean_content = ''):    
-            if not os.path.isfile("banned_words.json"):
-                a.append(text)
-                with open("banned_words.json", mode='w') as f:
-                    f.write(json.dumps(a, indent=2))
-            else:
-                with open("banned_words.json") as feedsjson:
-                    feeds = json.load(feedsjson)
-
-                feeds.append(text)
-                for i in range(len(feeds)):
-                    feeds[i] = feeds[i].lower()
-                    print(feeds)
+    @commands.command(name='ban_word',description='Bot bans a word from being used in text chat')        
+    async def ban_word(self, ctx, *, text: commands.clean_content = ''):  
+        if commands.is_owner or commands.has_role([786014220721979445, 786014064533831690, 933127964248375337, "Administrator", "Developers"]) or commands.has_permissions(administrator=True):
+                if not os.path.isfile("banned_words.json"):
+                    a.append(text)
                     with open("banned_words.json", mode='w') as f:
-                        f.write(json.dumps(feeds, indent=2))    
+                        f.write(json.dumps(a, indent=2))
+                else:
+                    with open("banned_words.json") as feedsjson:
+                        feeds = json.load(feedsjson)
+
+                    feeds.append(text)
+                    for i in range(len(feeds)):
+                        feeds[i] = feeds[i].lower()
+                        print(feeds)
+                        with open("banned_words.json", mode='w') as f:
+                            f.write(json.dumps(feeds, indent=2))  
+
+        else:
+            await ctx.send("Permission denied")
 
 
 
+    @commands.command(name='banned_words',description='bot sends a list of all banned words')
+    async def banned_words(self, ctx, *, text: commands.clean_content = ''):
+        with open("banned_words.json") as f:
+            fe = json.load(f)
+            if fe == []:
+                await ctx.send("There are no banned words")
+            else:
+                await ctx.send(fe)
+
+
+
+
+    @commands.Cog.listener()
+    async def banned_words(self, ctx, message):
+        with open("banned_words.json") as f:
+            fe = json.load(f)
+        if message.content.lower() in fe:
+            if message.author.id != 932687176997687316:
+                await ctx.send(f"@{message.author} That is a banned word an may not be used")
 
         # with open("banned_words.json", mode='w') as f:
         #     text = text.lower()
