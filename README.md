@@ -33,9 +33,13 @@ cd DiscBot
 ## Resources
 
 [Documentation for Discord API wrapper](https://discordpy.readthedocs.io/en/stable/)
+
 [Python Docs](https://docs.python.org/3/)
+
 [Trello](https://trello.com/invite/b/gvCxfmu9/cedda34bbf96a103a60ab3c245f10b29/project)
-[Discord](discord.gg/PBHCNGgf)
+
+[Testing Discord](discord.gg/PBHCNGgf)
+
 ### Final words from Harry:
 
 Enjoy using and contributing to D.A.V.E!!
