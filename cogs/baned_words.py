@@ -6,6 +6,7 @@ import discord.utils
 import json
 import os
 a = []
+import random
 
 
 
@@ -86,6 +87,25 @@ class usefull(commands.Cog):
         #     json.dump(data, file, indent=2)
         # with open('baned_words.json', 'w') as f:
         #     json.dump(text, f, indent=2)
+
+    @commands.Cog.listener()
+    async def on_message(self, message):
+        if "what a hostage situation is" in message.content.lower():
+            if message.author.id != 932687176997687316:
+                rand2 = random.randint(0, 1)
+                if rand2 == 1:
+                    await message.reply("EEVEE: Extremly Horny")
+
+    
+
+    @commands.Cog.listener()
+    async def on_message(self, message):
+        if "i'm not happy" in message.content.lower():
+            if message.author.id != 932687176997687316:
+                rand2 = random.randint(0, 1)
+                if rand2 == 1:
+                    await message.reply("EEVEE: Dead")
+    
        
 
 
