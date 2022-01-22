@@ -10,7 +10,7 @@ class good_morning(commands.Cog):
 
     @commands.Cog.listener()
     async def on_message(self, message):
-        if "i'm not happy" or "i am not happy" in message.content.lower():
+        if "i'm not happy" in message.content.lower():
             if message.author.id != 932687176997687316:
                 rand2 = random.randint(0, 1)
                 if rand2 == 1:
