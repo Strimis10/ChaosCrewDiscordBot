@@ -91,7 +91,7 @@ class fun(commands.Cog):
 
     @commands.Cog.listener()
     async def on_message(self, message):
-        if "choke" in message.content.lower():
+        if "choke me harder" in message.content.lower():
             if message.author.id != 932687176997687316:
                 what = random.randint(0, 3)
                 if what == 1:
