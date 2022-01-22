@@ -17,8 +17,6 @@ TOKEN = "OTMyNjg3MTc2OTk3Njg3MzE2.YeWmnw.dp23z_eX2g_bNB1qkXYf_QRGXqM"
 async def on_ready():
     print("Ready")
 
-
-
         
 
 @client.command(name="restart")
@@ -32,7 +30,9 @@ async def restart(ctx):
 
 @client.event
 async def on_member_join(ctx):
-    await ctx.send('ello')
+    embed=discord.Embed(title=f"Welcome {ctx.name}", description=f"Thanks for joining {ctx.guild.name}, read the rules in <#799334905569345606> and enjoy your stay!!")
+    embed.set_thumbnail(url=ctx.avatar_url)
+    await ctx.send(embed=embed)
 
 @client.command(name='kill', aliases=['k'])
 @commands.is_owner()
