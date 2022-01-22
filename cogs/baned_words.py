@@ -37,7 +37,7 @@ class usefull(commands.Cog):
 
 
     @commands.command(name='bannedwords',aliases=["bws"],description='bot sends a list of all banned words')
-    async def bannedWords(self, ctx, *, text):
+    async def bannedWords(self, ctx,):
         with open("banned_words.json") as f:
             fe = json.load(f)
             if fe == []:
