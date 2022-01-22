@@ -109,6 +109,12 @@ class fun(commands.Cog):
         await ctx.send(file=file)
 
 
+    @commands.Cog.listener()
+    async def on_message(self, message):
+        if message.content.lower().startswith("try again"):
+            if message.author.id != 932687176997687316:
+                await message.reply("EEVEE: Constipated")
+
 
 
 def setup(bot):
