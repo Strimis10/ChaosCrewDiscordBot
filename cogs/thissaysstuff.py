@@ -15,5 +15,12 @@ class thissaysstuff(commands.Cog):
             await ctx.send(f"{ctx.author.mention}: {text}")
             await ctx.message.delete()
 
+
+
+
+    @commands.command(name='sus',description='sus')
+    async def sus(self, ctx):
+        file = discord.File("pokemon.gif")
+        await ctx.send(file=file)
 def setup(bot):
     bot.add_cog(thissaysstuff(bot))
