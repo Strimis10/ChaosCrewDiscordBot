@@ -1,15 +1,10 @@
-from email import message
 import discord
 intents = discord.Intents(messages=True, guilds=True, members=True)
 intents.reactions = True
 intents.members = True
 from discord.ext import commands
-import time
-import asyncio
-import random
 import os
-import sys
-client = commands.Bot(command_prefix="?",owner_ids=[386826952599928842, 427822985102098434], intents=intents)
+client = commands.Bot(command_prefix="?",owner_ids=[386826952599928842, 427822985102098434], intents=discord.Intents.all())
 
 TOKEN = "OTMyNjg3MTc2OTk3Njg3MzE2.YeWmnw.dp23z_eX2g_bNB1qkXYf_QRGXqM"
 
