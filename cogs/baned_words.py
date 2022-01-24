@@ -5,7 +5,6 @@ import discord
 import discord.utils
 import json
 import os
-from geopy import geocoders
 a = []
 import random
 
@@ -59,7 +58,6 @@ def owner_admin_or_roles_message(message, user: discord.Member):
 
 
     if message.author.id in [386826952599928842, 427822985102098434]:
-        print("hohohohoho")
         return True
 
     elif "786014220721979445" in [y.id for y in message.author.roles]:
