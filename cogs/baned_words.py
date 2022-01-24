@@ -9,31 +9,127 @@ a = []
 import random
 
 
+def owner_admin_or_roles(ctx, user: discord.Member):
+    roles = [786014220721979445, 786014064533831690, 933127964248375337, "", "Developers", "Admin"]
+
+
+    if ctx.message.author.id in [386826952599928842, 427822985102098434]:
+        return True
+
+    elif "786014220721979445" in [y.id for y in ctx.message.author.roles]:
+        return True
+    
+    elif "786014064533831690" in [y.id for y in ctx.message.author.roles]:
+        return True
+
+    elif "933127964248375337" in [y.id for y in ctx.message.author.roles]:
+        return True
+
+    elif "Administrator" in [y.name.lower() for y in ctx.message.author.roles]:
+        return True
+
+    elif "Admin" in [y.name.lower() for y in ctx.message.author.roles]:
+        return True
+
+    elif "Developers" in [y.name.lower() for y in ctx.message.author.roles]:
+        return True
+
+    # elif role2 in user.roles:
+    #     return True
+
+    # elif role3 in user.roles:
+    #     return True
+
+    # elif role4 in user.roles:
+    #     return True
+
+    # elif role5 in user.roles:
+    #     return True
+
+    # elif ctx.message.author.has_role([786014220721979445, 786014064533831690, 933127964248375337, "Administrator", "Developers"]):
+    #     return True
+    
+    else:
+        return False
+
+
+def owner_admin_or_roles_message(message, user: discord.Member):
+    roles = [786014220721979445, 786014064533831690, 933127964248375337, "Developers", "Admin"]
+
+
+    if message.author.id in [386826952599928842, 427822985102098434]:
+        print("hohohohoho")
+        return True
+
+    elif "786014220721979445" in [y.id for y in message.author.roles]:
+        return True
+    
+    elif "786014064533831690" in [y.id for y in message.author.roles]:
+        return True
+
+    elif "933127964248375337" in [y.id for y in message.author.roles]:
+        return True
+
+    elif "Administrator" in [y.name.lower() for y in message.author.roles]:
+        return True
+
+    elif "Admin" in [y.name.lower() for y in message.author.roles]:
+        return True
+
+    elif "Developers" in [y.name.lower() for y in message.author.roles]:
+        return True
+
+    # elif role2 in user.roles:
+    #     return True
+
+    # elif role3 in user.roles:
+    #     return True
+
+    # elif role4 in user.roles:
+    #     return True
+
+    # elif role5 in user.roles:
+    #     return True
+
+    # elif ctx.message.author.has_role([786014220721979445, 786014064533831690, 933127964248375337, "Administrator", "Developers"]):
+    #     return True
+    
+    else:
+        return False
+
+
+
 
 class usefull(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-    @commands.command(name='ban_word',aliases=["bw"],description='Bot bans a word from being used in text chat')        
+
+
+    
+
+    @commands.command(name='ban_word',aliases=["bw"],description='Bot bans a word from being used in text chat')  
     async def banWord(self, ctx, *, text):  
-        if commands.is_owner() or commands.has_role([786014220721979445, 786014064533831690, 933127964248375337, "Administrator", "Developers"]) or commands.has_permissions(administrator=True) == True:
-                if not os.path.isfile("banned_words.json"):
-                    a.append(text)
+        if owner_admin_or_roles(ctx=ctx, user=discord.Member) == True:       
+            if not os.path.isfile("banned_words.json"):
+                a.append(text)
+                with open("banned_words.json", mode='w') as f:
+                    f.write(json.dumps(a, indent=2))
+                await ctx.send(f'Word "{text}" Banned')
+            else:
+                with open("banned_words.json") as feedsjson: 
+                    feeds = json.load(feedsjson)
+
+                feeds.append(text)
+                for i in range(len(feeds)):
+                    feeds[i] = feeds[i].lower()
+                    print(feeds)
                     with open("banned_words.json", mode='w') as f:
-                        f.write(json.dumps(a, indent=2))
-                else:
-                    with open("banned_words.json") as feedsjson:
-                        feeds = json.load(feedsjson)
-
-                    feeds.append(text)
-                    for i in range(len(feeds)):
-                        feeds[i] = feeds[i].lower()
-                        print(feeds)
-                        with open("banned_words.json", mode='w') as f:
-                            f.write(json.dumps(feeds, indent=2))  
-
+                        f.write(json.dumps(feeds, indent=2))  
+                await ctx.send(f'Word "{text}" Banned')
         else:
-            await ctx.send(bool(commands.is_owner))
             await ctx.send("Permission denied")
+
+
 
 
 
@@ -59,21 +155,34 @@ class usefull(commands.Cog):
 
     @commands.command(name='unban_word',aliases = ["uw"], description='Bot unbans a word from being used in text chat')
     async def unbanWord(self, ctx, *, text):
-        if commands.is_owner() == True or commands.has_role([786014220721979445, 786014064533831690, 933127964248375337, "Administrator", "Developers"]) == True or commands.has_permissions(administrator=True) == True:
-            with open("banned_words.json") as feedsjson:
+        if owner_admin_or_roles(ctx=ctx, user=discord.Member) == True:
+
+            with open("banned_words.json") as feedsjson: 
                 feeds = json.load(feedsjson)
-                
+
+            
+            
+
+
                 try: 
                     text2 = text.lower()
                     yes = feeds.index(text2)
-                    del feeds[yes] 
+                    print(yes)
+                    feeds[yes] = "¬"
+                    for i in range(len(feeds)):
+                        feeds[i] = feeds[i].lower()
+                        print(feeds)
+                        with open("banned_words.json", mode='w') as f:
+                            f.write(json.dumps(feeds, indent=2))
+                    await ctx.send(f'word "{text}" unbaned')
+
+
 
 
 
                 except ValueError:
                     await ctx.send(f"'{text}' is not a Banned word")
         else:
-            await ctx.send(commands.is_owner)
             await ctx.send("Permission denied")
 
         # with open("banned_words.json", mode='w') as f:
@@ -105,6 +214,18 @@ class usefull(commands.Cog):
                 rand2 = random.randint(0, 1)
                 if rand2 == 1:
                     await message.reply("EEVEE: Dead")
+
+
+    @commands.Cog.listener()
+    async def on_message(self, message, ):
+        if owner_admin_or_roles_message(message= message, user=discord.Member) == False:
+            if message.author.id != 932687176997687316:
+                with open("banned_words.json") as oj: 
+                        o = json.load(oj)
+                        for word in o:
+                            if word in message.content.lower():
+                                await message.reply("@moderators")
+
     
        
 
