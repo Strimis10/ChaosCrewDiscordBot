@@ -14,7 +14,6 @@ def owner_admin_or_roles(ctx, user: discord.Member):
 
 
     if ctx.message.author.id in [386826952599928842, 427822985102098434]:
-        print("hohohohoho")
         return True
 
     elif "786014220721979445" in [y.id for y in ctx.message.author.roles]:
@@ -55,7 +54,7 @@ def owner_admin_or_roles(ctx, user: discord.Member):
 
 
 def owner_admin_or_roles_message(message, user: discord.Member):
-    roles = [786014220721979445, 786014064533831690, 933127964248375337, "", "Developers", "Admin"]
+    roles = [786014220721979445, 786014064533831690, 933127964248375337, "Developers", "Admin"]
 
 
     if message.author.id in [386826952599928842, 427822985102098434]:
@@ -115,6 +114,7 @@ class usefull(commands.Cog):
                 a.append(text)
                 with open("banned_words.json", mode='w') as f:
                     f.write(json.dumps(a, indent=2))
+                await ctx.send(f'Word "{text}" Banned')
             else:
                 with open("banned_words.json") as feedsjson: 
                     feeds = json.load(feedsjson)
@@ -125,7 +125,7 @@ class usefull(commands.Cog):
                     print(feeds)
                     with open("banned_words.json", mode='w') as f:
                         f.write(json.dumps(feeds, indent=2))  
-        
+                await ctx.send(f'Word "{text}" Banned')
         else:
             await ctx.send("Permission denied")
 
@@ -168,12 +168,13 @@ class usefull(commands.Cog):
                     text2 = text.lower()
                     yes = feeds.index(text2)
                     print(yes)
-                    feeds[yes] = ""
+                    feeds[yes] = "¬"
                     for i in range(len(feeds)):
                         feeds[i] = feeds[i].lower()
                         print(feeds)
                         with open("banned_words.json", mode='w') as f:
                             f.write(json.dumps(feeds, indent=2))
+                    await ctx.send(f'word "{text}" unbaned')
 
 
 
@@ -219,9 +220,9 @@ class usefull(commands.Cog):
     async def on_message(self, message, ):
         if owner_admin_or_roles_message(message= message, user=discord.Member) == False:
             if message.author.id != 932687176997687316:
-                with open("banned_words.json") as feedsjson: 
-                        feeds = json.load(feedsjson)
-                        for word in feeds:
+                with open("banned_words.json") as oj: 
+                        o = json.load(oj)
+                        for word in o:
                             if word in message.content.lower():
                                 await message.reply("@moderators")
 
