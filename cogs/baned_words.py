@@ -5,6 +5,7 @@ import discord
 import discord.utils
 import json
 import os
+from geopy import geocoders
 a = []
 import random
 
