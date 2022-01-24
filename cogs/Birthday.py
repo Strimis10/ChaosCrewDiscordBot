@@ -21,7 +21,7 @@ class Birthday(commands.Cog):
             # if "date:" not in text:
             #    await ctx.send("send your birthday like this: 'dd/mm/yyyy' if you don't want to share the year type '0000' as the year. Send this with the 'setBrithday' command (?setBirthday dd/mm/yyyy)")
 
-            # elif "date:" in text:
+            # elif "date:" in tex4t:
             print(text)
             if text == '':
                 await ctx.send("send your birthday like this: 'dd/mm/yyyy' if you don't want to share the year type '0000' as the year. Send this with the 'setBrithday' command (?setBirthday dd/mm/yyyy)")
@@ -51,6 +51,7 @@ class Birthday(commands.Cog):
                         with open("birthdays.json", mode='w') as f:
                             f.write(json.dumps(feeds, indent=2))  
                     await ctx.send(f"{ctx.author.name}'s birthday set to {feeds[ctx.author.name]}")
+
 
 
 
