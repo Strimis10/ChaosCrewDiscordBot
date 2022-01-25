@@ -3,13 +3,16 @@ import discord
 import discord.utils
 import time
 
+terms = ["night", "good night"]
+
 class good_morning(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
     @commands.Cog.listener()
     async def on_message(self, message):
-        if message.content.lower().startswith("good night"):
+        #if message.content.lower().startswith("good night"):
+        if message.content.lower() in terms:
             if message.author.id != 932687176997687316:
                 time.sleep(10)
                 await message.reply("Good Night")

@@ -1,3 +1,5 @@
+
+
 from ast import alias
 from email import message
 from telnetlib import COM_PORT_OPTION
@@ -6,6 +8,7 @@ import discord
 import discord.utils
 import json
 import os
+
 
 a = {}
 
@@ -17,22 +20,22 @@ class Birthday(commands.Cog):
 
     @commands.command(name='setBirthday', aliases=["setBday"])
     async def set_Birthday(self, ctx, *, text: commands.clean_content = ''):
-        #                         ^^ This is for pings / mentions being cleaned so you can't do `a!say @everyone`.
+        #                         ^^ This is for pings - mentions being cleaned so you can't do `a!say @everyone`.
             # if "date:" not in text:
-            #    await ctx.send("send your birthday like this: 'dd/mm/yyyy' if you don't want to share the year type '0000' as the year. Send this with the 'setBrithday' command (?setBirthday dd/mm/yyyy)")
+            #    await ctx.send("send your birthday like this: 'yyyy-mm-dd' if you don't want to share the year type '0000' as the year. Send this with the 'setBrithday' command (?setBirthday yyyy-mm-dd)")
 
             # elif "date:" in tex4t:
             
             if text == '':
-                await ctx.send("send your birthday like this: 'dd/mm/yyyy' if you don't want to share the year type '0000' as the year. Send this with the 'setBrithday' command (?setBirthday dd/mm/yyyy)")
-            elif text[2] != "/":
-                await ctx.send("send your birthday like this: 'dd/mm/yyyy' if you don't want to share the year type '0000' as the year. Send this with the 'setBrithday' command (?setBirthday dd/mm/yyyy)")
-            elif text[5] != "/":
-                await ctx.send("send your birthday like this: 'dd/mm/yyyy' if you don't want to share the year type '0000' as the year. Send this with the 'setBrithday' command (?setBirthday dd/mm/yyyy)")
+                await ctx.send("send your birthday like this: 'yyyy-mm-dd' if you don't want to share the year type '0000' as the year. Send this with the 'setBrithday' command (?setBirthday yyyy-mm-dd)")
+            elif text[4] != "-":
+                await ctx.send("send your birthday like this: 'yyyy-mm-dd' if you don't want to share the year type '0000' as the year. Send this with the 'setBrithday' command (?setBirthday yyyy-mm-dd)")
+            elif text[7] != "-":
+                await ctx.send("send your birthday like this: 'yyyy-mm-dd' if you don't want to share the year type '0000' as the year. Send this with the 'setBrithday' command (?setBirthday yyyy-mm-dd)")
             #for number in range(5, 9):
             #    if text[number] != 
             #elif text[10] != ".":
-            #   await ctx.send("send your birthday like this: 'dd/mm/yyyy.' if you don't want to share the year type '0000' as the year. Send this with the 'setBrithday' command (?setBirthday dd/mm/yyyy.)")
+            #   await ctx.send("send your birthday like this: 'yyyy-mm-dd.' if you don't want to share the year type '0000' as the year. Send this with the 'setBrithday' command (?setBirthday yyyy-mm-dd.)")
 
             else:
                 if not os.path.isfile("birthdays.json"):
