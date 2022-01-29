@@ -25,8 +25,10 @@ class fun(commands.Cog):
     with open("birthdays.json") as f:       
         data = json.load(f) 
         for user in data:
-            if user == date:
-                print("ugh")
+            print(user)
+            for number in range(4, 9):
+                if data[user[number]] == date[number]:
+                    print("ugh")
             print(data[user])
     #     print(date)
            
