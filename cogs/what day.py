@@ -18,9 +18,8 @@ class birthday(commands.Cog):
     def birthday_unload(self):
         self.printer.cancel()
 
-    @tasks.loop(seconds=5.0)
+    @tasks.loop(minutes=80)
     async def printer(self):
-        print(self.index)
         self.index += 1
 
         from datetime import date
@@ -36,7 +35,6 @@ class birthday(commands.Cog):
         with open("birthdays.json") as f:       
             data = json.load(f) 
             for user in data:
-                print(user)
                 day = []
                 for number in data[user]:
                     day.append(number)
@@ -44,12 +42,14 @@ class birthday(commands.Cog):
                 for number in range(4, 9):
                     if day[number] == datel[number]:
                         match += 1
-                        print("ugh")
+                        
 
                 if match == 5:
                     # await ctx.send("Happy")
-                    await commands.send("Happy")
+                    #await commands.ctx.send("Happy")
+                    print(f"{user}: match")
                     print("Happy birthday!!")
+
         #     print(date)
        
        
