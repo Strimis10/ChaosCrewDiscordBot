@@ -16,7 +16,7 @@ class good_morning(commands.Cog):
 
 
 
-    @tasks.loop(seconds=60)
+    @tasks.loop(hours=1)
     async def printer(self):
         self.index += 1
         global can_run

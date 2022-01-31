@@ -15,11 +15,11 @@ class birthday(commands.Cog):
         self.index = 0
         self.printer.start()
 
-    def birthday_unload(self):
+    def birthday_unload(self,):
         self.printer.cancel()
 
     @tasks.loop(minutes=80)
-    async def printer(self):
+    async def printer(self, message):
         self.index += 1
 
         from datetime import date
@@ -47,6 +47,10 @@ class birthday(commands.Cog):
                 if match == 5:
                     # await ctx.send("Happy")
                     #await commands.ctx.send("Happy")
+                    #934475802593091636# 786013884737781872]
+                    # await client.change_presence(activity=discord.Game('B')
+                    # channel = client.get_channel(934475802593091636)
+                    await message.channel.send(f"{user}: match")
                     print(f"{user}: match")
                     print("Happy birthday!!")
 
