@@ -18,7 +18,7 @@ class birthday(commands.Cog):
     def birthday_unload(self,):
         self.printer.cancel()
 
-    @tasks.loop(minutes=80)
+    @tasks.loop(hours=12)
     async def printer(self, message):
         self.index += 1
 

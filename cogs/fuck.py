@@ -9,7 +9,7 @@ class Ticket(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command(name='CreateTicket',aliases= ["createTicket","Createticket","createticket"],description='Creates a channel with you\'re suggestion/problem')
+    @commands.command(name='CreateTicket',aliases= ["createTicket","Createticket","createticket", "ct"],brief='"?ct #your question" Creates a channel with you\'re suggestion/problem')
     async def createticket(self, ctx, *, text):
         guild = ctx.guild
         text_channel_list = []

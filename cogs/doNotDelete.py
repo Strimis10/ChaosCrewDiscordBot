@@ -37,7 +37,6 @@ class Listener(commands.Cog):
     @commands.Cog.listener()
     async def on_message(self, message):
         if "choke me harder" in message.content.lower():
-            print("cock and balls")
             if message.author.id != 932687176997687316:
                 what = random.randint(0, 3)
                 if what == 1:
