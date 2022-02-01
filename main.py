@@ -102,6 +102,17 @@ async def unloadall(ctx):
 async def ping(ctx):
      await ctx.send(f'Pong! In {round(client.latency * 1000)}ms')
 
+     
+    
+@client.command(name='Kennevo_rough', aliases=["kennevo_rough"])
+@commands.is_owner()
+async def Kennevo_rough(ctx):
+    file = discord.File("kennevo_rough.mp3")
+    await ctx.send(file=file)
+    await ctx.send("!!! SONG BY TizzyTheProphet")
+
+
+
 @client.command(name='reloadall', aliases=['rla'])
 @commands.is_owner()
 async def reloadall(ctx):

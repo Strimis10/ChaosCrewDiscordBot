@@ -15,7 +15,7 @@ class Ticket(commands.Cog):
         text_channel_list = []
         for channel in guild.text_channels:
             text_channel_list.append(channel)
-        channelname = (f"{ctx.author.name}-{random.randint(100000,999999)}")
+        channelname = (f"{ctx.author.name}-{ctx.author.id}")#random.randint(100000,999999)
         channel = await guild.create_text_channel(channelname)
         print(text_channel_list)
         await channel.send(f"User's Ticket message: {text}")

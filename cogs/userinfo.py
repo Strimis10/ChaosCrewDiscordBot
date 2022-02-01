@@ -58,6 +58,7 @@ class userInfo(commands.Cog):
         await ctx.send(file=file)
 
 
+
     @commands.Cog.listener()
     async def on_message(self, message):
         if message.content.lower().startswith("try again"):
@@ -68,3 +69,7 @@ class userInfo(commands.Cog):
 
 def setup(bot):
     bot.add_cog(userInfo(bot))
+
+
+
+

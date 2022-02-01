@@ -8,7 +8,7 @@ class Members(commands.Cog):
     def init(self, bot):
         self.bot = bot
 
-    @commands.command(name='membercount', aliases = ["Mcount"])
+    @commands.command(name='membercount', aliases = ["Mcount", "mcount"])
     async def membercount(self, ctx):
         await ctx.send(ctx.guild.member_count)
         

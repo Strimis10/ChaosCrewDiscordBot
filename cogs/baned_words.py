@@ -6,6 +6,7 @@ import discord.utils
 import json
 import os
 a = []
+e = {}
 import random
 
 
@@ -217,14 +218,63 @@ class usefull(commands.Cog):
 
 
     @commands.Cog.listener()
-    async def on_message(self, message, ):
+    async def on_message(self, message,):
         if owner_admin_or_roles_message(message= message, user=discord.Member) == False:
             if message.author.id != 932687176997687316:
                 with open("banned_words.json") as oj: 
                         o = json.load(oj)
                         for word in o:
                             if word in message.content.lower():
-                                await message.reply("@moderators")
+                                await message.reply(f"{message.author.mention} That's a Banned word, this will be logged and after multible incidents you will be timed out, kicked and then banned. use '?bws' to se a list of the banned words")
+                                await message.delete()
+
+                                if not os.path.isfile("incidents.json"):
+                                    e[str(message.author.id)] = 1
+                                    
+                                    with open("incidents.json", mode='w') as f:
+                                        f.write(json.dumps(e, indent=2))
+                                       
+                                else: 
+                                    with open("incidents.json") as feedsjson: 
+                                        feeds = json.load(feedsjson)
+                                    if str(message.author.id) in feeds:
+
+                                        print(feeds[str(message.author.id)])
+                                        feeds[str(message.author.id)] = feeds[str(message.author.id)] + 1
+                                        for i in range(len(feeds)):
+                                            with open("incidents.json", mode='w') as f:
+                                                f.write(json.dumps(feeds, indent=2))  
+                                    
+                                    else:
+                                        feeds[str(message.author.id)] = 1
+                                        for i in range(len(feeds)):
+                                            with open("incidents.json", mode='w') as f:
+                                                f.write(json.dumps(feeds, indent=2)) 
+                                    
+
+
+                                    # try:
+                                    #     message.author.id = data[message.author.id] + 1
+                                    #     with open("incidents.json", mode='w') as r:
+                                    #         r.write(json.dumps(message.author.id, indent=2)) 
+
+                                    # except KeyError:
+                                    #     data[message.author.id] = 1
+                                    #     with open("incidents.json", mode='w') as r:
+                                    #         r.write(json.dumps(data, indent=2))  
+
+
+                                    # with open("incidents.json") as feedsjson: 
+                                    #     feeds = json.load(feedsjson)
+
+                                    # feeds[message.author.name] = text.lower()
+                                    # for i in range(len(feeds)):
+                                    #     print(feeds)
+                                    #     with open("incidents.json", mode='w') as f:
+                                    #         f.write(json.dumps(feeds, indent=2))  
+                                   
+                
+                                   
 
     
        

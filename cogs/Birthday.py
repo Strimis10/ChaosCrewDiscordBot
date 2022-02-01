@@ -8,6 +8,7 @@ import discord
 import discord.utils
 import json
 import os
+from typing import Optional
 
 
 a = {}
@@ -39,21 +40,37 @@ class Birthday(commands.Cog):
 
             else:
                 if not os.path.isfile("birthdays.json"):
-                    a[ctx.author.name] = text
+                    a[str(ctx.author.id)] = text
                     
                     with open("birthdays.json", mode='w') as f:
                         f.write(json.dumps(a, indent=2))
-                        await ctx.send(f"{ctx.author.name}'s birthday set to {f[ctx.author.name]}")
+                        await ctx.send(f"{ctx.author.name}'s birthday set to {f[str(ctx.author.id)]}")
                 else: 
                     with open("birthdays.json") as feedsjson: 
                         feeds = json.load(feedsjson)
 
-                    feeds[ctx.author.name] = text.lower()
+                    feeds[str(ctx.author.id)] = text.lower()
                     for i in range(len(feeds)):
                         print(feeds)
                         with open("birthdays.json", mode='w') as f:
                             f.write(json.dumps(feeds, indent=2))  
-                    await ctx.send(f"{ctx.author.name}'s birthday set to {feeds[ctx.author.name]}")
+                    await ctx.send(f"{ctx.author.name}'s birthday set to {feeds[str(ctx.author.id)]}")
+    
+
+
+
+    @commands.command(name='Bday_check',aliases=["Bdaycheck", "bdaycheck", "bday_check"], description='informs you of the persons birthday',brief='informs you of a persons birthday: "?Bdaycheck @Strimis10"')
+    async def say(self, ctx, target: Optional[discord.Member]):
+        target = target or ctx.author
+        with open("birthdays.json") as feedsjson: 
+            feeds = json.load(feedsjson)
+        name = target.name
+        target_id = str(target.id)
+        await ctx.send(f"{name}'s birthday is set to {feeds[target_id]}")
+
+
+
+
 
 
 
