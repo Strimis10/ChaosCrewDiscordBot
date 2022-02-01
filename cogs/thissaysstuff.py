@@ -12,7 +12,7 @@ class thissaysstuff(commands.Cog):
         if text == '':
             await ctx.send("You need to say something")
         else:
-            await ctx.send(f"{ctx.author.mention}: {text}")
+            await ctx.send(f"{ctx.author.mention} says: {text}")
             await ctx.message.delete()
 
 

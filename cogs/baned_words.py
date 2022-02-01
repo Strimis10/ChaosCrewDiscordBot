@@ -118,7 +118,8 @@ class usefull(commands.Cog):
                 with open("banned_words.json") as feedsjson: 
                     feeds = json.load(feedsjson)
 
-                feeds.append(text)
+                feeds.append(text.lower())
+                print(feeds)
                 for i in range(len(feeds)):
                     feeds[i] = feeds[i].lower()
                     print(feeds)

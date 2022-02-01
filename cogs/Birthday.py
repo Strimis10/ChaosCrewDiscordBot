@@ -18,7 +18,7 @@ class Birthday(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command(name='setBirthday', aliases=["setBday"])
+    @commands.command(name='setBirthday', aliases=["setBday", "setbirthday"],brief="Stores your birthday in DAVE's database")
     async def set_Birthday(self, ctx, *, text: commands.clean_content = ''):
         #                         ^^ This is for pings - mentions being cleaned so you can't do `a!say @everyone`.
             # if "date:" not in text:
