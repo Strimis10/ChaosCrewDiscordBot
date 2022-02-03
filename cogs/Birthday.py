@@ -2,6 +2,7 @@
 
 from ast import alias
 from email import message
+from sys import exec_prefix
 from telnetlib import COM_PORT_OPTION
 from discord.ext import commands
 import discord
@@ -66,7 +67,11 @@ class Birthday(commands.Cog):
             feeds = json.load(feedsjson)
         name = target.name
         target_id = str(target.id)
-        await ctx.send(f"{name}'s birthday is set to {feeds[target_id]}")
+        try:
+            await ctx.send(f"{name}'s birthday is set to {feeds[target_id]}")
+        
+        except KeyError:
+            await ctx.send(f"{name} has not set their birthday yet...")
 
 
 
