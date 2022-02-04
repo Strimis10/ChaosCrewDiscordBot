@@ -1,2 +1,2 @@
 
-PyNaCl
+youtube_dl
