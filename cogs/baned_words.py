@@ -24,7 +24,7 @@ def owner_admin_or_roles(ctx, user: discord.Member):
         feeds = json.load(feedsjson)
 
     print(feeds)
-    print("sdd")
+    
         
     ctx.send(ctx.message.author.id)
 
@@ -322,7 +322,7 @@ class usefull(commands.Cog):
                                         await message.delete()
 
                                     elif feeds[str(message.author.id)] == 6:
-                                        await message.reply(f"{message.author.mention} That's a Banned word, this is your 5:th incident, you will now be banned from the discord server. Good bye!")
+                                        await message.reply(f"{message.author.mention} That's a Banned word, this is your 6:th incident, you will now be banned from the discord server. Good bye!")
                                         await message.delete()
                                         time.sleep(15)
                                         await message.author.ban(reason="BAD BOII!!, you can't say that without consequences")
