@@ -302,7 +302,7 @@ class usefull(commands.Cog):
                                         await message.reply(f"{message.author.mention} That's a Banned word, this is your 1:st incident, this will be logged and after 4 incidents you will be timed out, 5: kicked and 6: then banned. use '?bws' to se a list of the banned words")
                                         await message.delete()
 
-                                    elif feeds[str(message.author.id)] == 2:
+                                    if feeds[str(message.author.id)] == 2:
                                         await message.reply(f"{message.author.mention} That's a Banned word, this is your 2:nd incident, this will be logged and after 4 incidents you will be timed out, 5: kicked and 6: then banned. use '?bws' to se a list of the banned words")
                                         await message.delete()
 
@@ -312,11 +312,30 @@ class usefull(commands.Cog):
 
                                     elif feeds[str(message.author.id)] == 4:
                                         await message.reply(f"{message.author.mention} That's a Banned word, this is your 4:th incident, you will be timed out for 24 hours")
+                                        await message.reply("BAD BOII!!, you can't say that without consequences")
+                                        await message.delete()
+                                        await message.author.edit(timeout=nextcord.utils.utcnow()+datetime.timedelta(seconds=86400), reason="BAD BOII!!, you can't say that without consequences")
+                                    
+                                    elif feeds[str(message.author.id)] == 5:
+                                        await message.reply(f"{message.author.mention} That's a Banned word, this is your 5:th incident, you will now be kicked from the server. next time this happens you will be banned!")
+                                        await message.author.kick(reason="BAD BOII!!, you can't say that without consequences")
+                                        await message.delete()
+
+                                    elif feeds[str(message.author.id)] == 6:
+                                        await message.reply(f"{message.author.mention} That's a Banned word, this is your 5:th incident, you will now be banned from the discord server. Good bye!")
                                         await message.delete()
                                         time.sleep(15)
-                                        await message.author.edit(timeout=nextcord.utils.utcnow()+86400)
-                                        print("timed")
-                                    await message.delete()
+                                        await message.author.ban(reason="BAD BOII!!, you can't say that without consequences")
+                                    
+                                    try: 
+                                        Strimis = "<@427822985102098434>"
+                                        Harry = "<@386826952599928842>"
+                                        await message.reply(f"{Strimis} {Harry}; {message.author.mention} said a banned word but something has gone wrong, and needs to be fixed")
+                                        await message.delete()
+
+                                    except:
+                                        pass
+
 
 
                                     
