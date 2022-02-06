@@ -14,25 +14,31 @@ import datetime
 import humanfriendly
 import nextcord
 
+with open("word_immune.json") as feedsjson: 
+    feeds = json.load(feedsjson)
 
+the_immune = []
+
+for id in feeds:
+    the_immune.append(id)
 word_immune = []
+
+print(the_immune)
 
 
 def owner_admin_or_roles(ctx, user: discord.Member):
-    roles = [786014220721979445, 786014064533831690, 933127964248375337, "", "Developers", "Admin"]
-    with open("word_immune.json") as feedsjson: 
-        feeds = json.load(feedsjson)
-
-    print(feeds)
+    roles = [786014220721979445, 786014064533831690, 933127964248375337, "Developers", "Admin"]
     
         
     ctx.send(ctx.message.author.id)
+    for id in the_immune:
+        ctx.send(ctx.message.author.id)
+        if ctx.message.author.id == id:
+            return True 
 
     if ctx.message.author.id in [386826952599928842, 427822985102098434]:
         return True
 
-    elif ctx.message.author.id in feeds:
-        return True 
 
     elif "786014220721979445" in [y.id for y in ctx.message.author.roles]:
         return True
