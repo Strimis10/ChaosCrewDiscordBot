@@ -7,15 +7,38 @@ import json
 import os
 a = []
 e = {}
+from typing import Optional
 import random
+import time
+import datetime
+import humanfriendly
+import nextcord
+
+with open("word_immune.json") as feedsjson: 
+    feeds = json.load(feedsjson)
+
+the_immune = []
+
+for id in feeds:
+    the_immune.append(id)
+word_immune = []
+
+print(the_immune)
 
 
 def owner_admin_or_roles(ctx, user: discord.Member):
-    roles = [786014220721979445, 786014064533831690, 933127964248375337, "", "Developers", "Admin"]
-
+    roles = [786014220721979445, 786014064533831690, 933127964248375337, "Developers", "Admin"]
+    
+        
+    ctx.send(ctx.message.author.id)
+    for id in the_immune:
+        ctx.send(ctx.message.author.id)
+        if ctx.message.author.id == id:
+            return True 
 
     if ctx.message.author.id in [386826952599928842, 427822985102098434]:
         return True
+
 
     elif "786014220721979445" in [y.id for y in ctx.message.author.roles]:
         return True
@@ -57,6 +80,8 @@ def owner_admin_or_roles(ctx, user: discord.Member):
 def owner_admin_or_roles_message(message, user: discord.Member):
     roles = [786014220721979445, 786014064533831690, 933127964248375337, "Developers", "Admin"]
 
+    
+
 
     if message.author.id in [386826952599928842, 427822985102098434]:
         return True
@@ -79,6 +104,10 @@ def owner_admin_or_roles_message(message, user: discord.Member):
     elif "Developers" in [y.name.lower() for y in message.author.roles]:
         return True
 
+    elif "Owner" in [y.name.lower() for y in message.author.roles]:
+        return True
+    
+    
     # elif role2 in user.roles:
     #     return True
 
@@ -216,23 +245,44 @@ class usefull(commands.Cog):
                 if rand2 == 1:
                     await message.reply("EEVEE: Dead")
 
+    @commands.has_permissions(administrator=True)
+    @commands.command(name='word_immunity',aliases=["WI", "wi", "wordimmunity"],description='Bot grants the user imunity from the Banned_words function and everything it does.')
+    async def word_immunity(self, ctx, target: Optional[discord.Member]):
+        target = target or ctx.author
+        
+
+        
+        if not os.path.isfile("word_immune.json"):
+            word_immune.append(target.id)
+            
+            with open("word_immune.json", mode='w') as f:
+                f.write(json.dumps(word_immune, indent=2))
+
+        else: 
+            with open("word_immune.json") as feedsjson: 
+                feeds = json.load(feedsjson)
+
+            feeds.append(target.id)
+        
+            with open("word_immune.json", mode='w') as f:
+                f.write(json.dumps(feeds, indent=2))
+
 
     @commands.Cog.listener()
-    async def on_message(self, message,):
+    async def on_message(self, message):
         if owner_admin_or_roles_message(message= message, user=discord.Member) == False:
             if message.author.id != 932687176997687316:
                 with open("banned_words.json") as oj: 
                         o = json.load(oj)
                         for word in o:
                             if word in message.content.lower():
-                                await message.reply(f"{message.author.mention} That's a Banned word, this will be logged and after multible incidents you will be timed out, kicked and then banned. use '?bws' to se a list of the banned words")
-                                await message.delete()
 
                                 if not os.path.isfile("incidents.json"):
                                     e[str(message.author.id)] = 1
                                     
                                     with open("incidents.json", mode='w') as f:
                                         f.write(json.dumps(e, indent=2))
+                                
                                        
                                 else: 
                                     with open("incidents.json") as feedsjson: 
@@ -251,6 +301,51 @@ class usefull(commands.Cog):
                                             with open("incidents.json", mode='w') as f:
                                                 f.write(json.dumps(feeds, indent=2)) 
                                     
+                                    with open("incidents.json") as feedsjson: 
+                                        feeds = json.load(feedsjson)
+
+                                    if feeds[str(message.author.id)] == 1:
+                                        await message.reply(f"{message.author.mention} That's a Banned word, this is your 1:st incident, this will be logged and after 4 incidents you will be timed out, 5: kicked and 6: then banned. use '?bws' to se a list of the banned words")
+                                        await message.delete()
+
+                                    if feeds[str(message.author.id)] == 2:
+                                        await message.reply(f"{message.author.mention} That's a Banned word, this is your 2:nd incident, this will be logged and after 4 incidents you will be timed out, 5: kicked and 6: then banned. use '?bws' to se a list of the banned words")
+                                        await message.delete()
+
+                                    elif feeds[str(message.author.id)] == 3:
+                                        await message.reply(f"{message.author.mention} That's a Banned word, this is your 3:d incident, this will be logged and after 4 incidents you will be timed out, 5: kicked and 6: then banned. use '?bws' to se a list of the banned words")
+                                        await message.delete()
+
+                                    elif feeds[str(message.author.id)] == 4:
+                                        await message.reply(f"{message.author.mention} That's a Banned word, this is your 4:th incident, you will be timed out for 24 hours")
+                                        await message.reply("BAD BOII!!, you can't say that without consequences")
+                                        await message.delete()
+                                        await message.author.edit(timeout=nextcord.utils.utcnow()+datetime.timedelta(seconds=86400), reason="BAD BOII!!, you can't say that without consequences")
+                                    
+                                    elif feeds[str(message.author.id)] == 5:
+                                        await message.reply(f"{message.author.mention} That's a Banned word, this is your 5:th incident, you will now be kicked from the server. next time this happens you will be banned!")
+                                        await message.author.kick(reason="BAD BOII!!, you can't say that without consequences")
+                                        await message.delete()
+
+                                    elif feeds[str(message.author.id)] == 6:
+                                        await message.reply(f"{message.author.mention} That's a Banned word, this is your 6:th incident, you will now be banned from the discord server. Good bye!")
+                                        await message.delete()
+                                        time.sleep(15)
+                                        await message.author.ban(reason="BAD BOII!!, you can't say that without consequences")
+                                    
+                                    try: 
+                                        Strimis = "<@427822985102098434>"
+                                        Harry = "<@386826952599928842>"
+                                        await message.reply(f"{Strimis} {Harry}; {message.author.mention} said a banned word but something has gone wrong, and needs to be fixed")
+                                        await message.delete()
+
+                                    except:
+                                        pass
+
+
+
+                                    
+                                        
 
 
                                     # try:

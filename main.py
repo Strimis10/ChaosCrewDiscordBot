@@ -12,7 +12,7 @@ TOKEN = "OTMyNjg3MTc2OTk3Njg3MzE2.YeWmnw.dp23z_eX2g_bNB1qkXYf_QRGXqM"
 async def on_ready():
     print("Ready")
 
-        
+
 
 @client.command(name="restart")
 @commands.is_owner()

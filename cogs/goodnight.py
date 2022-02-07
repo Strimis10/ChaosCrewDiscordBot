@@ -5,7 +5,7 @@ import time
 
 terms = ["night", "good night"]
 
-class good_morning(commands.Cog):
+class good_night(commands.Cog):
     
     def __init__(self, bot):
         self.can_run = True
@@ -55,4 +55,4 @@ class good_morning(commands.Cog):
 
 
 def setup(bot):
-    bot.add_cog(good_morning(bot))
+    bot.add_cog(good_night(bot))
