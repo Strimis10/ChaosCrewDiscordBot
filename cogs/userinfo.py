@@ -36,8 +36,8 @@ class userInfo(commands.Cog):
                 #("Status", str(target.status).title(), True),
                 # ("Activity", f"{target.activity.name} {str(getattr(target.activity, 'type')).title()}", True)
                 ("Is Admin", bool(target.guild_permissions.administrator), True),
-                ("Created at", target.created_at.strftime("%d/%m/%Y %H:%M:%S"), False),
-                ("Joined at", target.joined_at.strftime("%d/%m/%Y %H:%M:%S"), True),
+                ("User created at", target.created_at.strftime("%d/%m/%Y %H:%M:%S"), False),
+                ("Joined server at", target.joined_at.strftime("%d/%m/%Y %H:%M:%S"), True),
                 
                 
                 ]
