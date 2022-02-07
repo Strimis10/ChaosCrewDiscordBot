@@ -13,30 +13,21 @@ import time
 import datetime
 import humanfriendly
 import nextcord
-
-with open("word_immune.json") as feedsjson: 
-    feeds = json.load(feedsjson)
-
 the_immune = []
-
-for id in feeds:
-    the_immune.append(id)
 word_immune = []
-
-print(the_immune)
 
 
 def owner_admin_or_roles(ctx, user: discord.Member):
     roles = [786014220721979445, 786014064533831690, 933127964248375337, "Developers", "Admin"]
-    
-        
-    ctx.send(ctx.message.author.id)
-    for id in the_immune:
-        ctx.send(ctx.message.author.id)
-        if ctx.message.author.id == id:
-            return True 
+    with open("word_immune.json") as feedsjson: 
+        feeds = json.load(feedsjson)
 
-    if ctx.message.author.id in [386826952599928842, 427822985102098434]:
+     
+
+    if str(ctx.message.author.id) in feeds:
+        return True
+
+    elif ctx.message.author.id in [386826952599928842, 427822985102098434]:
         return True
 
 
@@ -253,7 +244,7 @@ class usefull(commands.Cog):
 
         
         if not os.path.isfile("word_immune.json"):
-            word_immune.append(target.id)
+            word_immune.append(str(target.id))
             
             with open("word_immune.json", mode='w') as f:
                 f.write(json.dumps(word_immune, indent=2))
@@ -262,7 +253,7 @@ class usefull(commands.Cog):
             with open("word_immune.json") as feedsjson: 
                 feeds = json.load(feedsjson)
 
-            feeds.append(target.id)
+            feeds.append(str(target.id))
         
             with open("word_immune.json", mode='w') as f:
                 f.write(json.dumps(feeds, indent=2))

@@ -15,6 +15,8 @@ class thissaysstuff(commands.Cog):
             await ctx.send(f"{ctx.author.mention} says: {text}")
             await ctx.message.delete()
 
+    
+
 
 
 

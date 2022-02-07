@@ -112,6 +112,14 @@ async def Kennevo_rough(ctx):
     await ctx.send("!!! SONG BY TizzyTheProphet")
 
 
+@client.command(name="admin_say", aliases = ["adminsay", "asay"])
+@commands.is_owner()
+async def admin_say(ctx, *, text: commands.clean_content = ''):
+    await ctx.send(text)
+    await ctx.message.delete()
+
+
+
 
 @client.command(name='reloadall', aliases=['rla'])
 @commands.is_owner()

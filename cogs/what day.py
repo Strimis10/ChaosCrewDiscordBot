@@ -19,8 +19,7 @@ class birthday(commands.Cog):
         self.printer.cancel()
 
     @tasks.loop(hours=12)
-    async def printer(self, message):
-        self.index += 1
+    async def printer(ctx):
 
         from datetime import date
         list = {}
@@ -50,7 +49,7 @@ class birthday(commands.Cog):
                     #934475802593091636# 786013884737781872]
                     # await client.change_presence(activity=discord.Game('B')
                     # channel = client.get_channel(934475802593091636)
-                    await message.channel.send(f"{user}: match")
+                    await ctx.send(f"{user}: match")
                     print(f"{user}: match")
                     print("Happy birthday!!")
 
