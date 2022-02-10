@@ -1,9 +1,9 @@
 import requests
+TWITCH_STREAM_API_ENDPOINT_V5 = "https://api.twitch.tv/kraken/streams/{Kennevo}"
 
-TWITCH_STREAM_API_ENDPOINT_V5 = "https://api.twitch.tv/kraken/streams/Kennevo"
 API_HEADERS = {
-'Client-ID' : 'myClientID',
-'Accept' : 'application/vnd.twitchtv.v5+json',
+    'Client-ID' : 'tf0tlb5p4j8wcblpgw2dit3fnrywqx',
+    'Accept' : 'application/vnd.twitchtv.v5+json',
 }
 
 reqSession = requests.Session()
@@ -16,12 +16,9 @@ def checkUser(userID): #returns true if online, false if not
         jsondata = req.json()
         if 'stream' in jsondata:
             if jsondata['stream'] is not None: #stream is online
-                #print('online')
                 return True
             else:
                 return False
-            #print('offline')
     except Exception as e:
         print("Error checking user: ", e)
         return False
-        print(checkUser("bikestreaming"))
