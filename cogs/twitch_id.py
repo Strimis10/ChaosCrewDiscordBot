@@ -1,15 +1,15 @@
 from discord.ext import commands
 import discord
 import discord.utils
-import get
+#import get
 import requests
 import json
 
-class fun(commands.Cog):
+class twitch(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command(name='say',description='bot says [text]',brief='bot says [text]')
+    @commands.command(name='id',description='bot says [text]',brief='bot says [text]')
     async def say(self, ctx, *, text: commands.clean_content = ''):
         # GET https://api.twitch.tv/helix/users?login=<username>
 
@@ -48,6 +48,6 @@ class fun(commands.Cog):
         #command content
 
 def setup(bot):
-    bot.add_cog(fun(bot))
+    bot.add_cog(twitch(bot))
 
 
