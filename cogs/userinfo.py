@@ -1,9 +1,7 @@
 ##https://www.youtube.com/watch?v=k6eCJDSemu4
 
 from datetime import datetime
-from sqlite3 import Timestamp
 from typing import Optional
-from ast import alias
 from discord.ext import commands
 import discord
 import discord.utils
@@ -20,7 +18,7 @@ class userInfo(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command(name='User_info', aliases=["ui", "Memeber_info", "mi"],description='gives a summary of the user')
+    @commands.command(name='User_info', aliases=["ui", "Memeber_info", "mi"], breif='gives a summary of the user')
     async def user_info(self, ctx, target: Optional[discord.Member]):
         target = target or ctx.author
 
