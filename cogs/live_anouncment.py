@@ -12,7 +12,7 @@ class live(commands.Cog):
         self.printer.start()
         
 
-    @tasks.loop(hours=24)
+    @tasks.loop(hours=1)
     async def printer(self):
         self.index += 1
         self.can_run = True 

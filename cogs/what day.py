@@ -7,15 +7,18 @@ import discord
 import discord.utils
 import json
 
+from grpc import Channel
+client = commands.Bot(command_prefix="?",owner_ids=[386826952599928842, 427822985102098434], intents=discord.Intents.all())
 
 
 class birthday(commands.Cog):
     def __init__(self, bot):
+        self.channel = client.get_channel(934475802593091636)
         self.bot = bot
         self.index = 0
         self.printer.start()
 
-    def birthday_unload(self,):
+    def birthday_unload(self):
         self.printer.cancel()
 
     @tasks.loop(hours=12)
@@ -49,7 +52,8 @@ class birthday(commands.Cog):
                     #934475802593091636# 786013884737781872]
                     # await client.change_presence(activity=discord.Game('B')
                     # channel = client.get_channel(934475802593091636)
-                    await ctx.send(f"{user}: match")
+                    
+                    await self.channel.send(f"{user}: match")
                     print(f"{user}: match")
                     print("Happy birthday!!")
 
