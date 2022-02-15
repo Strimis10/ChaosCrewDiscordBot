@@ -326,7 +326,7 @@ class usefull(commands.Cog):
                                     
                                     try: 
                                         Strimis = "<@427822985102098434>"
-                                        Harry = "<@386826952599928842>"
+                                        Harry = "```<@386826952599928842>```"
                                         await message.reply(f"{Strimis} {Harry}; {message.author.mention} said a banned word but something has gone wrong, and needs to be fixed")
                                         await message.delete()
 

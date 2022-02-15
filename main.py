@@ -4,9 +4,24 @@ intents.reactions = True
 intents.members = True
 from discord.ext import commands
 import os
+from dotenv import load_dotenv
 client = commands.Bot(command_prefix="?",owner_ids=[386826952599928842, 427822985102098434], intents=discord.Intents.all())
+load_dotenv()
 
-TOKEN = "OTMyNjg3MTc2OTk3Njg3MzE2.YeWmnw.dp23z_eX2g_bNB1qkXYf_QRGXqM"
+token = ""
+
+def get_token():
+    ans = input("are you testing y/n: ")
+    if ans == "y":
+        return os.getenv("TOKEN")
+    elif ans == "n":
+        return os.getenv("testingTOKEN")
+    else:
+        print("Unexpected input try again")
+        get_token()
+
+token = get_token()
+
 
 @client.event
 async def on_ready():
@@ -72,38 +87,14 @@ async def unload(ctx, extension):
         await ctx.send(f'Error:\n```py\n{error}\n```')
 
 
-@client.command(name='loadall', aliases=['la'])
-@commands.is_owner()
-async def loadall(ctx):
-    try:
-        msg = await ctx.send(f"Loading")
-        for filename in os.listdir('./cogs'):
-            if filename.endswith('.py'):
-                client.load_extension(f'cogs.{filename[:-3]}')
-        await msg.edit(content="Loaded all extensions successfully")
-    except Exception as error:
-        await ctx.send(f'Error:\n```py\n{error}\n```')
 
-
-@client.command(name='unloadall', aliases=['ula'])
-@commands.is_owner()
-async def unloadall(ctx):
-    try:
-        msg = await ctx.send(f"Unloading")
-        for filename in os.listdir('./cogs'):
-            if filename.endswith('.py'):
-                client.unload_extension(f'cogs.{filename[:-3]}')
-        await msg.edit(content="Unloaded all extensions successfully")
-    except Exception as error:
-        await msg.edit(f'Error:\n```py\n{error}\n```')
 
 
 @client.command()
 async def ping(ctx):
      await ctx.send(f'Pong! In {round(client.latency * 1000)}ms')
 
-     
-    
+
 @client.command(name='Kennevo_rough', aliases=["kennevo_rough", "kr"])
 @commands.is_owner()
 async def Kennevo_rough(ctx):
@@ -118,26 +109,49 @@ async def admin_say(ctx, *, text: commands.clean_content = ''):
     await ctx.send(text)
     await ctx.message.delete()
 
-
-
-
 @client.command(name='reloadall', aliases=['rla'])
 @commands.is_owner()
 async def reloadall(ctx):
-    try:
-        msg = await ctx.send(f"Reloading")
+        msg = await ctx.send(f"Reloading...")
         for filename in os.listdir('./cogs'):
-            if filename.endswith('.py'):
-                client.reload_extension(f'cogs.{filename[:-3]}')
+                if filename.endswith('.py'):
+                    try:
+                        client.reload_extension(f'cogs.{filename[:-3]}')
+                    except Exception as error:
+                        await ctx.send(f'This cog couldn\'t be Reloaded :(\n```py\n{error}\n```')
         await msg.edit(content="Reloaded all extensions successfully")
 
-    except Exception as error:
-        await ctx.send(f'Error:\n```py\n{error}\n```')
+@client.command(name='loadall', aliases=['la'])
+@commands.is_owner()
+async def loadall(ctx):
+        msg = await ctx.send(f"Unloading")
+        for filename in os.listdir('./cogs'):
+                if filename.endswith('.py'):
+                    try:
+                        client.load_extension(f'cogs.{filename[:-3]}')
+                    except Exception as error:
+                        await ctx.send(f'This cog couldn\'t be loaded :(\n```py\n{error}\n```')
+        await msg.edit(content="Loaded all extensions successfully")
+
+@client.command(name='unloadall', aliases=['ula'])
+@commands.is_owner()
+async def unloadall(ctx):
+        msg = await ctx.send(f"Unloading")
+        for filename in os.listdir('./cogs'):
+                if filename.endswith('.py'):
+                    try:
+                        client.unload_extension(f'cogs.{filename[:-3]}')
+                    except Exception as error:
+                        await ctx.send(f'This cog couldn\'t be unloaded :(\n```py\n{error}\n```')
+        await msg.edit(content="Unloaded all extensions successfully")
+
 
 for filename in os.listdir('./cogs'):
     if filename.endswith('.py'):
-        print(f'loading cogs.{filename[:-3]}')
-        client.load_extension(f'cogs.{filename[:-3]}')
-        print(f'loaded cogs.{filename[:-3]}')
+        try:
+            client.load_extension(f'cogs.{filename[:-3]}')
+            print(f"Loaded {filename}")
+        except Exception as e:
+            print(f'\n!!!!!!!!!!!!!!!\nuwu you did a fuckie wuckie\n{e}\n!!!!!!!!!!!!!!!\n')
 
-client.run(TOKEN)
+client.run(token)
