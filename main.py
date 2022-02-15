@@ -98,7 +98,7 @@ async def ping(ctx):
 @client.command(name='Kennevo_rough', aliases=["kennevo_rough", "kr"])
 @commands.is_owner()
 async def Kennevo_rough(ctx):
-    file = discord.File("kennevo_rough.mp3")
+    file = discord.File("/files/kennevo_rough.mp3")
     await ctx.send(file=file)
     await ctx.send("!!! SONG BY TizzyTheProphet")
 
