@@ -24,6 +24,7 @@ Building and Contributing to D.A.V.E requires the following tools:
 - Github Desktop (Optional but recomended)
 - Python
 - Knowledge of Python
+- ENV file from Harry or Strimis
 
 Get the source code:
 
