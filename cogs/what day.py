@@ -35,8 +35,8 @@ class birthday(commands.Cog):
             current = str(curren)
 
             datel = []
-            date = str(date.today())
-            for number in date:
+            date1 = str(date.today())
+            for number in date1:
                 datel.append(number)
             # while current == date.today():
             with open("birthdays.json") as f:       
@@ -46,12 +46,12 @@ class birthday(commands.Cog):
                     for number in data[user]:
                         day.append(number)
                     match = 0
-                    for number in range(4, 9):
+                    for number in range(4, 10):
                         if day[number] == datel[number]:
                             match += 1
                             
-
-                    if match == 5:
+                    
+                    if match == 6:
                         # await ctx.send("Happy")
                         #await commands.ctx.send("Happy")
                         #934475802593091636# 786013884737781872]
@@ -104,8 +104,8 @@ class birthday(commands.Cog):
             current = str(curren)
 
             datel = []
-            date = str(date.today())
-            for number in date:
+            date1 = str(date.today())
+            for number in date1:
                 datel.append(number)
             # while current == date.today():
             with open("birthdays.json") as f:       
@@ -115,12 +115,12 @@ class birthday(commands.Cog):
                     for number in data[user]:
                         day.append(number)
                     match = 0
-                    for number in range(4, 9):
+                    for number in range(4, 10):
                         if day[number] == datel[number]:
                             match += 1
                             
-
-                    if match == 5:
+                    
+                    if match == 6:
                         # await ctx.send("Happy")
                         #await commands.ctx.send("Happy")
                         #934475802593091636# 786013884737781872]
@@ -152,10 +152,24 @@ class birthday(commands.Cog):
                                 await self.channel.send(f"They are turning {age}!")
 
 
+
+
+                        else:
+                            await self.channel.send(f"It's {umention}'s birthday today, Congrats!")
+                        print(f"{user}: match")
+                        print("Happy birthday!!")
+
+
             #     print(date)
        
        
-       
+
+    
+    @commands.command(name='what_date',aliases=["whd"],description='what day is it?',brief='what day is it?')
+    async def say(self, ctx, *, text: commands.clean_content = ''):
+        from datetime import date
+        await ctx.send(date.today())
+
         # @printer.before_loop
         # async def before_printer(self):
         #     print('waiting...')

@@ -29,5 +29,7 @@ class fun(commands.Cog):
             await ctx.send(f"Your heartrate is {bpm} BPM, (That's normal)")
 
 
+    
+
 def setup(bot):
     bot.add_cog(fun(bot))
