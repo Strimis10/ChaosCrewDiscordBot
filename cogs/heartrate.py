@@ -18,7 +18,7 @@ class fun(commands.Cog):
             await ctx.send("If you didn't already figure that out; you're dead. The entire DEV team sends their condolences")
         elif bpm == 0:
             await ctx.send(f"Your heartrate is {bpm} BPM, how did you even write that command?")
-            await ctx.send("If you didn't already figure that out; you're dead. The entire DEV team sends their condolences")
+            await ctx.send("If you didn't already figure that out; you're dead. The DEV team sends their condolences")
         elif bpm > 100 and bpm < 160:
             await ctx.send(f"Your heartrate is {bpm} BPM, (That is normal if you're exercising)")
         elif bpm > 160 and bpm < 200:
