@@ -4,6 +4,8 @@ intents.reactions = True
 intents.members = True
 from discord.ext import commands
 import os
+import time
+import json
 from dotenv import load_dotenv
 client = commands.Bot(command_prefix="?",owner_ids=[386826952599928842, 427822985102098434], intents=discord.Intents.all())
 load_dotenv()
@@ -41,7 +43,7 @@ async def restart(ctx):
 @client.event
 async def on_member_join(ctx):
     embed=discord.Embed(title=f"Welcome {ctx.name}", description=f"Thanks for joining {ctx.guild.name}, read the rules in <#799334905569345606> and enjoy your stay!!")
-    embed.set_thumbnail(url=ctx.avatar_url)
+    embed.set_thumbnail(url=ctx.author.avatar_url)
     await ctx.send(embed=embed)
 
 @client.command(name='kill', aliases=['k'])
@@ -153,5 +155,27 @@ for filename in os.listdir('./cogs'):
             print(f"Loaded {filename}")
         except Exception as e:
             print(f'\n!!!!!!!!!!!!!!!\nuwu you did a fuckie wuckie\n{e}\n!!!!!!!!!!!!!!!\n')
+
+
+@client.event
+async def on_member_join(member):
+    role = discord.utils.get(member.guild.roles, id=946936153687347230)
+    await member.add_roles(role)
+    y = {}
+    print(member)
+    print(type(member))
+    if not os.path.isfile("new.json"):
+        y[member.id] = 1
+        
+        with open("new.json", mode='w') as f:
+            f.write(json.dumps(y, indent=2))
+    else: 
+        with open("new.json") as fj: 
+            feeds = json.load(fj)
+
+        feeds[member.id] = 1
+        
+        with open("new.json", mode='w') as f:
+            f.write(json.dumps(feeds, indent=2))
 
 client.run(token)

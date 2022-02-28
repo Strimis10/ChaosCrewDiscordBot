@@ -3,7 +3,7 @@ import discord
 import discord.utils
 import time
 
-terms = ["morning", "good morning"]
+terms = ["good morning"]
 
 class good_morning(commands.Cog):
     def __init__(self, bot):
