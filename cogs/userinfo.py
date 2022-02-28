@@ -24,7 +24,7 @@ class userInfo(commands.Cog):
 
         embed = discord.Embed(title="User information",
                                     colour=target.colour,
-                                    Timestamp=datetime.utcnow())
+                                    )
 
         fields = [("ID", target.id, False),
                 ("Username", str(target), True,),
