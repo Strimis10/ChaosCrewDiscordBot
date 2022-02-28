@@ -2,10 +2,13 @@ from discord.ext import tasks, commands
 import discord
 import discord.utils
 import time
+from datetime import datetime
+from pytz import timezone
+import pytz
 
 terms = ["good morning"]
 
-class good_morning(commands.Cog):
+class shout(commands.Cog):
     def __init__(self, bot):
         self.can_run = True
         self.has_run = True
@@ -16,7 +19,7 @@ class good_morning(commands.Cog):
 
 
 
-    @tasks.loop(hours=1)
+    @tasks.loop(hours=8)
     async def printer(self):
         self.index += 1
         global can_run
@@ -31,17 +34,22 @@ class good_morning(commands.Cog):
 
     
     @commands.Cog.listener()
-    async def on_message(self, message):
+    async def on_message(self, ctx):
         if self.has_run == False:
             self.can_run = False
         if self.can_run == True:
-            if message.content.lower() in terms:
-                # if message.content.lower().startswith("good morning"):
-                    if message.author.id != 932687176997687316:
-                        self.has_run = False
-                        time.sleep(7)
-                        await message.reply("Good Morning")
+            now = datetime.now()
+            def convert(dte, fromZone, toZone):
+                fromZone, toZone = pytz.timezone(fromZone), pytz.timezone(toZone)
+                return fromZone.localize(dte, is_dst=True).astimezone(toZone)
 
+
+            #current_time = now.strftime("%H:%M:%S")
+            #print("Current Time =", current_time)
+            #convert(current_time, )
+            mst = timezone('MST')
+            print("Time in MST:", datetime.now(mst))
+           
         
     
 
@@ -56,4 +64,4 @@ class good_morning(commands.Cog):
 
 
 def setup(bot):
-    bot.add_cog(good_morning(bot))
+    bot.add_cog(shout(bot))

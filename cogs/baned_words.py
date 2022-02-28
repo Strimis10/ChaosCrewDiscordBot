@@ -230,7 +230,7 @@ class usefull(commands.Cog):
 
     @commands.Cog.listener()
     async def on_message(self, message):
-        if "i'm not happy" in message.content.lower():
+        if "i'm not happy!" in message.content.lower():
             if message.author.id != 932687176997687316:
                 rand2 = random.randint(0, 1)
                 if rand2 == 1:
@@ -257,6 +257,26 @@ class usefull(commands.Cog):
         
             with open("word_immune.json", mode='w') as f:
                 f.write(json.dumps(feeds, indent=2))
+
+
+    @commands.command(name="remove_incidents")
+    async def remove_incidents(ctx, target: Optional[discord.Member], text: commands.clean_content = ''):
+        await ctx.send(ctx.author.id)
+        if owner_admin_or_roles(ctx,user=discord.Member) == True:
+            with open("incidents.json") as inc:
+                i = json.load(inc)
+            edited = {}
+            
+            edited.append(i)
+            if target.id in edited:
+                if text == '':
+                    edited[target.id] = 0
+                else:
+                    #try:
+                    edited[target.id] = text
+                    #except 
+        else:
+            await ctx.send("Permission denied")
 
 
     @commands.Cog.listener()
@@ -324,6 +344,10 @@ class usefull(commands.Cog):
                                         time.sleep(15)
                                         await message.author.ban(reason="BAD BOII!!, you can't say that without consequences")
                                     
+                                    elif feeds[str(message.author.id)] <= 0:
+                                        await message.reply(f"{message.author.mention} That's a Banned word but you've been graced with negative incidents, this means you won't be disciplined untill your negative incidents run out.")
+                                        await message.delete()
+
                                     try: 
                                         Strimis = "<@427822985102098434>"
                                         Harry = "<@386826952599928842>"

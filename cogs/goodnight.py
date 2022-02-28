@@ -3,7 +3,7 @@ import discord
 import discord.utils
 import time
 
-terms = ["night", "good night"]
+terms = ["good night"]
 
 class good_night(commands.Cog):
     
