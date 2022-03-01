@@ -178,5 +178,5 @@ async def on_member_join(member):
         
         with open("new.json", mode='w') as f:
             f.write(json.dumps(feeds, indent=2))
-
+#g
 client.run(token)

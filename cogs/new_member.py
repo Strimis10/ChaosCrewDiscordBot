@@ -77,7 +77,7 @@ class new(commands.Cog):
 
 
                         # role = discord.utils.get(user2.guild.roles, id=946936153687347230)
-                        # await user2.remove_roles(role)
+                        # await user2.remove_roles(role)h
 
                     else:
                         o[user] = o[user] + 1
