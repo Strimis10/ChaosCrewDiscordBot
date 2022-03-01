@@ -49,7 +49,8 @@ class birthday(commands.Cog):
                 
                 if feeds != y:
                     print("not")
-                    
+                    with open("date.json", mode='w') as f:
+                        f.write(json.dumps(y, indent=2))
                     self.channel = self.client.get_channel(934475802593091636)       
                     if self.channel != None:
                 

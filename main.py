@@ -166,7 +166,7 @@ async def on_member_join(member):
     print(member)
     print(type(member))
     if not os.path.isfile("new.json"):
-        y[str(member.id)] = 1
+        y[str(member)] = 1
         
         with open("new.json", mode='w') as f:
             f.write(json.dumps(y, indent=2))
@@ -174,7 +174,7 @@ async def on_member_join(member):
         with open("new.json") as fj: 
             feeds = json.load(fj)
 
-        feeds[str(member.id)] = 1
+        feeds[str(member)] = 1
         
         with open("new.json", mode='w') as f:
             f.write(json.dumps(feeds, indent=2))
