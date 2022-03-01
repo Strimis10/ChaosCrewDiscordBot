@@ -8,6 +8,7 @@ import time
 import json
 from dotenv import load_dotenv
 client = commands.Bot(command_prefix="?",owner_ids=[386826952599928842, 427822985102098434], intents=discord.Intents.all())
+
 load_dotenv()
 
 token = ""
@@ -165,7 +166,7 @@ async def on_member_join(member):
     print(member)
     print(type(member))
     if not os.path.isfile("new.json"):
-        y[member.id] = 1
+        y[str(member.id)] = 1
         
         with open("new.json", mode='w') as f:
             f.write(json.dumps(y, indent=2))
@@ -173,7 +174,7 @@ async def on_member_join(member):
         with open("new.json") as fj: 
             feeds = json.load(fj)
 
-        feeds[member.id] = 1
+        feeds[str(member.id)] = 1
         
         with open("new.json", mode='w') as f:
             f.write(json.dumps(feeds, indent=2))

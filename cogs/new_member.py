@@ -7,17 +7,17 @@ import os
 import time
 import asyncio
 
+
 #client = commands.Bot(command_prefix="?",owner_ids=[386826952599928842, 427822985102098434], intents=discord.Intents.all())
 
 
 class new(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-
     
 
     @commands.Cog.listener()
-    async def on_ready(self):
+    async def on_ready(bot):
         while(True):
             from datetime import date
 
@@ -59,11 +59,25 @@ class new(commands.Cog):
                         client = discord.Client
                         #username = client.get_user(user)
                         print(user)
-                        print(type(user))
-                        username = await client.fetch_user(user)
-                        print(username)#my id: Cluebo#2312
-                        role = discord.utils.get(username.guild.roles, id=946936153687347230)
-                        await o[user].remove_roles(role)
+                        print
+                        (type(user))
+                        #user2 = discord.Member(user)
+                        # user1 = user - user[0]
+                        # print(len(user1))
+                        #user2 = user1 - user[len(user1)]
+                        # 0user2 = user
+
+                        #guild = client.get_guild(786013884216639509)
+                        guild = bot.get_guild(786013884216639509)
+                        member = guild.get_member(int(user))
+                        print(member)
+                        role = guild.get_role(int(946936153687347230))
+                        print(role)
+                        await member.remove_roles(role)
+
+
+                        # role = discord.utils.get(user2.guild.roles, id=946936153687347230)
+                        # await user2.remove_roles(role)
 
                     else:
                         o[user] = o[user] + 1
