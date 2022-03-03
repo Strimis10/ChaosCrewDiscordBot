@@ -1,8 +1,11 @@
+from typing_extensions import Self
+from unicodedata import name
 import discord
 intents = discord.Intents(messages=True, guilds=True, members=True)
 intents.reactions = True
 intents.members = True
 from discord.ext import commands
+from discord.ext.commands import Bot
 import os
 import time
 import json
@@ -178,5 +181,36 @@ async def on_member_join(member):
         
         with open("new.json", mode='w') as f:
             f.write(json.dumps(feeds, indent=2))
+
+
+@client.event
+async def on_message(message):
+    if message.author.id == 427822985102098434: # dm only
+        #await message.channel.purge(limit = 1)
+        await message.channel.send("recieved")
+        
+        #ctx.send("recieved")
+        pass
+        # do stuff here #
+    elif not message.guild: # group dm only
+        pass
+        # do stuff here #
+    else: # server text channel
+        pass
+        # do stuff here #
+
+@client.command(pass_context=True, name="Shoot_Strimis")
+async def Shoot_Strimis(ctx):
+    user=await client.get_user_info(427822985102098434)
+    await client.send_message(user, f"{ctx.user.id} : {ctx.user} made a shoot_request")
+
+
+
+#@Bot.command(self=Self)
+#async def Shoot(ctx):
+#    for user in ctx.guild.members:
+#        if user.status != discord.Status.offline:
+#            if user.id == 427822985102098434:
+#                print (user.name+"#"+user.discriminator)
 #g
 client.run(token)

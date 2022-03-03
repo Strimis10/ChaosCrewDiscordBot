@@ -1,3 +1,4 @@
+from typing_extensions import Self
 from discord.ext import commands
 import discord
 import discord.utils
@@ -9,12 +10,15 @@ class HumiliateStrimis(commands.Cog):
         self.bot = bot
 
 
-    @Bot.command()
-    async def D(ctx,self):
-        for user in ctx.guild.members:
-            if user.status != discord.Status.offline:
-                if user.id == 427822985102098434:
-                    print (user.name+"#"+user.discriminator)
+
+    #@commands.command(name='Shoot_Strimis')
+    #async def Shoot_Strimis(ctx):
+
+
+    #    for user in ctx.guild.members:
+     #       if user.status != discord.Status.offline:
+      #          if user.id == 427822985102098434:
+       #             print (user.name+"#"+user.discriminator)
     #@commands.command(pass_context=True, name='Shoot_Strimis')
     #async def Shoot_Strimis(ctx, member: 427822985102098434):
     #    print(str(member.status))
