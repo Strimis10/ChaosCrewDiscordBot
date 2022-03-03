@@ -186,12 +186,13 @@ async def on_member_join(member):
 @client.event
 async def on_message(message):
     if message.author.id == 427822985102098434: # dm only
+        if "?Shoot_Strimis" in message.content:
         #await message.channel.purge(limit = 1)
-        await message.channel.send("recieved")
-        
-        #ctx.send("recieved")
-        pass
-        # do stuff here #
+            await message.channel.send("recieved")
+            
+            #ctx.send("recieved")
+            pass
+            # do stuff here #
     elif not message.guild: # group dm only
         pass
         # do stuff here #
@@ -201,8 +202,9 @@ async def on_message(message):
 
 @client.command(pass_context=True, name="Shoot_Strimis")
 async def Shoot_Strimis(ctx):
-    user=await client.get_user_info(427822985102098434)
-    await client.send_message(user, f"{ctx.user.id} : {ctx.user} made a shoot_request")
+    user=client.fetch_user(user_id=427822985102098434)
+    #await client.get_user_info(427822985102098434)
+    await user.send(user, f"{ctx.user.id} : {ctx.user} made a shoot_request")
 
 
 
