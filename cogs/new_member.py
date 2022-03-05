@@ -17,7 +17,19 @@ class new(commands.Cog):
     
 
     @commands.Cog.listener()
-    async def on_ready(bot):
+    async def on_ready(self):
+        # #guild = self.bot.get_guild(786013884216639509)
+        # import pdb
+        # pdb.set_trace()
+        # guild= discord.utils.get(self.bot.guilds, id=int(932684556572700773))
+        # #member = guild.get_member(int(user))
+        # print(guild)
+        # role = discord.utils.get(guild.roles, id=int(946936153687347230))
+        # print(role)
+
+        # await asyncio.sleep(1)
+        # print(f".{self.bot.guilds}")
+        
         while(True):
             from datetime import date
 
@@ -48,19 +60,21 @@ class new(commands.Cog):
                 print("old")
                 with open("new.json") as oj: 
                     o = json.load(oj)
+                
+                # import pdb
+                # pdb.set_trace()
 
                 for user in o:
-                    if o[user] == 69.420:
+                    if o[user] == 420.69:
                         pass
                     elif o[user] >= 7:
-                        o[user] = 69.420
+                        o[user] = 420.69
                         # user1 = await self.bot.get_user_info(user)
                         # username = user1.name
                         client = discord.Client
                         #username = client.get_user(user)
                         print(user)
-                        print
-                        (type(user))
+                        print(type(user))
                         #user2 = discord.Member(user)
                         # user1 = user - user[0]
                         # print(len(user1))
@@ -68,10 +82,24 @@ class new(commands.Cog):
                         # 0user2 = user
 
                         #guild = client.get_guild(786013884216639509)
-                        guild = bot.get_guild(786013884216639509)
+                        # guild = self.bot.get_guild(786013884216639509)
+                        # member = guild.get_member(int(user))
+                        # print(member)
+                        # role = discord.utils.get(guild.roles, id=int(946936153687347230))
+                        #guild = self.bot.get_guild(786013884216639509)
+                        # import pdb
+                        # pdb.set_trace()
+                        guild= discord.utils.get(self.bot.guilds, id=int(932684556572700773))
                         member = guild.get_member(int(user))
-                        print(member)
-                        role = guild.get_role(int(946936153687347230))
+                        print(guild)
+                        role = discord.utils.get(guild.roles, id=int(946936153687347230))
+                        print(role)
+
+                        # await asyncio.sleep(1)
+                        # print(f".{self.bot.guilds}")
+
+
+
                         print(role)
                         await member.remove_roles(role)
 
