@@ -1,4 +1,4 @@
-from typing_extensions import Self
+
 from discord.ext import commands
 import discord
 import discord.utils
