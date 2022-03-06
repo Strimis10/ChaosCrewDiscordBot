@@ -117,7 +117,7 @@ class birthday(commands.Cog):
                                         await self.channel.send(f"It's {umention}'s birthday today, Congrats!")
                                     print(f"{user}: match")
                                     print("Happy birthday!!")
-            await asyncio.sleep(15)
+            await asyncio.sleep(43200)
 
 
     

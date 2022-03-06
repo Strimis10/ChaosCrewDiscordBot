@@ -13,42 +13,42 @@ class shout(commands.Cog):
         self.can_run = True
         self.has_run = True
         self.bot = bot
-        self.index = 0
-        self.printer.start()
+    #     self.index = 0
+    #     self.printer.start()
 
 
 
 
-    @tasks.loop(hours=8)
-    async def printer(self):
-        self.index += 1
-        global can_run
-        if self.has_run == True:
-            self.can_run = True
+    # @tasks.loop(hours=8)
+    # async def printer(self):
+    #     self.index += 1
+    #     global can_run
+    #     if self.has_run == True:
+    #         self.can_run = True
 
-        else:
-            self.can_run = True
-            self.has_run = True
+    #     else:
+    #         self.can_run = True
+    #         self.has_run = True
 
         
 
     
-    @commands.Cog.listener()
-    async def on_message(self, ctx):
-        if self.has_run == False:
-            self.can_run = False
-        if self.can_run == True:
-            now = datetime.now()
-            def convert(dte, fromZone, toZone):
-                fromZone, toZone = pytz.timezone(fromZone), pytz.timezone(toZone)
-                return fromZone.localize(dte, is_dst=True).astimezone(toZone)
+    # @commands.Cog.listener()
+    # async def on_message(self, ctx):
+    #     if self.has_run == False:
+    #         self.can_run = False
+    #     if self.can_run == True:
+    #         now = datetime.now()
+    #         def convert(dte, fromZone, toZone):
+    #             fromZone, toZone = pytz.timezone(fromZone), pytz.timezone(toZone)
+    #             return fromZone.localize(dte, is_dst=True).astimezone(toZone)
 
 
-            #current_time = now.strftime("%H:%M:%S")
-            #print("Current Time =", current_time)
-            #convert(current_time, )
-            mst = timezone('MST')
-            print("Time in MST:", datetime.now(mst))
+    #         #current_time = now.strftime("%H:%M:%S")
+    #         #print("Current Time =", current_time)
+    #         #convert(current_time, )
+    #         mst = timezone('MST')
+    #         print("Time in MST:", datetime.now(mst))
            
         
     

@@ -95,24 +95,23 @@ class new(commands.Cog):
                         role = discord.utils.get(guild.roles, id=int(946936153687347230))
                         print(role)
 
-                        # await asyncio.sleep(1)
-                        # print(f".{self.bot.guilds}")
+                        
 
 
 
-                        print(role)
                         await member.remove_roles(role)
 
 
                         # role = discord.utils.get(user2.guild.roles, id=946936153687347230)
                         # await user2.remove_roles(role)h
 
+
                     else:
                         o[user] = o[user] + 1
 
                 with open("new.json", mode='w') as f:
                     f.write(json.dumps(o, indent=2))
-            await asyncio.sleep(10)
+            await asyncio.sleep(43200)
 
 
 

@@ -13,17 +13,18 @@ load_dotenv()
 
 token = ""
 
-def get_token():
-    ans = input("are you testing y/n: ")
-    if ans == "y":
-        return os.getenv("TOKEN")
-    elif ans == "n":
-        return os.getenv("testingTOKEN")
-    else:
-        print("Unexpected input try again")
-        get_token()
+# def get_token():
+#     ans = input("are you testing y/n: ")
+#     if ans == "y":
+#         return os.getenv("TOKEN")
+#     elif ans == "n":
+#         return os.getenv("testingTOKEN")
+#     else:
+#         print("Unexpected input try again")
+#         get_token()
 
-token = get_token()
+
+token = os.getenv("TOKEN") #get_token()
 
 
 @client.event
