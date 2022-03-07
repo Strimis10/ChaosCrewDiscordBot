@@ -30,8 +30,8 @@ class coms(commands.Cog):
         #channel = await self.bot.fetch_channel(949590152202813453)
         #guild= discord.utils.get(self.bot.channels, id=int(949590152202813453))
         user = discord.utils.get(self.bot.get_all_members(), id=427822985102098434)
-        print(user)
-        print(user.status)
+        # print(user)
+        # print(user.status)
         # print(type(user.status))
         # print(type(user))
 
