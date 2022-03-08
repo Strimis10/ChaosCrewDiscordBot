@@ -12,7 +12,30 @@ class fun(commands.Cog):
 
     @commands.command(name='name_update')
     async def name_update(self, ctx):
-        print(discord.Guild.members)
+        guild = self.bot.get_guild(932684556572700773)
+        memberList = guild.members
+        #print(memberList)
+        info = []
+        std = ""
+        name = False
+        for letter in memberList:
+            
+            print(memberList[2])
+            if letter != ",":
+                if letter != " ":
+                    if letter == "'":
+                        if name == False:
+                            name = True
+                        elif name == True:
+                            name = False
+                    #std = std + letter
+                    
+                #elif name == True:
+                    #std = std + letter
+            #elif letter == ",":
+                #info.append(std)
+        print(std)
+        print(info)
         # for user in discord.Guild.members:
         #     print(user)
 
