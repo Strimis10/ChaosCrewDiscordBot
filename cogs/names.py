@@ -5,7 +5,7 @@ import discord.utils
 from typing import Optional
 import json
 
-class fun(commands.Cog):
+class name(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
     
@@ -66,4 +66,4 @@ class fun(commands.Cog):
 
 
 def setup(bot):
-    bot.add_cog(fun(bot))
+    bot.add_cog(name(bot))
