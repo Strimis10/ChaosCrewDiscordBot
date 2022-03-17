@@ -161,6 +161,7 @@ for filename in os.listdir('./cogs'):
 
 @client.event
 async def on_member_join(member):
+    print(member)
     role = discord.utils.get(member.guild.roles, id=946936153687347230)
     await member.add_roles(role)
     y = {}
