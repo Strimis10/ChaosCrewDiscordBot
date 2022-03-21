@@ -162,8 +162,8 @@ for filename in os.listdir('./cogs'):
 @client.event
 async def on_member_join(member):
     print(member)
-    role = discord.utils.get(member.guild.roles, id=946936153687347230)
-    await member.add_roles(role)
+    print("AAAAAAAAAAAAAAAAAHHHHHHHHHHHHHH")
+    
     y = {}
     print(member)
     print(type(member))
@@ -172,6 +172,8 @@ async def on_member_join(member):
         
         with open("new.json", mode='w') as f:
             f.write(json.dumps(y, indent=2))
+        role = discord.utils.get(member.guild.roles, id=946936153687347230)
+        await member.add_roles(role)
     else: 
         with open("new.json") as fj: 
             feeds = json.load(fj)
@@ -186,10 +188,9 @@ async def on_member_join(member):
 
             with open("new.json", mode='w') as f:
                 f.write(json.dumps(feeds, indent=2))
+            role = discord.utils.get(member.guild.roles, id=946936153687347230)
+            await member.add_roles(role)
 
-
-@client.event
-async def on_member_join(member):
     if not os.path.isfile("names.json"):
         a = {}
         a[str(member.id)] = member.display_name
@@ -206,5 +207,9 @@ async def on_member_join(member):
 
         with open("names.json", mode='w') as f:
             f.write(json.dumps(feeds, indent=2))
+
+
+
+    
 #g
 client.run(token)

@@ -1,2 +1,7 @@
+discord.py
 nextcord
 humanfriendly
+numpy
+grpc
+pytz
+click
