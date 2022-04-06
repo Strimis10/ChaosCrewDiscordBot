@@ -8,16 +8,15 @@ import discord
 import discord.utils
 import json
 import asyncio
-
+import pandas as pd
 import os
 
 client = commands.Bot(command_prefix="?",owner_ids=[386826952599928842, 427822985102098434], intents=discord.Intents.all())
 
 
 class birthday(commands.Cog):
-    def __init__(self, client):
+    def __init__(self, client,bot):
         self.client = client
-
         self.index = 0
 
     # @commands.Cog.listener()
@@ -117,6 +116,29 @@ class birthday(commands.Cog):
                                         await self.channel.send(f"It's {umention}'s birthday today, Congrats!")
                                     print(f"{user}: match")
                                     print("Happy birthday!!")
+
+          
+                    with open("last_active.json") as feedsjson: 
+                        data = json.load(feedsjson)
+
+                    
+                    for key in data:
+                        
+                        data[key] = data[key]+1
+                        
+                    print(data[key])
+
+                    with open("last_active.json", mode='w') as f:
+                        f.write(json.dumps(data, indent=2))
+                    for key in data:
+                        print(data[key])
+                        if data[key] >= 30:
+                            print("yes")
+                            guild= discord.utils.get(self.client.guilds, id=int(932684556572700773))
+                            member = guild.get_member(int(user))
+                            print(guild)
+                            role = discord.utils.get(guild.roles, id=int(961226882534236161)) 
+                            await member.add_roles(role)
             await asyncio.sleep(43200)
 
 
