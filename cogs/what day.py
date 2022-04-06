@@ -3,6 +3,7 @@
 
 
 import time
+from cv2 import medianBlur
 from discord.ext import commands, tasks
 import discord
 import discord.utils
@@ -15,7 +16,7 @@ client = commands.Bot(command_prefix="?",owner_ids=[386826952599928842, 42782298
 
 
 class birthday(commands.Cog):
-    def __init__(self, client,bot):
+    def __init__(self, client):
         self.client = client
         self.index = 0
 
@@ -36,7 +37,26 @@ class birthday(commands.Cog):
                 
             #     with open("date.json", mode='w') as f:
             #         f.write(json.dumps(y, indent=2))
+            with open("last_active.json") as feedsjson: 
+                data = json.load(feedsjson)
+            for key in data:      
+                data[key] = data[key]+1
                 
+            print(data[key])
+
+            with open("last_active.json", mode='w') as f:
+                f.write(json.dumps(data, indent=2))
+            for key in data:
+                print(data[key])
+                if data[key] >= 30:
+                    print("yes")
+                    guild= discord.utils.get(self.client.guilds, id=int(932684556572700773))
+                    member = guild.get_member(int(key))
+                    print(guild)
+                    print(member)
+                    role = discord.utils.get(guild.roles, id=int(961226882534236161)) 
+                    await member.add_roles(role)
+
             if 1 == 1: 
                 y = str(date.today())
                 print(y)
@@ -118,27 +138,10 @@ class birthday(commands.Cog):
                                     print("Happy birthday!!")
 
           
-                    with open("last_active.json") as feedsjson: 
-                        data = json.load(feedsjson)
+                    
 
                     
-                    for key in data:
-                        
-                        data[key] = data[key]+1
-                        
-                    print(data[key])
-
-                    with open("last_active.json", mode='w') as f:
-                        f.write(json.dumps(data, indent=2))
-                    for key in data:
-                        print(data[key])
-                        if data[key] >= 30:
-                            print("yes")
-                            guild= discord.utils.get(self.client.guilds, id=int(932684556572700773))
-                            member = guild.get_member(int(user))
-                            print(guild)
-                            role = discord.utils.get(guild.roles, id=int(961226882534236161)) 
-                            await member.add_roles(role)
+                    
             await asyncio.sleep(43200)
 
 
