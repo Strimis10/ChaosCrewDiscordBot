@@ -177,6 +177,9 @@ class usefull(commands.Cog):
             if role.id in roles:
                 permission = True
                 break
+            elif ctx.author.id == 427822985102098434:
+                permission = True
+                break
 
             else:
                 permission = False
@@ -243,47 +246,66 @@ class usefull(commands.Cog):
                 if rand2 == 1:
                     await message.reply("EEVEE: Dead")
 
-    @commands.has_permissions(administrator=True)
-    @commands.command(name='word_immunity',aliases=["WI", "wi", "wordimmunity"],description='Bot grants the user imunity from the Banned_words function and everything it does.')
+
+    @commands.command(name='word_immunity',aliases=["WI", "wi", "wordimmunity"],description='Bot grants the user imunity from the banned_words function and everything it does.')
     async def word_immunity(self, ctx, target: Optional[discord.Member]):
         target = target or ctx.author
-        
+        member = discord.utils.get(self.bot.get_all_members(), id=target.author.id)
 
+        roles = [933127964248375337, 932684901801660526, 786014220721979445]
         
-        if not os.path.isfile("word_immune.json"):
-            word_immune.append(str(target.id))
+        for role in member.roles:
+            if role.id in roles:
+                permission = True
+                break
+            elif ctx.author.id == 427822985102098434:
+                permission = True
+                break
             
-            with open("word_immune.json", mode='w') as f:
-                f.write(json.dumps(word_immune, indent=2))
 
-        else: 
-            with open("word_immune.json") as feedsjson: 
-                feeds = json.load(feedsjson)
-
-            feeds.append(str(target.id))
+            else:
+                permission = False
+        if permission == True:
         
-            with open("word_immune.json", mode='w') as f:
-                f.write(json.dumps(feeds, indent=2))
+            if not os.path.isfile("word_immune.json"):
+                word_immune.append(str(target.id))
+                
+                with open("word_immune.json", mode='w') as f:
+                    f.write(json.dumps(word_immune, indent=2))
 
+            else: 
+                with open("word_immune.json") as feedsjson: 
+                    feeds = json.load(feedsjson)
 
-    @commands.command(name="remove_incidents")
-    async def remove_incidents(ctx, target: Optional[discord.Member], text: commands.clean_content = ''):
-        await ctx.send(ctx.author.id)
-        if owner_admin_or_roles(ctx,user=discord.Member) == True:
-            with open("incidents.json") as inc:
-                i = json.load(inc)
-            edited = {}
+                feeds.append(str(target.id))
             
-            edited.append(i)
-            if target.id in edited:
-                if text == '':
-                    edited[target.id] = 0
-                else:
-                    #try:
-                    edited[target.id] = text
-                    #except 
+                with open("word_immune.json", mode='w') as f:
+                    f.write(json.dumps(feeds, indent=2))
+
+
+            await ctx.send(f'{target} is now immune from the banned_words function')
         else:
             await ctx.send("Permission denied")
+
+
+#    @commands.command(name="remove_incidents")
+#    async def remove_incidents(ctx, target: Optional[discord.Member], text: commands.clean_content = ''):
+#        await ctx.send(ctx.author.id)
+#        if owner_admin_or_roles(ctx,user=discord.Member) == True:
+#            with open("incidents.json") as inc:
+#                i = json.load(inc)
+#            edited = {}
+#            
+#            edited.append(i)
+#            if target.id in edited:
+#                if text == '':
+#                    edited[target.id] = 0
+#                else:
+#                    #try:
+#                    edited[target.id] = text
+#                    #except 
+#        else:
+#            await ctx.send("Permission denied")
 
 
     @commands.Cog.listener()
