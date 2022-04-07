@@ -44,20 +44,20 @@ class new(commands.Cog):
                 
         
             y = str(date.today())
-            print(y)
+            
             
             
             with open("date.json") as fj: 
                 feeds = json.load(fj)
-            print(feeds)
+           
             
             if feeds != y:
-                print("not1")
+               
                 with open("date.json", mode='w') as f:
                     f.write(json.dumps(y, indent=2))
 
 
-                print("old")
+               
                 with open("new.json") as oj: 
                     o = json.load(oj)
                 
@@ -71,10 +71,9 @@ class new(commands.Cog):
                         o[user] = 420.69
                         # user1 = await self.bot.get_user_info(user)
                         # username = user1.name
-                        client = discord.Client
+                        
                         #username = client.get_user(user)
-                        print(user)
-                        print(type(user))
+                        
                         #user2 = discord.Member(user)
                         # user1 = user - user[0]
                         # print(len(user1))
@@ -91,9 +90,9 @@ class new(commands.Cog):
                         # pdb.set_trace()
                         guild= discord.utils.get(self.bot.guilds, id=int(932684556572700773))
                         member = guild.get_member(int(user))
-                        print(guild)
+                        
                         role = discord.utils.get(guild.roles, id=int(946936153687347230))
-                        print(role)
+                        
 
                         
 
