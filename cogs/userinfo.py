@@ -54,14 +54,28 @@ class userInfo(commands.Cog):
     async def susJames(self, ctx):
         file = discord.File("pokemon.gif")
         await ctx.send(file=file)
+    
+    # @commands.command(name='KSF',breif="Kick Strimis' friends (Calle.exe, Cryptoler and Smodas)")
+    # async def KSF(self, ctx):
+    #     users = {"Calle.exe":639129773179666463,
+    #     "Cryptoler":725029894832259184,
+    #     "Smodas":610180298247897090
+    #     }
+    #     for user in users:
+    #         #print(users[user])
+    #         guild= discord.utils.get(self.bot.guilds, id=int(932684556572700773))
+    #         member = guild.get_member(int(users[user]))
+    #         #print(member)
+    #         await member.kick(reason=f"Imagine using the name {member}")
+    #        await ctx.send(f"User '{user}' kicked")
 
 
 
-    @commands.Cog.listener()
-    async def on_message(self, message):
-        if message.content.lower().startswith("try again"):
-            if message.author.id != 932687176997687316:
-                await message.reply("*Kenny making a funny face;  EEVEE: Constipated")
+    # @commands.Cog.listener()
+    # async def on_message(self, message):
+    #     if message.content.lower().startswith("try again"):
+    #         if message.author.id != 932687176997687316:
+    #             await message.reply("*Kenny making a funny face;  EEVEE: Constipated")
 
 
 

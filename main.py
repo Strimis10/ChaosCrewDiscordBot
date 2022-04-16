@@ -210,6 +210,9 @@ async def on_member_join(member):
 
 
 
+
+
+
     
 #g
 client.run(token)
