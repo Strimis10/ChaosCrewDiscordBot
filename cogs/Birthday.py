@@ -1,7 +1,5 @@
 from ast import alias
 from email import message
-from sys import exec_prefix
-from telnetlib import COM_PORT_OPTION
 from discord.ext import commands
 import discord
 import discord.utils

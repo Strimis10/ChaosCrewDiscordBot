@@ -156,7 +156,7 @@ class birthday(commands.Cog):
 
                     
                     
-            await asyncio.sleep(43200)
+            await asyncio.sleep(3600)
 
 
     
