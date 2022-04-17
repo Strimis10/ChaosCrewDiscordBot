@@ -41,10 +41,7 @@ class good_morning(commands.Cog):
                     time.sleep(7)
                     await message.reply("Good Morning.")
 
-            elif message.content.lower().startswith("good night"):
-                    self.has_run = False
-                    time.sleep(7)
-                    await message.reply("Good night.")
+            
 
         
     
