@@ -1,11 +1,12 @@
 
 # D.A.V.E (Discord Attatched Virtual Equipment)
 
-
+Strimis10#1439
+DrHooBs#3476
 
 ## About D.A.V.E bot
 
-[D.A.V.E](https://github.com/DrHooBs/DiscBot/) is a discord bot with intergration to [Kennevo's](https://www.twitch.tv/kennevo) AI (EEVEE). Strimis10 and I (Harry(DrHooBs)) have worked extensively to provide the best bot experience for the end users (that might be you)! (Hello, It's Strimis, I'd like to add a quote here: "NO!, we hate the end user, fuck the end user!" -Harry 15/02/22) and a list of commands [here](https://github.com/DrHooBs/DiscBot/blob/main/Cmd_help.txt).
+[D.A.V.E](https://github.com/DrHooBs/DiscBot/) is a discord bot made for [Kennevo's](https://www.twitch.tv/kennevo) discord server (https://discord.gg/Sv2ZfGeqSQ). Strimis10 and I (Harry(DrHooBs)) have worked extensively to provide the best bot experience for the end users (that might be you)! (Hello, It's Strimis, I'd like to add a quote here: "NO!, we hate the end user, fuck the end user!" -Harry 15/02/22) and a list of commands [here](https://github.com/DrHooBs/DiscBot/blob/main/Cmd_help.txt).
 
 Special mention to @jiacheng#2089 on discord for the idea and helping optimise workflow :)
 
