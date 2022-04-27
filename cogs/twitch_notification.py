@@ -7,18 +7,17 @@ import time
 class fun(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-    
-    #while True:
-    #    if kenny_live() == True:
-    #        #await self.bot.get_channel(949590152202813453).send(f"69Feed_Strimis: requested by: {ctx.author} (:{ctx.author.id}:) channel.id :{ctx.channel.id}")
-    #    
-    #        print("Kenny is live")
-    #        time.sleep(10)
-    #    else:
-    #        print("Kenny is not live")
-    #        time.sleep(10)
-        #                         ^^ This is for pings / mentions being cleaned so you can't do `a!say @everyone`.
-        #command content
+    @commands.Cog.listener()
+    async def on_ready(self):
+        while True:
+            if kenny_live() == True:
+                await self.bot.get_channel(949590152202813453).send(f"69Kennevo_is_live")
+            
+                print("Kenny is live")
+                
+            #sleep for three minutes
+            time.sleep(180)
+        
 
 
 def setup(bot):
