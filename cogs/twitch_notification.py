@@ -4,7 +4,7 @@ import discord.utils
 import get_twitch_info
 import asyncio
 
-class fun(commands.Cog):
+class meth(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
@@ -31,4 +31,4 @@ class fun(commands.Cog):
 
 
 def setup(bot):
-    bot.add_cog(fun(bot))
+    bot.add_cog(meth(bot))

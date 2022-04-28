@@ -3,7 +3,6 @@
 
 
 import time
-from cv2 import medianBlur
 from discord.ext import commands, tasks
 import discord
 import discord.utils
@@ -11,7 +10,9 @@ import json
 import asyncio
 import pandas as pd
 import os
-
+from datetime import date
+import datetime
+import pytz
 client = commands.Bot(command_prefix="?",owner_ids=[386826952599928842, 427822985102098434], intents=discord.Intents.all())
 
 
@@ -170,9 +171,16 @@ class birthday(commands.Cog):
 
     
     @commands.command(name='what_date',aliases=["whd"],description='what day is it?',brief='what day is it?')
-    async def say(self, ctx, *, text: commands.clean_content = ''):
-        from datetime import date
+    async def what_date(self, ctx, *, text: commands.clean_content = ''):
+        
         await ctx.send(date.today())
+    @commands.command(name='kenny_time',aliases=["knt"],brief='What time is it for Kenny?')
+    async def kenny_time(self, ctx, *, text: commands.clean_content = ''):
+        dt_today = datetime.datetime.today()
+        dt_Kenny = dt_today.astimezone(pytz.timezone('America/Edmonton'))
+        Kenny_time = (dt_Kenny.strftime('%m/%d/%Y %H:%M'))
+        #print(Kenny_time)
+        await ctx.send(Kenny_time)
 
         # @printer.before_loop
         # async def before_printer(self):
