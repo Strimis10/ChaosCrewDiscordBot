@@ -1,5 +1,5 @@
-- Replace all role and guild id's with the ones from the Kennevo's Server (Kennevo's Chaos Crew)
-replace all role, and guild id's (what_day.py, dead_members.py, new_member.py, baned_words.py, userinfo.py, twitch.py and more) (once invited to Kennevo chaos crew)
+- Replace all rolnd guild id's with the ones from the Kennevo's Server (what_day.py, dead_members.py, new_member.py, baned_words.py, userinfo.py, twitch.py and more) (once invited to Kennevos chaos crew)
+
 
 
 make one json file for all the user information:
