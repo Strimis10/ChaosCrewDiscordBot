@@ -1,4 +1,6 @@
 
+import asyncio
+from re import M
 from discord.ext import commands
 import discord
 import discord.utils
@@ -14,8 +16,8 @@ from datetime import datetime
 import humanfriendly
 import aiohttp
 import discord
-import datetime
 import warnings
+import timeout_user
 
 
 warnings.filterwarnings("ignore", category=DeprecationWarning)
@@ -384,12 +386,17 @@ class usefull(commands.Cog):
                                             await message.delete()
 
                                         elif feeds[str(message.author.id)] == 4:
+                                            guild_id = 932684556572700773
+                                            user_id = message.author.id
+                                            time_in_mins = 1440
+                                            timeout_user.timeout_user(user_id=user_id, guild_id=guild_id,until=time_in_mins)
                                             await message.reply(f"{message.author.mention} That's a Banned word, this is your 4:th incident, you will be timed out for 24 hours")
                                             await message.reply("BAD BOII!!, you can't say that without consequences")
                                             await message.delete()
                                             
+                                                
                                             #print(type(message.author))
-                                            await message.author.kick(reason="BAD BOII!!, you can't say that without consequences")
+                                            #await message.author.kick(reason="BAD BOII!!, you can't say that without consequences")
                                             #await message.author.timeout(discord.utils.utcnow() + datetime.timedelta(seconds=86400), reason=reason)
                                             #await member.timeout(until = discord.utils.utcnow() + datetime.timedelta(seconds=86400), reason=reason)
                                             #await ctx.send (f"{member} callate un rato anda {time}")
@@ -398,19 +405,30 @@ class usefull(commands.Cog):
                                         
                                         elif feeds[str(message.author.id)] == 5:
                                             await message.reply(f"{message.author.mention} That's a Banned word, this is your 5:th incident, you will now be kicked from the server. next time this happens you will be banned!")
-                                            await message.author.kick(reason="BAD BOII!!, you can't say that without consequences")
+                                            guild_id = 932684556572700773
+                                            user_id = message.author.id
+                                            time_in_mins = 1
+                                            timeout_user.timeout_user(user_id=user_id, guild_id=guild_id,until=time_in_mins)
                                             await message.delete()
+                                            await asyncio.sleep(10)
+                                            await message.author.kick(reason="BAD BOII!!, you can't say that without consequences")
+                                            
 
                                         elif feeds[str(message.author.id)] == 6:
                                             await message.reply(f"{message.author.mention} That's a Banned word, this is your 6:th incident, you will now be banned from the discord server. Good bye!")
+                                            guild_id = 932684556572700773
+                                            user_id = message.author.id
+                                            time_in_mins = 1
+                                            timeout_user.timeout_user(user_id=user_id, guild_id=guild_id,until=time_in_mins)
                                             await message.delete()
-                                            time.sleep(15)
+                                            await asyncio.sleep(10)
                                             await message.author.ban(reason="BAD BOII!!, you can't say that without consequences")
                                         
                                         elif feeds[str(message.author.id)] <= 0:
                                             await message.reply(f"{message.author.mention} That's a Banned word but you've been graced with negative incidents, this means you won't be disciplined untill your negative incidents run out.")
                                             await message.delete()
-
+                                        #if feeds[str(message.author.id)] == 4:
+                                            
                                         try: 
                                             Strimis = "<@427822985102098434>"
                                             Harry = "<@386826952599928842>"

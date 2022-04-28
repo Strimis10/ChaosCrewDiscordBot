@@ -178,7 +178,7 @@ class birthday(commands.Cog):
     async def kenny_time(self, ctx, *, text: commands.clean_content = ''):
         dt_today = datetime.datetime.today()
         dt_Kenny = dt_today.astimezone(pytz.timezone('America/Edmonton'))
-        Kenny_time = (dt_Kenny.strftime('%m/%d/%Y %H:%M'))
+        Kenny_time = (dt_Kenny.strftime('%m/%d %H:%M'))
         #print(Kenny_time)
         await ctx.send(Kenny_time)
 
