@@ -17,7 +17,7 @@ def get_info(username):
     req = requests.post(url=url,params=params)
     token = req.json()['access_token']
     #token = "gxx9wl9zts77lma5lmybjszfxh0t3y"
-    print(f'{token}')
+    # print(f'{token}')
     # ================================================================
     #getting user data (user id for example)
     url = f'https://api.twitch.tv/helix/users?login={twitch_user}'

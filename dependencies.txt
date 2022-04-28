@@ -1,5 +1,5 @@
 discord.py
-nextcord
+uninstall nextcord
 humanfriendly
 numpy
 grpc

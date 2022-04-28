@@ -1,7 +1,6 @@
 import asyncio
 from calendar import c
-from textwrap import indent
-from aiohttp import client
+
 from discord.ext import commands
 import discord
 import discord.utils
@@ -14,7 +13,6 @@ import random
 import time
 import datetime
 import humanfriendly
-import nextcord
 the_immune = []
 word_immune = []
 

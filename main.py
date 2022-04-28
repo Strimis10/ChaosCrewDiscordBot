@@ -1,7 +1,7 @@
 import discord
-intents = discord.Intents(messages=True, guilds=True, members=True)
-intents.reactions = True
-intents.members = True
+#intents = discord.Intents(messages=True, guilds=True, members=True)
+# intents.reactions = True
+# intents.members = True
 from discord.ext import commands
 import os
 import time

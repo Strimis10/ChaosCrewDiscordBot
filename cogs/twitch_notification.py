@@ -1,24 +1,33 @@
 from discord.ext import commands
 import discord
 import discord.utils
-from get_twitch_info import kenny_live
-import time
+import get_twitch_info
+import asyncio
 
 class fun(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
+
+
+    @commands.command(name='Kenny_live',aliases=['KL'])
+    async def Kenny_live(self, ctx):
+        await self.bot.get_channel(949590152202813453).send(f"69Kennevo_is_live")
+
+    @commands.Cog.listener()
+    async def on_ready(self):
+        live_before = False
+        while True:
+            if get_twitch_info.kenny_live() == True:
+                if not live_before:
+                    await self.bot.get_channel(949590152202813453).send(f"69Kennevo_is_live")
+            
+                print("Kenny is live")
+                live_before = True
+            else:
+                live_before = False
+            await asyncio.sleep(180)
+       
     
-    #while True:
-    #    if kenny_live() == True:
-    #        #await self.bot.get_channel(949590152202813453).send(f"69Feed_Strimis: requested by: {ctx.author} (:{ctx.author.id}:) channel.id :{ctx.channel.id}")
-    #    
-    #        print("Kenny is live")
-    #        time.sleep(10)
-    #    else:
-    #        print("Kenny is not live")
-    #        time.sleep(10)
-        #                         ^^ This is for pings / mentions being cleaned so you can't do `a!say @everyone`.
-        #command content
 
 
 def setup(bot):

@@ -1,5 +1,4 @@
-from textwrap import indent
-from aiohttp import client
+
 from discord.ext import commands
 import discord
 import discord.utils
@@ -10,9 +9,19 @@ e = {}
 from typing import Optional
 import random
 import time
-import datetime
+
+from datetime import datetime
 import humanfriendly
-import nextcord
+import aiohttp
+import discord
+import datetime
+import warnings
+
+
+warnings.filterwarnings("ignore", category=DeprecationWarning)
+intents = discord.Intents.all()
+bot = commands.Bot(command_prefix=['$',], intents=intents)
+bot.session = aiohttp.ClientSession()
 the_immune = []
 word_immune = []
 
@@ -311,6 +320,7 @@ class usefull(commands.Cog):
     @commands.Cog.listener()
     async def on_message(self, message):
         member = discord.utils.get(self.bot.get_all_members(), id=message.author.id)
+        
 
         roles = [933127964248375337, 932684901801660526, 786014220721979445]
 
@@ -359,6 +369,7 @@ class usefull(commands.Cog):
                                         
                                         with open("incidents.json") as feedsjson: 
                                             feeds = json.load(feedsjson)
+                                        guild= discord.utils.get(self.bot.guilds, id=int(932684556572700773))
 
                                         if feeds[str(message.author.id)] == 1:
                                             await message.reply(f"{message.author.mention} That's a Banned word, this is your 1:st incident, this will be logged and after 4 incidents you will be timed out, 5: kicked and 6: then banned. use '?bws' to se a list of the banned words")
@@ -376,7 +387,14 @@ class usefull(commands.Cog):
                                             await message.reply(f"{message.author.mention} That's a Banned word, this is your 4:th incident, you will be timed out for 24 hours")
                                             await message.reply("BAD BOII!!, you can't say that without consequences")
                                             await message.delete()
-                                            await message.author.edit(timeout=nextcord.utils.utcnow()+datetime.timedelta(seconds=86400), reason="BAD BOII!!, you can't say that without consequences")
+                                            
+                                            #print(type(message.author))
+                                            await message.author.kick(reason="BAD BOII!!, you can't say that without consequences")
+                                            #await message.author.timeout(discord.utils.utcnow() + datetime.timedelta(seconds=86400), reason=reason)
+                                            #await member.timeout(until = discord.utils.utcnow() + datetime.timedelta(seconds=86400), reason=reason)
+                                            #await ctx.send (f"{member} callate un rato anda {time}")
+
+                                            #await message.author.edit(timeout=nextcord.utils.utcnow()+datetime.timedelta(seconds=86400), reason="BAD BOII!!, you can't say that without consequences")
                                         
                                         elif feeds[str(message.author.id)] == 5:
                                             await message.reply(f"{message.author.mention} That's a Banned word, this is your 5:th incident, you will now be kicked from the server. next time this happens you will be banned!")
