@@ -1,0 +1,1 @@
+- Replace all role and guild id's with the ones from the Kennevo's Server (Kennevo's Chaos Crew)
