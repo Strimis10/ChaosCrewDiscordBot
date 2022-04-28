@@ -1,10 +1,17 @@
 import requests
+from dotenv import load_dotenv
+import os 
+
+load_dotenv()
+
+secret = ""
+secret = os.getenv("secret") 
 def get_info(username):
     # ================================================================
     # your twitch client id
     client_id = 'tf0tlb5p4j8wcblpgw2dit3fnrywqx' 
     # your twitch secret       
-    client_secret = '0uu6pmye9ibhw85tganngjmnki1vpv'
+    client_secret = secret
     # twitch username you want to check if it is streaming online
     twitch_user = username                           
     # ================================================================
@@ -47,7 +54,7 @@ def kenny_live():
     
     client_id = 'tf0tlb5p4j8wcblpgw2dit3fnrywqx' 
          
-    client_secret = '0uu6pmye9ibhw85tganngjmnki1vpv'
+    client_secret = secret
     
     twitch_user = 'Kennevo'                           
     
