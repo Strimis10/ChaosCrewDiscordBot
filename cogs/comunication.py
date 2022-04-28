@@ -1,4 +1,3 @@
-from http import client
 from discord.ext import commands
 import discord
 import discord.utils

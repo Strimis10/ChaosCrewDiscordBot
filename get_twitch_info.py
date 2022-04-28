@@ -37,9 +37,10 @@ def get_info(username):
         'Client-Id':f'{client_id}'}
     req = requests.get(url=url,headers=headers)
     streaminfo = req.json()
-    print(f'{streaminfo=}')
-    print(bool(streaminfo['data']))
+    #print(f'{streaminfo=}')
+    #print(bool(streaminfo['data']))
     # ================================================================
+    return(userid)
 #get_info("Kennevo")
 
 def kenny_live():
