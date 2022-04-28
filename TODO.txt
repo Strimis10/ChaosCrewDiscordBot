@@ -1,1 +1,1 @@
-replace all role, and guild id's (what_day.py, dead_members.py, new_member.py, baned_words.py, userinfo.py and more)
+replace all role, and guild id's (what_day.py, dead_members.py, new_member.py, baned_words.py, userinfo.py, twitch.py and more)

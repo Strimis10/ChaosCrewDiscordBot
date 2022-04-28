@@ -34,12 +34,12 @@ class inactive(commands.Cog):
 
 
 
-    @commands.command(name = 'inactive',aliases=["Inactive", "INACTIVE", "iNACTIVE"],brief='informs you of how long a user has been inactive in this server: "?Inactive @Strimis10"')
+    @commands.command(name = 'inactive',aliases=["Inactive", "INACTIVE", "iNACTIVE"],brief='"?Inactive @Strimis10" informs you of how long a user has been inactive in this server: ')
     async def inactive(self, ctx, target: Optional[discord.Member]):
         with open("last_active.json") as feedsjson: 
             feeds = json.load(feedsjson)
         if target == None:
-            await ctx.send("Please specify a user")
+            await ctx.send("Please specify valid a user")
         else:
             name = target.name
             target_id = str(target.id)

