@@ -19,6 +19,7 @@ client = commands.Bot(command_prefix="?",owner_ids=[386826952599928842, 42782298
 class birthday(commands.Cog):
     def __init__(self, client):
         self.client = client
+        #self.bot = bot
         self.index = 0
 
     # @commands.Cog.listener()
@@ -29,6 +30,17 @@ class birthday(commands.Cog):
     async def on_ready(self):
         while(True):
             from datetime import date
+            import what_server
+            if what_server.Kennevo:
+                guild = discord.utils.get(self.client.guilds, id=int(786013884216639509))
+                role = discord.utils.get(guild.roles, id=int(953004596882702386))
+                self.channel = self.client.get_channel(786013884737781872) 
+                
+                
+            else:
+                guild= discord.utils.get(self.client.guilds, id=int(932684556572700773))
+                role = discord.utils.get(guild.roles, id=int(946936153687347230))
+                self.channel = self.client.get_channel(934475802593091636) 
 
             
 
@@ -47,13 +59,61 @@ class birthday(commands.Cog):
                 
                 with open("date.json") as fj: 
                     feeds = json.load(fj)
+                with open("new.json") as oj: 
+                    o = json.load(oj)
                 
                 
                 if feeds != y:
+                    for user in o:
+                        if o[user] == 420.69:
+                            pass
+                        elif o[user] >= 7:
+                            o[user] = 420.69
+                            # user1 = await self.bot.get_user_info(user)
+                            # username = user1.name
+                            
+                            #username = client.get_user(user)
+                            
+                            #user2 = discord.Member(user)
+                            # user1 = user - user[0]
+                            # print(len(user1))
+                            #user2 = user1 - user[len(user1)]
+                            # 0user2 = user
+
+                            #guild = client.get_guild(786013884216639509)
+                            # guild = self.bot.get_guild(786013884216639509)
+                            # member = guild.get_member(int(user))
+                            # print(member)
+                            # role = discord.utils.get(guild.roles, id=int(946936153687347230))
+                            #guild = self.bot.get_guild(786013884216639509)
+                            # import pdb
+                            # pdb.set_trace()
+                            
+                            member = guild.get_member(int(user))
+                            
+                            
+
+                            
+
+
+
+                            await member.remove_roles(role)
+
+
+                            # role = discord.utils.get(user2.guild.roles, id=946936153687347230)
+                            # await user2.remove_roles(role)h
+
+
+                        else:
+                            o[user] = o[user] + 1
+
+                with open("new.json", mode='w') as f:
+                    f.write(json.dumps(o, indent=2))
                     
                     with open("date.json", mode='w') as f:
                         f.write(json.dumps(y, indent=2))
-                    self.channel = self.client.get_channel(934475802593091636)       
+                     
+                    #print(self.channel.name)     
                     if self.channel != None:
                 
                         
@@ -152,6 +212,7 @@ class birthday(commands.Cog):
                         elif days >= 730:
                             member = guild.get_member(int(key))
                             await member.add_roles(two_years_or_more)
+                
           
                     
 
@@ -185,7 +246,7 @@ class birthday(commands.Cog):
         # @printer.before_loop
         # async def before_printer(self):
         #     print('waiting...')
-        #     await self.bot.wait_until_ready()
+        #     await self.client.wait_until_ready()
            
         
         

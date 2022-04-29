@@ -88,10 +88,17 @@ class new(commands.Cog):
                         #guild = self.bot.get_guild(786013884216639509)
                         # import pdb
                         # pdb.set_trace()
-                        guild= discord.utils.get(self.bot.guilds, id=int(932684556572700773))
-                        member = guild.get_member(int(user))
+                        import what_server
+                        if what_server.Kennevo:
+                            guild = discord.utils.get(self.bot.guilds, id=int(786013884216639509))
+                            role = discord.utils.get(guild.roles, id=int(953004596882702386))
+                        else:
+                            guild= discord.utils.get(self.bot.guilds, id=int(932684556572700773))
+                            role = discord.utils.get(guild.roles, id=int(946936153687347230))
                         
-                        role = discord.utils.get(guild.roles, id=int(946936153687347230))
+                        member = guild.get_member(int(user))
+
+                        
                         
 
                         
