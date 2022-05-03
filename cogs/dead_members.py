@@ -39,7 +39,7 @@ class inactive(commands.Cog):
         with open("last_active.json") as feedsjson: 
             feeds = json.load(feedsjson)
         if target == None:
-            await ctx.send("Please specify valid a user")
+            await ctx.send("Please specify a valid user")
         else:
             name = target.name
             target_id = str(target.id)

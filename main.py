@@ -161,6 +161,17 @@ for filename in os.listdir('./cogs'):
 
 @client.event
 async def on_member_join(member):
+    import what_server
+    if what_server.Kennevo:
+        guild = discord.utils.get(client.guilds, id=int(786013884216639509))
+        role = discord.utils.get(guild.roles, id=int(953004596882702386))
+        
+        
+        
+    else:
+        guild= discord.utils.get(client.guilds, id=int(932684556572700773))
+        role = discord.utils.get(guild.roles, id=int(946936153687347230))
+        
     print(member)
     print("AAAAAAAAAAAAAAAAAHHHHHHHHHHHHHH")
     
@@ -172,7 +183,7 @@ async def on_member_join(member):
         
         with open("new.json", mode='w') as f:
             f.write(json.dumps(y, indent=2))
-        role = discord.utils.get(member.guild.roles, id=946936153687347230)
+        
         await member.add_roles(role)
     else: 
         with open("new.json") as fj: 
@@ -188,7 +199,7 @@ async def on_member_join(member):
 
             with open("new.json", mode='w') as f:
                 f.write(json.dumps(feeds, indent=2))
-            role = discord.utils.get(member.guild.roles, id=946936153687347230)
+            
             await member.add_roles(role)
 
     if not os.path.isfile("names.json"):

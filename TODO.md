@@ -1,4 +1,4 @@
-- Replace all rolnd guild id's with the ones from the Kennevo's Server (what_day.py, dead_members.py, new_member.py, baned_words.py, userinfo.py, twitch.py and more) (once invited to Kennevos chaos crew)
+- Replace all rolnd guild id's with the ones from the Kennevo's Server (what_day.py, dead_members.py, baned_words.py and more) (once invited to Kennevos chaos crew)
 
 
 
@@ -23,6 +23,8 @@ update readme to include what DAVE can do
 update dependencies
 
 (role and userids), make them change depending on what server.
+
+fix word imunity
 
 MOST IMPORTANT:
 

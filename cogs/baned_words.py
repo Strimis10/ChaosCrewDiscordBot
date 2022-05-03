@@ -324,12 +324,25 @@ class usefull(commands.Cog):
         member = discord.utils.get(self.bot.get_all_members(), id=message.author.id)
         
 
-        roles = [933127964248375337, 932684901801660526, 786014220721979445]
-
+        
+        import what_server
+        if what_server.Kennevo:
+            guild_id = 786013884216639509
+            guild = discord.utils.get(self.bot.guilds, id=int(786013884216639509))
+            role = discord.utils.get(guild.roles, id=int(953004596882702386))
+            roles = [786014220721979445, 786014064533831690]
+            
+            
+        else:
+            guild_id = 932684556572700773
+            guild= discord.utils.get(self.bot.guilds, id=int(932684556572700773))
+            roles = [933127964248375337, 932684901801660526, 786014220721979445]
         for role in member.roles:
+            #print(role.name)
             if role.id in roles:
                 permission = True
                 break
+
 
             else:
                 permission = False
@@ -372,7 +385,7 @@ class usefull(commands.Cog):
                                         
                                         with open("incidents.json") as feedsjson: 
                                             feeds = json.load(feedsjson)
-                                        guild= discord.utils.get(self.bot.guilds, id=int(932684556572700773))
+                                        #guild= discord.utils.get(self.bot.guilds, id=int(932684556572700773))
 
                                         if feeds[str(message.author.id)] == 1:
                                             await message.reply(f"{message.author.mention} That's a Banned word, this is your 1:st incident, this will be logged and after 4 incidents you will be timed out, 5: kicked and 6: then banned. use '?bws' to se a list of the banned words")
@@ -387,7 +400,7 @@ class usefull(commands.Cog):
                                             await message.delete()
 
                                         elif feeds[str(message.author.id)] == 4:
-                                            guild_id = 932684556572700773
+                                            #guild_id = 932684556572700773
                                             user_id = message.author.id
                                             time_in_mins = 1440
                                             timeout_user.timeout_user(user_id=user_id, guild_id=guild_id,until=time_in_mins)
