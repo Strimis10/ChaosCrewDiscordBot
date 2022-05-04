@@ -12,10 +12,10 @@ class inactive(commands.Cog):
     @commands.Cog.listener()
     async def on_message(self, message):
         if message.author.id != 932687176997687316:
-            with open("last_active.json") as feedsjson: 
+            with open("user_info.json") as feedsjson: 
                 data = json.load(feedsjson)
-            data[f"{message.author.id}"] = 0
-            with open("last_active.json", mode='w') as f:
+            data[f"{message.author.id}"]["last_active"] = 0
+            with open("user_info.json", mode='w') as f:
                 f.write(json.dumps(data, indent=2)) 
             guild= discord.utils.get(self.bot.guilds, id=int(932684556572700773))
             member = guild.get_member(int(message.author.id))
@@ -36,7 +36,7 @@ class inactive(commands.Cog):
 
     @commands.command(name = 'inactive',aliases=["Inactive", "INACTIVE", "iNACTIVE"],brief='"?Inactive @Strimis10" informs you of how long a user has been inactive in this server: ')
     async def inactive(self, ctx, target: Optional[discord.Member]):
-        with open("last_active.json") as feedsjson: 
+        with open("user_info.json") as feedsjson: 
             feeds = json.load(feedsjson)
         if target == None:
             await ctx.send("Please specify a valid user")
@@ -44,7 +44,8 @@ class inactive(commands.Cog):
             name = target.name
             target_id = str(target.id)
             try:
-                await ctx.send(f"{name} was last active {feeds[target_id]} days ago")
+                last = feeds[target_id]["last_active"]
+                await ctx.send(f"{name} was last active {last} days ago")
             
             except KeyError:
                 await ctx.send(f"{name} has not sent a message in this server")

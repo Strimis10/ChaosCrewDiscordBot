@@ -36,22 +36,17 @@ class Birthday(commands.Cog):
             #   await ctx.send("send your birthday like this: 'yyyy-mm-dd.' if you don't want to share the year type '0000' as the year. Send this with the 'setBrithday' command (?setBirthday yyyy-mm-dd.)")
 
             else:
-                if not os.path.isfile("birthdays.json"):
-                    a[str(ctx.author.id)] = text
+                
                     
-                    with open("birthdays.json", mode='w') as f:
-                        f.write(json.dumps(a, indent=2))
-                        await ctx.send(f"{ctx.author.name}'s birthday set to {f[str(ctx.author.id)]}")
-                else: 
-                    with open("birthdays.json") as feedsjson: 
-                        feeds = json.load(feedsjson)
-
-                    feeds[str(ctx.author.id)] = text.lower()
-                    for i in range(len(feeds)):
-                        print(feeds)
-                        with open("birthdays.json", mode='w') as f:
-                            f.write(json.dumps(feeds, indent=2))  
-                    await ctx.send(f"{ctx.author.name}'s birthday set to {feeds[str(ctx.author.id)]}")
+                
+                with open("user_info.json") as feedsjson: 
+                    feeds = json.load(feedsjson)
+                feeds[str(ctx.author.id)]['birthday'] = text.lower()
+                for i in range(len(feeds)):
+                    
+                    with open("user_info.json", mode='w') as f:
+                        f.write(json.dumps(feeds, indent=2))  
+                await ctx.send(f"{ctx.author.name}'s birthday set to {feeds[str(ctx.author.id)]}")
     
 
 
@@ -59,15 +54,20 @@ class Birthday(commands.Cog):
     @commands.command(name='Bday_check',aliases=["Bdaycheck", "bdaycheck", "bday_check"], description='informs you of the persons birthday',brief='informs you of a persons birthday: "?Bdaycheck @Strimis10"')
     async def say(self, ctx, target: Optional[discord.Member]):
         target = target or ctx.author
-        with open("birthdays.json") as feedsjson: 
-            feeds = json.load(feedsjson)
-        name = target.name
-        target_id = str(target.id)
-        try:
-            await ctx.send(f"{name}'s birthday is set to {feeds[target_id]}")
-        
-        except KeyError:
-            await ctx.send(f"{name} has not set their birthday yet...")
+        if target == None:
+            await ctx.send("Please specify a valid user")
+        else:
+            with open("user_info.json") as feedsjson: 
+                feeds = json.load(feedsjson)
+            name = target.name
+            target_id = str(target.id)
+            
+            try:
+                Birthday = feeds[target_id]["birthday"]
+                await ctx.send(f"{name}'s birthday is set to {Birthday}")
+            
+            except KeyError:
+                await ctx.send(f"{name} has not set their birthday yet...")
 
 
 
