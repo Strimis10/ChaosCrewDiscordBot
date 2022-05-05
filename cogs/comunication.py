@@ -56,38 +56,33 @@ class coms(commands.Cog):
 
 
 
-    @commands.command(name='FS',aliases=['Feed_Strimis','feed_strimis'],brief='Just think Snackaru with Skittles but worse')
-    async def Feed_Strimis(self, ctx):
+    @commands.command(name='Feed_Strimis',aliases=['FS','feed_strimis'],brief='Just think Snackaru with Skittles but worse')
+    async def Feed_Strimis (self, ctx):
         
-
+        #channel = await self.bot.fetch_channel(949590152202813453)
+        #guild= discord.utils.get(self.bot.channels, id=int(949590152202813453))
         user = discord.utils.get(self.bot.get_all_members(), id=427822985102098434)
+        # print(user)
+        # print(user.status)
+        # print(type(user.status))
+        # print(type(user))
 
         if str(user.status) == "offline":
             print("what")
             await ctx.send(f"{user.name} is {user.status}; request cannot be fulfilled.")
         elif str(user.status) == "idle":
-            await ctx.send(f"{user.name} is {user.status}: request cannot be fulfilled.")
+            await ctx.send(f"{user.name} is {user.status}: request can but won't be fulfilled.")
         elif str(user.status) == "dnd":
-            await ctx.send(f"{user.name} is in {user.status} mode (do not disturb): request cannot be fulfilled.")
+            await ctx.send(f"{user.name} is in {user.status} mode (do not disturb): request can but won't be fulfilled.")
         elif str(user.status) == "online":
             await ctx.send("Request sent to DAHH")
             await self.bot.get_channel(949590152202813453).send(f"69Feed_Strimis: requested by: {ctx.author} (:{ctx.author.id}:) channel.id :{ctx.channel.id}")
         
         
-    @commands.command(name='WS',aliases=['Water_Strimis','water_strimis'],brief='Just hydaru but worse')
-    async def Water_Strimis(self, ctx):
-        user = discord.utils.get(self.bot.get_all_members(), id=427822985102098434)
-
-        if str(user.status) == "offline":
-            print("what")
-            await ctx.send(f"{user.name} is {user.status}; request cannot be fulfilled.")
-        elif str(user.status) == "idle":
-            await ctx.send(f"{user.name} is {user.status}: request cannot be fulfilled.")
-        elif str(user.status) == "dnd":
-            await ctx.send(f"{user.name} is in {user.status} mode (do not disturb): request cannot be fulfilled.")
-        elif str(user.status) == "online":
-            await ctx.send("Request sent to DAHH")
-            await self.bot.get_channel(949590152202813453).send(f"69Water_Strimis: requested by: {ctx.author} (:{ctx.author.id}:) channel.id :{ctx.channel.id}")
+        # try:
+        #     msg = await self.client.wait_for("message", check=check, timeout=30) # 30 seconds to reply
+        # except asyncio.TimeoutError:
+        #     await ctx.send("Sorry, you didn't reply in time!")
 
 
 
@@ -138,7 +133,7 @@ class coms(commands.Cog):
             elif ga == "Feed_Strimis":
                 #print("hug")
                 await self.bot.get_channel(int(error)).send(f"{message.content}")
-            elif ga == "Water_Strimis":
+            elif ga == "Air_raid":
                 #print("hug")
                 await self.bot.get_channel(int(error)).send(f"{message.content}")
 

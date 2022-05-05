@@ -21,11 +21,11 @@ class meth(commands.Cog):
                 if not live_before:
                     await self.bot.get_channel(949590152202813453).send(f"69Kennevo_is_live")
             
-                    print("Kenny is live")
+                print("Kenny is live")
                 live_before = True
             else:
                 live_before = False
-            await asyncio.sleep(60)
+            await asyncio.sleep(180)
        
     
 
