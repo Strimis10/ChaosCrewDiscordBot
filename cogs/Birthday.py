@@ -45,8 +45,9 @@ class Birthday(commands.Cog):
                 for i in range(len(feeds)):
                     
                     with open("user_info.json", mode='w') as f:
-                        f.write(json.dumps(feeds, indent=2))  
-                await ctx.send(f"{ctx.author.name}'s birthday set to {feeds[str(ctx.author.id)]}")
+                        f.write(json.dumps(feeds, indent=2)) 
+                Birthday = feeds[str(ctx.author.id)]["birthday"] 
+                await ctx.send(f"{ctx.author.name}'s birthday set to {Birthday}")
     
 
 
