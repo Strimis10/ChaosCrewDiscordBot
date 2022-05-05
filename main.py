@@ -178,6 +178,16 @@ async def on_member_join(member):
     y = {}
     print(member)
     print(type(member))
+
+
+    with open("user_info.json") as fj: 
+        feeds = json.load(fj)
+    feeds[int(member.id)] = {"new":1}
+
+    with open("user_info.json", mode='w') as f:
+        f.write(json.dumps(feeds, indent=2))
+
+
     if not os.path.isfile("new.json"):
         y[str(member.id)] = 1
         
