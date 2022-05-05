@@ -36,10 +36,9 @@ class Birthday(commands.Cog):
             #   await ctx.send("send your birthday like this: 'yyyy-mm-dd.' if you don't want to share the year type '0000' as the year. Send this with the 'setBrithday' command (?setBirthday yyyy-mm-dd.)")
 
             else:
-                if not os.path.isfile("birthdays.json"):
-                    a[str(ctx.author.id)] = text
+
                     
-<<<<<<< HEAD
+
                 
                 with open("user_info.json") as feedsjson: 
                     feeds = json.load(feedsjson)
@@ -50,21 +49,9 @@ class Birthday(commands.Cog):
                         f.write(json.dumps(feeds, indent=2)) 
                 Birthday = feeds[str(ctx.author.id)]["birthday"] 
                 await ctx.send(f"{ctx.author.name}'s birthday set to {Birthday}")
-=======
-                    with open("birthdays.json", mode='w') as f:
-                        f.write(json.dumps(a, indent=2))
-                        await ctx.send(f"{ctx.author.name}'s birthday set to {f[str(ctx.author.id)]}")
-                else: 
-                    with open("birthdays.json") as feedsjson: 
-                        feeds = json.load(feedsjson)
 
-                    feeds[str(ctx.author.id)] = text.lower()
-                    for i in range(len(feeds)):
-                        print(feeds)
-                        with open("birthdays.json", mode='w') as f:
-                            f.write(json.dumps(feeds, indent=2))  
-                    await ctx.send(f"{ctx.author.name}'s birthday set to {feeds[str(ctx.author.id)]}")
->>>>>>> parent of 1d62c2d (Merge branch 'main' of https://github.com/DrHooBs/ChaosCrewDiscordBot)
+
+
     
 
 

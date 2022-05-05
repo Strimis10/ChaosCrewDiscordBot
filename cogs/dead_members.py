@@ -12,10 +12,10 @@ class inactive(commands.Cog):
     @commands.Cog.listener()
     async def on_message(self, message):
         if message.author.id != 932687176997687316:
-            with open("last_active.json") as feedsjson: 
+            with open("user_info.json") as feedsjson: 
                 data = json.load(feedsjson)
-            data[f"{message.author.id}"] = 0
-            with open("last_active.json", mode='w') as f:
+            data[message.author.id]["last_active(days)"] = 0
+            with open("user_info.json", mode='w') as f:
                 f.write(json.dumps(data, indent=2)) 
             guild= discord.utils.get(self.bot.guilds, id=int(932684556572700773))
             member = guild.get_member(int(message.author.id))

@@ -45,9 +45,10 @@ class Listener(commands.Cog):
                     await message.reply(small_lyrics)
                 elif what == 3 or 0:
                     await message.reply(file=file)
-                    await message.reply("!!! SONG BY TizzyTheProphet")
-                    #reply with Kennevo's twitch url
-                    await message.reply("https://www.twitch.tv/kennevo")
+                    await message.channel.send("!!! SONG BY TizzyTheProphet")
+                    await message.reply("https://www.twitch.tv/tizzytheprophet")
+                    
+                    
 
 
 def setup(bot):

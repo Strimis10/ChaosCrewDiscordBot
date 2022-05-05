@@ -182,35 +182,30 @@ async def on_member_join(member):
 
     with open("user_info.json") as fj: 
         feeds = json.load(fj)
-    feeds[int(member.id)] = {"new":1}
 
-    with open("user_info.json", mode='w') as f:
-        f.write(json.dumps(feeds, indent=2))
-
-
-    if not os.path.isfile("new.json"):
-        y[str(member.id)] = 1
+    try:
+        rt = feeds[str(member.id)]
+        print(f"{member} has rejoined")
         
-        with open("new.json", mode='w') as f:
-            f.write(json.dumps(y, indent=2))
-        
+    except KeyError:
+        feeds[int(member.id)] = {"new":1}
+
+        with open("user_info.json", mode='w') as f:
+            f.write(json.dumps(feeds, indent=2))
         await member.add_roles(role)
-    else: 
-        with open("new.json") as fj: 
+
+        with open("user_info.json") as fj: 
             feeds = json.load(fj)
+        feeds[str(member.id)]["name"] = member.name 
 
+        with open("user_info.json", mode='w') as f:
+            f.write(json.dumps(feeds, indent=2))
         
-        try:
-            rt = feeds[str(member.id)]
-            print(f"{member} has rejoined")
-            
-        except KeyError:
-            feeds[str(member.id)] = 1
+        
 
-            with open("new.json", mode='w') as f:
-                f.write(json.dumps(feeds, indent=2))
-            
-            await member.add_roles(role)
+    
+
+
 
     if not os.path.isfile("names.json"):
         a = {}

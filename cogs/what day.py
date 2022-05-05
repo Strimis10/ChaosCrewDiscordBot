@@ -124,90 +124,92 @@ class birthday(commands.Cog):
                             for number in date1:
                                 datel.append(number)
                             # while current == date.today():
-                            with open("birthdays.json") as f:       
+                            with open("user_info.json") as f:       
                                 data = json.load(f) 
-                                for user in data:
-                                
-                                    day = []
-                                    for number in data[user]:
-                                        day.append(number)
-                                    match = 0
-                                    for number in range(4, 10):
-                                        if day[number] == datel[number]:
-                                            match += 1
-                                            
-                                    
-                                    if match == 6:
-                                        # await ctx.send("Happy")
-                                        #await commands.ctx.send("Happy")
-                                        #934475802593091636# 786013884737781872]
-                                        # await client.change_presence(activity=discord.Game('B')
-                                        # channel = client.get_channel(934475802593091636)
-                                        #bot.get_channel
-                                        #https://www.youtube.com/watch?v=0tn86pqnp0Q
-                                        username = self.client.get_user(user)
-                                        umention = f"<@{user}>"
-                                        thier_year = ""
-                                        current_year = ""
-                                        for number in range(0, 4):
-                                            thier_year = thier_year + day[number]
-                                        for number in range(0, 4):
-                                            current_year = current_year + current[number]
+                            for user in data:
+                            
+                                day = []
+                                for number in data[user]["birthday"]:
+                                    day.append(number)
+                                match = 0
+                                for number in range(4, 10):
+                                    if day[number] == datel[number]:
+                                        match += 1
                                         
-                                        if thier_year != "0000":
-                                            age = int(current_year) - int(thier_year)
-                                            await self.channel.send(f"It's {umention}'s birthday today, Congrats!")
-                                            if age < 0:
-                                                await self.channel.send(f"By the birthyear they've set they are turning {age}, and I don't think that's possible...")
-                                            elif age > 100:
-                                                await self.channel.send(f"By the birthyear they've set they are turning {age}, that's very impressive")
-                                            elif age == 18:
-                                                await self.channel.send(f"They are turning {age} and can now legally drink alcohol in Sweden")
-                                            elif age == 20:
-                                                await self.channel.send(f"They are turning {age} and can now legally buy alcohol in Sweden (Systembolaget)")
-                                            else:
-                                                await self.channel.send(f"They are turning {age}!")
-
-
-
-
+                                
+                                if match == 6:
+                                    # await ctx.send("Happy")
+                                    #await commands.ctx.send("Happy")
+                                    #934475802593091636# 786013884737781872]
+                                    # await client.change_presence(activity=discord.Game('B')
+                                    # channel = client.get_channel(934475802593091636)
+                                    #bot.get_channel
+                                    #https://www.youtube.com/watch?v=0tn86pqnp0Q
+                                    username = self.client.get_user(user)
+                                    umention = f"<@{user}>"
+                                    thier_year = ""
+                                    current_year = ""
+                                    for number in range(0, 4):
+                                        thier_year = thier_year + day[number]
+                                    for number in range(0, 4):
+                                        current_year = current_year + current[number]
+                                    
+                                    if thier_year != "0000":
+                                        age = int(current_year) - int(thier_year)
+                                        await self.channel.send(f"It's {umention}'s birthday today, Congrats!")
+                                        if age < 0:
+                                            await self.channel.send(f"By the birthyear they've set they are turning {age}, and I don't think that's possible...")
+                                        elif age > 100:
+                                            await self.channel.send(f"By the birthyear they've set they are turning {age}, that's very impressive")
+                                        elif age == 18:
+                                            await self.channel.send(f"They are turning {age} and can now legally drink alcohol in Sweden")
+                                        elif age == 20:
+                                            await self.channel.send(f"They are turning {age} and can now legally buy alcohol in Sweden (Systembolaget)")
                                         else:
-                                            await self.channel.send(f"It's {umention}'s birthday today, Congrats!")
-                                        print(f"{user}: match")
-                                        print("Happy birthday!!")
+                                            await self.channel.send(f"They are turning {age}!")
 
 
-                    with open("last_active.json") as feedsjson: 
-                        data = json.load(feedsjson)
-                    for key in data:      
-                        data[key] = data[key]+1
 
 
-                    with open("last_active.json", mode='w') as f:
-                        f.write(json.dumps(data, indent=2))
-                    guild= discord.utils.get(self.client.guilds, id=int(932684556572700773))
-                    one_month = discord.utils.get(guild.roles, id=int(961226882534236161)) 
-                    three_months = discord.utils.get(guild.roles, id=int(961529848369659914)) 
-                    six_months = discord.utils.get(guild.roles, id=int(961530872933257246)) 
-                    one_year = discord.utils.get(guild.roles, id=int(961531454460944406))
-                    two_years_or_more = discord.utils.get(guild.roles, id=int(961531735500288062))  
-                    for key in data:
-                        days = data[key]
-                        if days >= 30 and days <= 89:
-                            member = guild.get_member(int(key))
-                            await member.add_roles(one_month)
-                        elif days >= 90 and days <= 119:
-                            member = guild.get_member(int(key))
-                            await member.add_roles(three_months)
-                        elif days >= 182 and days <= 364:
-                            member = guild.get_member(int(key))
-                            await member.add_roles(six_months)
-                        elif days >= 365 and days <= 729:
-                            member = guild.get_member(int(key))
-                            await member.add_roles(one_year)
-                        elif days >= 730:
-                            member = guild.get_member(int(key))
-                            await member.add_roles(two_years_or_more)
+                                    else:
+                                        await self.channel.send(f"It's {umention}'s birthday today, Congrats!")
+                                    print(f"{user}: match")
+                                    print("Happy birthday!!")
+                    for key in data:  
+                        with open("user_info.json") as feedsjson: 
+                            data = json.load(feedsjson)
+                        try:
+                            data[key]["last_active(days)"] = data[key]["last_active(days)"]+1
+                        except:
+                            data[key]["last_active(days)"] = 1
+
+                        with open("user_info.json", mode='w') as f:
+                            f.write(json.dumps(data, indent=2))
+                        with open("user_info.json") as feedsjson: 
+                            data = json.load(feedsjson)
+                        guild= discord.utils.get(self.client.guilds, id=int(932684556572700773))
+                        one_month = discord.utils.get(guild.roles, id=int(961226882534236161)) 
+                        three_months = discord.utils.get(guild.roles, id=int(961529848369659914)) 
+                        six_months = discord.utils.get(guild.roles, id=int(961530872933257246)) 
+                        one_year = discord.utils.get(guild.roles, id=int(961531454460944406))
+                        two_years_or_more = discord.utils.get(guild.roles, id=int(961531735500288062))  
+                        for key in data:
+                            days = data[key]["last_active(days)"]
+                            if days >= 30 and days <= 89:
+                                member = guild.get_member(int(key))
+                                await member.add_roles(one_month)
+                            elif days >= 90 and days <= 119:
+                                member = guild.get_member(int(key))
+                                await member.add_roles(three_months)
+                            elif days >= 182 and days <= 364:
+                                member = guild.get_member(int(key))
+                                await member.add_roles(six_months)
+                            elif days >= 365 and days <= 729:
+                                member = guild.get_member(int(key))
+                                await member.add_roles(one_year)
+                            elif days >= 730:
+                                member = guild.get_member(int(key))
+                                await member.add_roles(two_years_or_more)
                 
           
                     
