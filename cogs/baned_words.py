@@ -359,98 +359,88 @@ class usefull(commands.Cog):
                             try:
                                 if word in message.content.lower():
 
-                                    if not os.path.isfile("incidents.json"):
-                                        e[str(message.author.id)] = 1
-                                        
-                                        with open("incidents.json", mode='w') as f:
-                                            f.write(json.dumps(e, indent=2))
+                                  
+                                    with open("user_info.json") as feedsjson: 
+                                        feeds = json.load(feedsjson)
                                     
+
+                                    print(feeds[str(message.author.id)]["incidents"] )
+                                    feeds[str(message.author.id)]["incidents"] = feeds[str(message.author.id)]["incidents"] + 1
+                                    for i in range(len(feeds)):
+                                        with open("user_info.json", mode='w') as f:
+                                            f.write(json.dumps(feeds, indent=2))  
+                                    
+                                    
+                                    with open("user_info.json") as feedsjson: 
+                                        feeds = json.load(feedsjson)
+                                    #guild= discord.utils.get(self.bot.guilds, id=int(932684556572700773))
+                                    
+                                    incidents = feeds[str(message.author.id)]["incidents"]
+
+                                    if incidents == 1:
+                                        await message.reply(f"{message.author.mention} That's a Banned word, this is your 1:st incident, this will be logged and after 4 incidents you will be timed out, 5: kicked and 6: then banned. use '?bws' to se a list of the banned words")
+                                        await message.delete()
+
+                                    if incidents == 2:
+                                        await message.reply(f"{message.author.mention} That's a Banned word, this is your 2:nd incident, this will be logged and after 4 incidents you will be timed out, 5: kicked and 6: then banned. use '?bws' to se a list of the banned words")
+                                        await message.delete()
+
+                                    elif incidents == 3:
+                                        await message.reply(f"{message.author.mention} That's a Banned word, this is your 3:d incident, this will be logged and after 4 incidents you will be timed out, 5: kicked and 6: then banned. use '?bws' to se a list of the banned words")
+                                        await message.delete()
+
+                                    elif incidents == 4:
+                                        #guild_id = 932684556572700773
+                                        user_id = message.author.id
+                                        time_in_mins = 1440
+                                        timeout_user.timeout_user(user_id=user_id, guild_id=guild_id,until=time_in_mins)
+                                        await message.reply(f"{message.author.mention} That's a Banned word, this is your 4:th incident, you will be timed out for 24 hours")
+                                        await message.reply("BAD BOII!!, you can't say that without consequences")
+                                        await message.delete()
                                         
-                                    else: 
-                                        with open("incidents.json") as feedsjson: 
-                                            feeds = json.load(feedsjson)
-                                        if str(message.author.id) in feeds:
-
-                                            print(feeds[str(message.author.id)])
-                                            feeds[str(message.author.id)] = feeds[str(message.author.id)] + 1
-                                            for i in range(len(feeds)):
-                                                with open("incidents.json", mode='w') as f:
-                                                    f.write(json.dumps(feeds, indent=2))  
-                                        
-                                        else:
-                                            feeds[str(message.author.id)] = 1
-                                            for i in range(len(feeds)):
-                                                with open("incidents.json", mode='w') as f:
-                                                    f.write(json.dumps(feeds, indent=2)) 
-                                        
-                                        with open("incidents.json") as feedsjson: 
-                                            feeds = json.load(feedsjson)
-                                        #guild= discord.utils.get(self.bot.guilds, id=int(932684556572700773))
-
-                                        if feeds[str(message.author.id)] == 1:
-                                            await message.reply(f"{message.author.mention} That's a Banned word, this is your 1:st incident, this will be logged and after 4 incidents you will be timed out, 5: kicked and 6: then banned. use '?bws' to se a list of the banned words")
-                                            await message.delete()
-
-                                        if feeds[str(message.author.id)] == 2:
-                                            await message.reply(f"{message.author.mention} That's a Banned word, this is your 2:nd incident, this will be logged and after 4 incidents you will be timed out, 5: kicked and 6: then banned. use '?bws' to se a list of the banned words")
-                                            await message.delete()
-
-                                        elif feeds[str(message.author.id)] == 3:
-                                            await message.reply(f"{message.author.mention} That's a Banned word, this is your 3:d incident, this will be logged and after 4 incidents you will be timed out, 5: kicked and 6: then banned. use '?bws' to se a list of the banned words")
-                                            await message.delete()
-
-                                        elif feeds[str(message.author.id)] == 4:
-                                            #guild_id = 932684556572700773
-                                            user_id = message.author.id
-                                            time_in_mins = 1440
-                                            timeout_user.timeout_user(user_id=user_id, guild_id=guild_id,until=time_in_mins)
-                                            await message.reply(f"{message.author.mention} That's a Banned word, this is your 4:th incident, you will be timed out for 24 hours")
-                                            await message.reply("BAD BOII!!, you can't say that without consequences")
-                                            await message.delete()
                                             
-                                                
-                                            #print(type(message.author))
-                                            #await message.author.kick(reason="BAD BOII!!, you can't say that without consequences")
-                                            #await message.author.timeout(discord.utils.utcnow() + datetime.timedelta(seconds=86400), reason=reason)
-                                            #await member.timeout(until = discord.utils.utcnow() + datetime.timedelta(seconds=86400), reason=reason)
-                                            #await ctx.send (f"{member} callate un rato anda {time}")
+                                        #print(type(message.author))
+                                        #await message.author.kick(reason="BAD BOII!!, you can't say that without consequences")
+                                        #await message.author.timeout(discord.utils.utcnow() + datetime.timedelta(seconds=86400), reason=reason)
+                                        #await member.timeout(until = discord.utils.utcnow() + datetime.timedelta(seconds=86400), reason=reason)
+                                        #await ctx.send (f"{member} callate un rato anda {time}")
 
-                                            #await message.author.edit(timeout=nextcord.utils.utcnow()+datetime.timedelta(seconds=86400), reason="BAD BOII!!, you can't say that without consequences")
+                                        #await message.author.edit(timeout=nextcord.utils.utcnow()+datetime.timedelta(seconds=86400), reason="BAD BOII!!, you can't say that without consequences")
+                                    
+                                    elif incidents == 5:
+                                        await message.reply(f"{message.author.mention} That's a Banned word, this is your 5:th incident, you will now be kicked from the server. next time this happens you will be banned!")
+                                        guild_id = 932684556572700773
+                                        user_id = message.author.id
+                                        time_in_mins = 1
+                                        timeout_user.timeout_user(user_id=user_id, guild_id=guild_id,until=time_in_mins)
+                                        await message.delete()
+                                        await asyncio.sleep(10)
+                                        await message.author.kick(reason="BAD BOII!!, you can't say that without consequences")
                                         
-                                        elif feeds[str(message.author.id)] == 5:
-                                            await message.reply(f"{message.author.mention} That's a Banned word, this is your 5:th incident, you will now be kicked from the server. next time this happens you will be banned!")
-                                            guild_id = 932684556572700773
-                                            user_id = message.author.id
-                                            time_in_mins = 1
-                                            timeout_user.timeout_user(user_id=user_id, guild_id=guild_id,until=time_in_mins)
-                                            await message.delete()
-                                            await asyncio.sleep(10)
-                                            await message.author.kick(reason="BAD BOII!!, you can't say that without consequences")
-                                            
 
-                                        elif feeds[str(message.author.id)] == 6:
-                                            await message.reply(f"{message.author.mention} That's a Banned word, this is your 6:th incident, you will now be banned from the discord server. Good bye!")
-                                            guild_id = 932684556572700773
-                                            user_id = message.author.id
-                                            time_in_mins = 1
-                                            timeout_user.timeout_user(user_id=user_id, guild_id=guild_id,until=time_in_mins)
-                                            await message.delete()
-                                            await asyncio.sleep(10)
-                                            await message.author.ban(reason="BAD BOII!!, you can't say that without consequences")
+                                    elif incidents == 6:
+                                        await message.reply(f"{message.author.mention} That's a Banned word, this is your 6:th incident, you will now be banned from the discord server. Good bye!")
+                                        guild_id = 932684556572700773
+                                        user_id = message.author.id
+                                        time_in_mins = 1
+                                        timeout_user.timeout_user(user_id=user_id, guild_id=guild_id,until=time_in_mins)
+                                        await message.delete()
+                                        await asyncio.sleep(10)
+                                        await message.author.ban(reason="BAD BOII!!, you can't say that without consequences")
+                                    
+                                    elif incidents <= 0:
+                                        await message.reply(f"{message.author.mention} That's a Banned word but you've been graced with negative incidents, this means you won't be disciplined untill your negative incidents run out.")
+                                        await message.delete()
+                                    #if incidents == 4:
                                         
-                                        elif feeds[str(message.author.id)] <= 0:
-                                            await message.reply(f"{message.author.mention} That's a Banned word but you've been graced with negative incidents, this means you won't be disciplined untill your negative incidents run out.")
-                                            await message.delete()
-                                        #if feeds[str(message.author.id)] == 4:
-                                            
-                                        try: 
-                                            Strimis = "<@427822985102098434>"
-                                            Harry = "<@386826952599928842>"
-                                            await message.reply(f"{Strimis} {Harry}; {message.author.mention} said a banned word but something has gone wrong, and needs to be fixed")
-                                            await message.delete()
+                                    try: 
+                                        Strimis = "<@427822985102098434>"
+                                        Harry = "<@386826952599928842>"
+                                        await message.reply(f"{Strimis} {Harry}; {message.author.mention} said a banned word but something has gone wrong, and needs to be fixed")
+                                        await message.delete()
 
-                                        except:
-                                            pass
+                                    except:
+                                        pass
                             except TypeError:
                                 pass
 

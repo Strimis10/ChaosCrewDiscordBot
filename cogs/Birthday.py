@@ -59,12 +59,13 @@ class Birthday(commands.Cog):
     @commands.command(name='Bday_check',aliases=["Bdaycheck", "bdaycheck", "bday_check"], description='informs you of the persons birthday',brief='informs you of a persons birthday: "?Bdaycheck @Strimis10"')
     async def say(self, ctx, target: Optional[discord.Member]):
         target = target or ctx.author
-        with open("birthdays.json") as feedsjson: 
+        with open("user_info.json") as feedsjson: 
             feeds = json.load(feedsjson)
         name = target.name
         target_id = str(target.id)
         try:
-            await ctx.send(f"{name}'s birthday is set to {feeds[target_id]}")
+            birthday = feeds[target_id]["birthday"]
+            await ctx.send(f"{name}'s birthday is set to {birthday}")
         
         except KeyError:
             await ctx.send(f"{name} has not set their birthday yet...")
