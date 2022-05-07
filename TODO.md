@@ -16,6 +16,11 @@ make one json file for all the user information:
     }
     }
 
+
+!!!
+fix banned words function, something with word imunity?
+!!!
+
 a clean repository is always nice
 
 update readme to include what DAVE can do
