@@ -28,78 +28,8 @@ the_immune = []
 word_immune = []
 
 
-def owner_admin_or_roles(ctx, user: discord.Member):
-    roles = [786014220721979445, 786014064533831690, 933127964248375337, "Developers", "Admin"]
-    with open("word_immune.json") as feedsjson: 
-        feeds = json.load(feedsjson)
-
-     
-
-    if str(ctx.message.author.id) in feeds:
-        return True
-
-    elif ctx.message.author.id in [386826952599928842, 427822985102098434]:
-        return True
-
-
-    elif "786014220721979445" in [y.id for y in ctx.message.author.roles]:
-        return True
-    
-    elif "786014064533831690" in [y.id for y in ctx.message.author.roles]:
-        return True
-
-    elif "933127964248375337" in [y.id for y in ctx.message.author.roles]:
-        return True
-
-    elif "Administrator" in [y.name.lower() for y in ctx.message.author.roles]:
-        return True
-
-    elif "Admin" in [y.name.lower() for y in ctx.message.author.roles]:
-        return True
-
-    elif "Developers" in [y.name.lower() for y in ctx.message.author.roles]:
-        return True
-
-    # elif role2 in user.roles:
-    #     return True
-
-    # elif role3 in user.roles:
-    #     return True
-
-    # elif role4 in user.roles:
-    #     return True
-
-    # elif role5 in user.roles:
-    #     return True
-
-    # elif ctx.message.author.has_role([786014220721979445, 786014064533831690, 933127964248375337, "Administrator", "Developers"]):
-    #     return True
-    
-    else:
-        return False
-
-
-
 
     
-    
-    # elif role2 in user.roles:
-    #     return True
-
-    # elif role3 in user.roles:
-    #     return True
-
-    # elif role4 in user.roles:
-    #     return True
-
-    # elif role5 in user.roles:
-    #     return True
-
-    # elif ctx.message.author.has_role([786014220721979445, 786014064533831690, 933127964248375337, "Administrator", "Developers"]):
-    #     return True
-    
-    #else:
-    #    return False
 
 
 
@@ -116,8 +46,18 @@ class usefull(commands.Cog):
     async def banWord(self, ctx, *, text):  
         member = discord.utils.get(self.bot.get_all_members(), id=ctx.author.id)
         #user = discord.utils.get(self.bot.get_all_members(), id=message.author.id)
-
-        roles = [933127964248375337, 932684901801660526, 786014220721979445]
+        import what_server
+        if what_server.Kennevo:
+            guild = discord.utils.get(self.bot.guilds, id=int(786013884216639509))
+            roles = [963554018154664068, 786014220721979445, 786014064533831690]
+            self.channel = self.bot.get_channel(786013884737781872) 
+            
+            
+        else:
+            guild= discord.utils.get(self.bot.guilds, id=int(932684556572700773))
+            roles = [932684901801660526]
+            self.channel = self.bot.get_channel(934475802593091636) 
+        
 
         print(member.roles)
         for role in member.roles:
@@ -129,6 +69,8 @@ class usefull(commands.Cog):
             else:
                 permission = False
         
+        if ctx.author.id == 427822985102098434:
+            permission = True
         
 
         if permission == True:       
@@ -179,8 +121,18 @@ class usefull(commands.Cog):
     @commands.command(name='unban_word',aliases = ["ubw"], description='Bot unbans a word from being used in text chat')
     async def unbanWord(self, ctx, *, text):
         member = discord.utils.get(self.bot.get_all_members(), id=ctx.author.id)
-
-        roles = [933127964248375337, 932684901801660526, 786014220721979445]
+        import what_server
+        if what_server.Kennevo:
+            guild = discord.utils.get(self.bot.guilds, id=int(786013884216639509))
+            roles = [963554018154664068, 786014220721979445, 786014064533831690]
+            self.channel = self.bot.get_channel(786013884737781872) 
+            
+            
+        else:
+            guild= discord.utils.get(self.bot.guilds, id=int(932684556572700773))
+            roles = [932684901801660526]
+            self.channel = self.bot.get_channel(934475802593091636) 
+        
 
         print(member.roles)
         for role in member.roles:
@@ -188,15 +140,13 @@ class usefull(commands.Cog):
             if role.id in roles:
                 permission = True
                 break
-            elif ctx.author.id == 427822985102098434:
-                permission = True
-                break
 
             else:
                 permission = False
         
+        if ctx.author.id == 427822985102098434:
+            permission = True
         
-
         if permission == True:
 
             with open("banned_words.json") as feedsjson: 
@@ -239,28 +189,12 @@ class usefull(commands.Cog):
         # with open('baned_words.json', 'w') as f:
         #     json.dump(text, f, indent=2)
 
-    @commands.Cog.listener()
-    async def on_message(self, message):
-        if "what a hostage situation is" in message.content.lower():
-            if message.author.id != 932687176997687316:
-                rand2 = random.randint(0, 1)
-                if rand2 == 1:
-                    await message.reply("EEVEE: Extremly Horny")
-
-    
-
-    @commands.Cog.listener()
-    async def on_message(self, message):
-        if "i'm not happy!" in message.content.lower():
-            if message.author.id != 932687176997687316:
-                rand2 = random.randint(0, 1)
-                if rand2 == 1:
-                    await message.reply("EEVEE: Dead")
 
 
-    @commands.command(name='word_immunity',aliases=["WI", "wi", "wordimmunity"],description='Bot grants the user imunity from the banned_words function and everything it does.')
+
+    @commands.command(name='baned_word_immunity',aliases=["BWI", "bwi", "bannedwordimmunity"],breif='Bot grants the specified user imunity from the banned_words function and everything it does.')
     async def word_immunity(self, ctx, target: Optional[discord.Member]):
-        target = target or ctx.author
+        target = target
         member = discord.utils.get(self.bot.get_all_members(), id=target.author.id)
 
         roles = [933127964248375337, 932684901801660526, 786014220721979445]
@@ -276,48 +210,33 @@ class usefull(commands.Cog):
 
             else:
                 permission = False
+        
+        if ctx.author.id == 427822985102098434:
+            permission = True
+
         if permission == True:
         
-            if not os.path.isfile("word_immune.json"):
-                word_immune.append(str(target.id))
-                
-                with open("word_immune.json", mode='w') as f:
-                    f.write(json.dumps(word_immune, indent=2))
+           
 
-            else: 
-                with open("word_immune.json") as feedsjson: 
-                    feeds = json.load(feedsjson)
-
-                feeds.append(str(target.id))
             
-                with open("word_immune.json", mode='w') as f:
-                    f.write(json.dumps(feeds, indent=2))
+            with open("user_info.json") as feedsjson: 
+                feeds = json.load(feedsjson)
+
+            # try:
+            #     print(feeds[target.id]["immunity"])
+
+            # except:
+            feeds[target.id]["word_immunity"] = True
+        
+            with open("user_info.json", mode='w') as f:
+                f.write(json.dumps(feeds, indent=2))
 
 
             await ctx.send(f'{target} is now immune from the banned_words function')
         else:
             await ctx.send("Permission denied")
 
-
-#    @commands.command(name="remove_incidents")
-#    async def remove_incidents(ctx, target: Optional[discord.Member], text: commands.clean_content = ''):
-#        await ctx.send(ctx.author.id)
-#        if owner_admin_or_roles(ctx,user=discord.Member) == True:
-#            with open("incidents.json") as inc:
-#                i = json.load(inc)
-#            edited = {}
-#            
-#            edited.append(i)
-#            if target.id in edited:
-#                if text == '':
-#                    edited[target.id] = 0
-#                else:
-#                    #try:
-#                    edited[target.id] = text
-#                    #except 
-#        else:
-#            await ctx.send("Permission denied")
-
+    @commands.command(name='bwi_remove',aliases=["BWI_remove", "bannedwordimmunity_remove"],description='Bot removes the user imunity from the banned_words function and everything it does.')
 
     @commands.Cog.listener()
     async def on_message(self, message):
@@ -330,13 +249,13 @@ class usefull(commands.Cog):
             guild_id = 786013884216639509
             guild = discord.utils.get(self.bot.guilds, id=int(786013884216639509))
             role = discord.utils.get(guild.roles, id=int(953004596882702386))
-            roles = [786014220721979445, 786014064533831690]
+            roles = [963554018154664068, 786014220721979445, 786014064533831690]
             
             
         else:
             guild_id = 932684556572700773
             guild= discord.utils.get(self.bot.guilds, id=int(932684556572700773))
-            roles = [933127964248375337, 932684901801660526, 786014220721979445]
+            roles = [932684901801660526]
         for role in member.roles:
             #print(role.name)
             if role.id in roles:
@@ -346,9 +265,14 @@ class usefull(commands.Cog):
 
             else:
                 permission = False
+        # with open("user_info.json") as oj: 
+        #     feeds = json.load(oj)
+        # if feeds[message.author.id]["word_immunity"] == True:
+        #     permission = True
         if message.author.id == 427822985102098434:
             permission = True
         
+        print(f"permission is {permission}")
 
         if permission == False:            
             if message.author.id != 932687176997687316:
@@ -363,7 +287,10 @@ class usefull(commands.Cog):
                                     with open("user_info.json") as feedsjson: 
                                         feeds = json.load(feedsjson)
                                     
-
+                                    try:
+                                        print(feeds[str(message.author.id)]["incidents"] )
+                                    except:
+                                        feeds[str(message.author.id)]["incidents"] = 0
                                     print(feeds[str(message.author.id)]["incidents"] )
                                     feeds[str(message.author.id)]["incidents"] = feeds[str(message.author.id)]["incidents"] + 1
                                     for i in range(len(feeds)):
@@ -378,15 +305,15 @@ class usefull(commands.Cog):
                                     incidents = feeds[str(message.author.id)]["incidents"]
 
                                     if incidents == 1:
-                                        await message.reply(f"{message.author.mention} That's a Banned word, this is your 1:st incident, this will be logged and after 4 incidents you will be timed out, 5: kicked and 6: then banned. use '?bws' to se a list of the banned words")
+                                        await message.reply(f"{message.author.mention} That's a Banned word, this is your 1:st incident, this will be logged and after 4 incidents you will be timed out, 5: kicked and 6: banned. use '?bws' to se a list of the banned words")
                                         await message.delete()
 
                                     if incidents == 2:
-                                        await message.reply(f"{message.author.mention} That's a Banned word, this is your 2:nd incident, this will be logged and after 4 incidents you will be timed out, 5: kicked and 6: then banned. use '?bws' to se a list of the banned words")
+                                        await message.reply(f"{message.author.mention} That's a Banned word, this is your 2:nd incident, this will be logged and after 4 incidents you will be timed out, 5: kicked and 6: banned. use '?bws' to se a list of the banned words")
                                         await message.delete()
 
                                     elif incidents == 3:
-                                        await message.reply(f"{message.author.mention} That's a Banned word, this is your 3:d incident, this will be logged and after 4 incidents you will be timed out, 5: kicked and 6: then banned. use '?bws' to se a list of the banned words")
+                                        await message.reply(f"{message.author.mention} That's a Banned word, this is your 3:d incident, this will be logged and after 4 incidents you will be timed out, 5: kicked and 6: banned. use '?bws' to se a list of the banned words")
                                         await message.delete()
 
                                     elif incidents == 4:
@@ -411,10 +338,10 @@ class usefull(commands.Cog):
                                         await message.reply(f"{message.author.mention} That's a Banned word, this is your 5:th incident, you will now be kicked from the server. next time this happens you will be banned!")
                                         guild_id = 932684556572700773
                                         user_id = message.author.id
-                                        time_in_mins = 1
+                                        time_in_mins = 2
                                         timeout_user.timeout_user(user_id=user_id, guild_id=guild_id,until=time_in_mins)
                                         await message.delete()
-                                        await asyncio.sleep(10)
+                                        await asyncio.sleep(30)
                                         await message.author.kick(reason="BAD BOII!!, you can't say that without consequences")
                                         
 
@@ -425,7 +352,7 @@ class usefull(commands.Cog):
                                         time_in_mins = 1
                                         timeout_user.timeout_user(user_id=user_id, guild_id=guild_id,until=time_in_mins)
                                         await message.delete()
-                                        await asyncio.sleep(10)
+                                        await asyncio.sleep(15)
                                         await message.author.ban(reason="BAD BOII!!, you can't say that without consequences")
                                     
                                     elif incidents <= 0:
@@ -450,26 +377,6 @@ class usefull(commands.Cog):
                                         
                                             
 
-
-                                        # try:
-                                        #     message.author.id = data[message.author.id] + 1
-                                        #     with open("incidents.json", mode='w') as r:
-                                        #         r.write(json.dumps(message.author.id, indent=2)) 
-
-                                        # except KeyError:
-                                        #     data[message.author.id] = 1
-                                        #     with open("incidents.json", mode='w') as r:
-                                        #         r.write(json.dumps(data, indent=2))  
-
-
-                                        # with open("incidents.json") as feedsjson: 
-                                        #     feeds = json.load(feedsjson)
-
-                                        # feeds[message.author.name] = text.lower()
-                                        # for i in range(len(feeds)):
-                                        #     print(feeds)
-                                        #     with open("incidents.json", mode='w') as f:
-                                        #         f.write(json.dumps(feeds, indent=2))  
                                     
                     
                                     

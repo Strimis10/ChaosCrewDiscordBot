@@ -129,52 +129,57 @@ class birthday(commands.Cog):
                         for user in data:
                         
                             day = []
-                            for number in data[user]["birthday"]:
-                                day.append(number)
-                            match = 0
-                            for number in range(4, 10):
-                                if day[number] == datel[number]:
-                                    match += 1
-                                    
-                            
-                            if match == 6:
-                                # await ctx.send("Happy")
-                                #await commands.ctx.send("Happy")
-                                #934475802593091636# 786013884737781872]
-                                # await client.change_presence(activity=discord.Game('B')
-                                # channel = client.get_channel(934475802593091636)
-                                #bot.get_channel
-                                #https://www.youtube.com/watch?v=0tn86pqnp0Q
-                                username = self.client.get_user(user)
-                                umention = f"<@{user}>"
-                                thier_year = ""
-                                current_year = ""
-                                for number in range(0, 4):
-                                    thier_year = thier_year + day[number]
-                                for number in range(0, 4):
-                                    current_year = current_year + current[number]
+                            try:
+                                for number in data[user]["birthday"]:
+                                    day.append(number)
+                                match = 0
+                                for number in range(4, 10):
+                                    if day[number] == datel[number]:
+                                        match += 1
+                                        
                                 
-                                if thier_year != "0000":
-                                    age = int(current_year) - int(thier_year)
-                                    await self.channel.send(f"It's {umention}'s birthday today, Congrats!")
-                                    if age < 0:
-                                        await self.channel.send(f"By the birthyear they've set they are turning {age}, and I don't think that's possible...")
-                                    elif age > 100:
-                                        await self.channel.send(f"By the birthyear they've set they are turning {age}, that's very impressive")
-                                    elif age == 18:
-                                        await self.channel.send(f"They are turning {age} and can now legally drink alcohol in Sweden")
-                                    elif age == 20:
-                                        await self.channel.send(f"They are turning {age} and can now legally buy alcohol in Sweden (Systembolaget)")
-                                    else:
-                                        await self.channel.send(f"They are turning {age}!")
-
-
-
-
+                                if match == 6:
+                                    # await ctx.send("Happy")
+                                    #await commands.ctx.send("Happy")
+                                    #934475802593091636# 786013884737781872]
+                                    # await client.change_presence(activity=discord.Game('B')
+                                    # channel = client.get_channel(934475802593091636)
+                                    #bot.get_channel
+                                    #https://www.youtube.com/watch?v=0tn86pqnp0Q
+                                    username = self.client.get_user(user)
+                                    umention = f"<@{user}>"
+                                    thier_year = ""
+                                    current_year = ""
+                                    for number in range(0, 4):
+                                        thier_year = thier_year + day[number]
+                                    for number in range(0, 4):
+                                        current_year = current_year + current[number]
+                                    
+                                    if thier_year != "0000":
+                                        age = int(current_year) - int(thier_year)
+                                        await self.channel.send(f"It's {umention}'s birthday today, Congrats!")
+                                        if age < 0:
+                                            await self.channel.send(f"By the birthyear they've set they are turning {age}, and I don't think that's possible...")
+                                        elif age > 100:
+                                            await self.channel.send(f"By the birthyear they've set they are turning {age}, that's very impressive")
+                                        elif age == 18:
+                                            await self.channel.send(f"They are turning {age} and can now legally drink alcohol in Sweden")
+                                        elif age == 20:
+                                            await self.channel.send(f"They are turning {age} and can now legally buy alcohol in Sweden (Systembolaget)")
+                                        else:
+                                            await self.channel.send(f"They are turning {age}!")
                                 else:
                                     await self.channel.send(f"It's {umention}'s birthday today, Congrats!")
                                 print(f"{user}: match")
                                 print("Happy birthday!!")
+                            except:
+                                pass
+
+
+
+
+
+                                
                     with open("user_info.json") as feedsjson: 
                         data = json.load(feedsjson)
                     for key in data:  

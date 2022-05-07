@@ -198,6 +198,8 @@ async def on_member_join(member):
         with open("user_info.json") as fj: 
             feeds = json.load(fj)
         feeds[str(member.id)]["name"] = member.name 
+        feeds[str(member.id)]["id"] = member.id
+        feeds[str(member.id)]["word_immunity"] = False
 
         with open("user_info.json", mode='w') as f:
             f.write(json.dumps(feeds, indent=2))
@@ -208,22 +210,6 @@ async def on_member_join(member):
 
 
 
-    if not os.path.isfile("names.json"):
-        a = {}
-        a[str(member.id)] = member.display_name
-        with open("names.json", mode='w') as f:
-            f.write(json.dumps(a, indent=2))
-    
-    else:
-        with open("names.json") as feedsjson: 
-            feeds = json.load(feedsjson)
-        
-        feeds[str(member.id)] = member.display_name
-        #print(feeds)
-
-
-        with open("names.json", mode='w') as f:
-            f.write(json.dumps(feeds, indent=2))
 
 
 

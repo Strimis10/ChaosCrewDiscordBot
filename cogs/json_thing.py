@@ -14,13 +14,14 @@ class fun(commands.Cog):
                 feeds = json.load(oj)
             if str(message.author.id) not in feeds:
                 
-                feeds[message.author.id] = {"new":69.420}
+                feeds[message.author.id] = {"new":420.69}
                 with open("user_info.json", mode='w') as f:
                     f.write(json.dumps(feeds, indent=2))
                 with open("user_info.json") as oj: 
                     feeds = json.load(oj)
                 feeds[str(message.author.id)]["name"] = message.author.name
                 feeds[str(message.author.id)]["id"] = message.author.id
+                feeds[str(message.author.id)]["word_immunity"] = False
                 with open("user_info.json", mode='w') as f:
                     f.write(json.dumps(feeds, indent=2))
 
