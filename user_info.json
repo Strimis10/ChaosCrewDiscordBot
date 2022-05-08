@@ -1,16 +1,23 @@
 {
   "914149753460236289": {
-    "new": 69.42,
+    "new": 420.69,
     "name": "ojsans10",
     "id": 914149753460236289,
     "word_immunity": false,
-    "last_active(days)": 0
+    "last_active(days)": 0,
+    "incidents": 0
   },
   "427822985102098434": {
-    "new": 69.42,
+    "new": 420.69,
     "name": "Strimis10",
     "id": 427822985102098434,
     "word_immunity": false,
     "last_active(days)": 0
+  },
+  "919658506234261556": {
+    "new": 420.69,
+    "name": "bootleg hydaru hydration thing",
+    "id": 919658506234261556,
+    "word_immunity": false
   }
 }

@@ -77,6 +77,28 @@ class coms(commands.Cog):
         elif str(user.status) == "online":
             await ctx.send("Request sent to DAHH")
             await self.bot.get_channel(949590152202813453).send(f"69Feed_Strimis: requested by: {ctx.author} (:{ctx.author.id}:) channel.id :{ctx.channel.id}")
+
+    @commands.command(name='Water_Strimis',aliases=['WS','water_strimis'],brief='Just think hydaru but worse')
+    async def Feed_Strimis (self, ctx):
+        
+        #channel = await self.bot.fetch_channel(949590152202813453)
+        #guild= discord.utils.get(self.bot.channels, id=int(949590152202813453))
+        user = discord.utils.get(self.bot.get_all_members(), id=427822985102098434)
+        # print(user)
+        # print(user.status)
+        # print(type(user.status))
+        # print(type(user))
+
+        if str(user.status) == "offline":
+            print("what")
+            await ctx.send(f"{user.name} is {user.status}; request cannot be fulfilled.")
+        elif str(user.status) == "idle":
+            await ctx.send(f"{user.name} is {user.status}: request can but won't be fulfilled.")
+        elif str(user.status) == "dnd":
+            await ctx.send(f"{user.name} is in {user.status} mode (do not disturb): request can but won't be fulfilled.")
+        elif str(user.status) == "online":
+            await ctx.send("Request sent to DAHH")
+            await self.bot.get_channel(949590152202813453).send(f"69Water_Strimis: requested by: {ctx.author} (:{ctx.author.id}:) channel.id :{ctx.channel.id}")
         
         
         # try:

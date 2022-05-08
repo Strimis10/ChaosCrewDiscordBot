@@ -236,7 +236,7 @@ class usefull(commands.Cog):
         else:
             await ctx.send("Permission denied")
 
-    @commands.command(name='bwi_remove',aliases=["BWI_remove", "bannedwordimmunity_remove"],description='Bot removes the user imunity from the banned_words function and everything it does.')
+    #@commands.command(name='bwi_remove',aliases=["BWI_remove", "bannedwordimmunity_remove"],description='Bot removes the user imunity from the banned_words function and everything it does.')
 
     @commands.Cog.listener()
     async def on_message(self, message):
@@ -272,7 +272,7 @@ class usefull(commands.Cog):
         if message.author.id == 427822985102098434:
             permission = True
         
-        print(f"permission is {permission}")
+
 
         if permission == False:            
             if message.author.id != 932687176997687316:
