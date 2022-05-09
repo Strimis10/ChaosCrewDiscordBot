@@ -2,6 +2,9 @@ from discord.ext import commands
 import discord
 import discord.utils
 from typing import Optional
+
+
+
 import get_twitch_info
 import json
 import os
@@ -19,28 +22,48 @@ class twitch(commands.Cog):
             
             
             
-            if not os.path.isfile("twitch_ids.json"):
-                e = {}
-                e[str(ctx.author.id)] = twitch_id
+            
                 
-                with open("twitch_ids.json", mode='w') as f:
-                    f.write(json.dumps(e, indent=2))
-            else:
+            with open("user_info.json") as feedsjson: 
+                feeds = json.load(feedsjson)
+            try:
+                k = feeds[str(ctx.author.id)]["twitch_id"]
+                await ctx.send("You already have a twitch account linked to your discord account, if you need to change it please contact Strimis10#1439")
+
                 
-                with open("twitch_ids.json") as feedsjson: 
-                    feeds = json.load(feedsjson)
-
-                feeds[str(ctx.author.id)] = twitch_id
-
-                with open("twitch_ids.json", mode='w') as f:
-                    f.write(json.dumps(feeds, indent=2))
-            await ctx.send(f"{ctx.author.id} has been linked to {twitch_id}")  
+            except:
+                available = True
+                for user in feeds:
+                    
+                    try:
+                        print(feeds[user]["twitch_id"])
+                        if feeds[user]["twitch_id"] == int(twitch_id):
+                            available = False
+                            
+                    except:
+                        pass
+                    if available == False:
+                        break
+                    
+                        
+                
+                if available:
+                    feeds[str(ctx.author.id)]["twitch_id"] = int(twitch_id)
+                    await ctx.send(f"{ctx.author.id} has been linked to {twitch_id}")
+                else:
+                    await ctx.send("That twitch account is already linked to another discord account")
+                
+            with open("user_info.json", mode='w') as f:
+                f.write(json.dumps(feeds, indent=2))
+                
                 
         except IndexError:
             await ctx.send("Invalid username")
             raise IndexError
         except:
             await ctx.send(f"{Strimis} Error")
+
+
         # if twitch_id == None:
         #     await ctx.send("Invalid username")
         # else:

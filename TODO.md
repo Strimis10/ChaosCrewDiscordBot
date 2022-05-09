@@ -21,6 +21,14 @@ make one json file for all the user information:
 
 !!!
 
+
+make slash commands
+
+master rla
+
+
+
+
 a clean repository is always nice
 
 update readme to include what DAVE can do

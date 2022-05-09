@@ -41,7 +41,8 @@ class inactive(commands.Cog):
 
     @commands.command(name = 'inactive',aliases=["Inactive", "INACTIVE", "iNACTIVE"],brief='"?Inactive @Strimis10" informs you of how long a user has been inactive in this server: ')
     async def inactive(self, ctx, target: Optional[discord.Member]):
-        with open("last_active.json") as feedsjson: 
+        target = target or ctx.author
+        with open("user_info.json") as feedsjson: 
             feeds = json.load(feedsjson)
         if target == None:
             await ctx.send("Please specify a valid user")
@@ -49,7 +50,7 @@ class inactive(commands.Cog):
             name = target.name
             target_id = str(target.id)
             try:
-                await ctx.send(f"{name} was last active {feeds[target_id]} days ago")
+                await ctx.send(f"{name} was last active {feeds[target_id]['last_active(days)']} days ago")
             
             except KeyError:
                 await ctx.send(f"{name} has not sent a message in this server")

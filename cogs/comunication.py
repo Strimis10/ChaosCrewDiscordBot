@@ -57,7 +57,7 @@ class coms(commands.Cog):
 
 
     @commands.command(name='Feed_Strimis',aliases=['FS','feed_strimis'],brief='Just think Snackaru with Skittles but worse')
-    async def Feed_Strimis (self, ctx):
+    async def Feed_Strimis(self, ctx):
         
         #channel = await self.bot.fetch_channel(949590152202813453)
         #guild= discord.utils.get(self.bot.channels, id=int(949590152202813453))
@@ -79,7 +79,7 @@ class coms(commands.Cog):
             await self.bot.get_channel(949590152202813453).send(f"69Feed_Strimis: requested by: {ctx.author} (:{ctx.author.id}:) channel.id :{ctx.channel.id}")
 
     @commands.command(name='Water_Strimis',aliases=['WS','water_strimis'],brief='Just think hydaru but worse')
-    async def Feed_Strimis (self, ctx):
+    async def Water_Strimis(self, ctx):
         
         #channel = await self.bot.fetch_channel(949590152202813453)
         #guild= discord.utils.get(self.bot.channels, id=int(949590152202813453))
