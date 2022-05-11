@@ -25,7 +25,7 @@ class meth(commands.Cog):
                 live_before = True
             else:
                 live_before = False
-            await asyncio.sleep(180)
+            await asyncio.sleep(60)
        
     
 
