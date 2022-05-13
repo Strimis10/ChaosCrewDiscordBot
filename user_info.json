@@ -4,7 +4,7 @@
     "name": "ojsans10",
     "id": 914149753460236289,
     "word_immunity": false,
-    "last_active(days)": 3,
+    "last_active(days)": 6,
     "incidents": 2
   },
   "427822985102098434": {
@@ -13,6 +13,13 @@
     "id": 427822985102098434,
     "word_immunity": false,
     "last_active(days)": 0,
-    "birthday": "2007-12-19"
+    "birthday": "2000-05-13"
+  },
+  "919658506234261556": {
+    "new": 420.69,
+    "name": "bootleg hydaru hydration thing",
+    "id": 919658506234261556,
+    "word_immunity": false,
+    "last_active(days)": 0
   }
 }

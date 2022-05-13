@@ -12,16 +12,12 @@ import pytz
 client = commands.Bot(command_prefix="?",owner_ids=[386826952599928842, 427822985102098434], intents=discord.Intents.all())
 
 
-class birthday(commands.Cog):
+class day(commands.Cog):
     def __init__(self, client):
         self.client = client
-        #self.bot = bot
         self.index = 0
 
-    # @commands.Cog.listener()
-    # async def on_ready(self, client):
-    # @commands.Cog.listener()
-    # async def on_ready(self, client):
+        #runs every hour to check if the day has changed and if so, runs the birthday function and last_active functions
     @commands.Cog.listener()
     async def on_ready(self):
         while(True):
@@ -38,17 +34,10 @@ class birthday(commands.Cog):
                 role = discord.utils.get(guild.roles, id=int(946936153687347230))
                 self.channel = self.client.get_channel(934475802593091636) 
 
+        
             
 
-            
-            # if not os.path.isfile("date.json"):
-            #     y = 2
-                
-            #     with open("date.json", mode='w') as f:
-            #         f.write(json.dumps(y, indent=2))
-            
-
-            if 1 == 1: 
+            if True: 
                 y = str(date.today())
                 
                 
@@ -58,47 +47,17 @@ class birthday(commands.Cog):
                 with open("user_info.json") as oj: 
                     o = json.load(oj)
                 
-                
+                    #if it's a new day this will run:
                 if feeds != y:
+                        #removes the "new" role from users if thier 7 days are up
                     for user in o:
                         if o[user]["new"] == 420.69:
                             pass
+
                         elif o[user]["new"] >= 7:
-                            o[user]["new"] = 420.69
-                            # user1 = await self.bot.get_user_info(user)
-                            # username = user1.name
-                            
-                            #username = client.get_user(user)
-                            
-                            #user2 = discord.Member(user)
-                            # user1 = user - user[0]
-                            # print(len(user1))
-                            #user2 = user1 - user[len(user1)]
-                            # 0user2 = user
-
-                            #guild = client.get_guild(786013884216639509)
-                            # guild = self.bot.get_guild(786013884216639509)
-                            # member = guild.get_member(int(user))
-                            # print(member)
-                            # role = discord.utils.get(guild.roles, id=int(946936153687347230))
-                            #guild = self.bot.get_guild(786013884216639509)
-                            # import pdb
-                            # pdb.set_trace()
-                            
+                            o[user]["new"] = 420.69                           
                             member = guild.get_member(int(user))
-                            
-                            
-
-                            
-
-
-
                             await member.remove_roles(role)
-
-
-                            # role = discord.utils.get(user2.guild.roles, id=946936153687347230)
-                            # await user2.remove_roles(role)h
-
 
                         else:
                             o[user]["new"] = o[user]["new"] + 1
@@ -108,72 +67,65 @@ class birthday(commands.Cog):
                         
                     with open("date.json", mode='w') as f:
                         f.write(json.dumps(y, indent=2))
-                        
-                    #print(self.channel.name)     
-                    if self.channel != None:
+                    
+                    print(self.channel)
+     
+                    
                 
-                        
-                        list = {}
+                        #Birthday function, If it's your birthday the bot will anounce it in the server 
+                    list = {}
 
-                        curren = date.today()
-                        
-                        current = str(curren)
+                    curren = date.today()
+                    
+                    current = str(curren)
 
-                        datel = []
-                        date1 = str(date.today())
-                        for number in date1:
-                            datel.append(number)
-                        # while current == date.today():
-                        with open("user_info.json") as f:       
-                            data = json.load(f) 
-                        for user in data:
-                        
-                            day = []
-                            try:
-                                for number in data[user]["birthday"]:
-                                    day.append(number)
-                                match = 0
-                                for number in range(4, 10):
-                                    if day[number] == datel[number]:
-                                        match += 1
-                                        
-                                
-                                if match == 6:
-                                    # await ctx.send("Happy")
-                                    #await commands.ctx.send("Happy")
-                                    #934475802593091636# 786013884737781872]
-                                    # await client.change_presence(activity=discord.Game('B')
-                                    # channel = client.get_channel(934475802593091636)
-                                    #bot.get_channel
-                                    #https://www.youtube.com/watch?v=0tn86pqnp0Q
-                                    username = self.client.get_user(user)
-                                    umention = f"<@{user}>"
-                                    thier_year = ""
-                                    current_year = ""
-                                    for number in range(0, 4):
-                                        thier_year = thier_year + day[number]
-                                    for number in range(0, 4):
-                                        current_year = current_year + current[number]
+                    datel = []
+                    date1 = str(date.today())
+                    for number in date1:
+                        datel.append(number)
+                    
+                    with open("user_info.json") as f:       
+                        data = json.load(f) 
+                    for user in data:
+                    
+                        day = []
+                        try:
+                            for number in data[user]["birthday"]:
+                                day.append(number)
+                            match = 0
+                            for number in range(4, 10):
+                                if day[number] == datel[number]:
+                                    match += 1
                                     
-                                    if thier_year != "0000":
-                                        age = int(current_year) - int(thier_year)
-                                        await self.channel.send(f"It's {umention}'s birthday today, Congrats!")
-                                        if age < 0:
-                                            await self.channel.send(f"By the birthyear they've set they are turning {age}, and I don't think that's possible...")
-                                        elif age > 100:
-                                            await self.channel.send(f"By the birthyear they've set they are turning {age}, that's very impressive")
-                                        elif age == 18:
-                                            await self.channel.send(f"They are turning {age} and can now legally drink alcohol in Sweden")
-                                        elif age == 20:
-                                            await self.channel.send(f"They are turning {age} and can now legally buy alcohol in Sweden (Systembolaget)")
-                                        else:
-                                            await self.channel.send(f"They are turning {age}!")
-                                else:
+                            
+                            if match == 6:
+                                umention = f"<@{user}>"
+                                thier_year = ""
+                                current_year = ""
+                                for number in range(0, 4):
+                                    thier_year = thier_year + day[number]
+                                for number in range(0, 4):
+                                    current_year = current_year + current[number]
+                                
+                                if thier_year != "0000":
+                                    age = int(current_year) - int(thier_year)
                                     await self.channel.send(f"It's {umention}'s birthday today, Congrats!")
-                                print(f"{user}: match")
-                                print("Happy birthday!!")
-                            except:
-                                pass
+                                    if age < 0:
+                                        await self.channel.send(f"By the birthyear they've set they are turning {age}, and I don't think that's possible...")
+                                    elif age > 100:
+                                        await self.channel.send(f"By the birthyear they've set they are turning {age}, that's very impressive")
+                                    elif age == 18:
+                                        await self.channel.send(f"They are turning {age} and can now legally drink alcohol in Sweden")
+                                    elif age == 20:
+                                        await self.channel.send(f"They are turning {age} and can now legally buy alcohol in Sweden (Systembolaget)")
+                                    else:
+                                        await self.channel.send(f"They are turning {age}!")
+                            else:
+                                await self.channel.send(f"It's {umention}'s birthday today, Congrats!")
+                            print(f"{user}: match")
+                            print("Happy birthday!!")
+                        except:
+                            pass
 
 
 
@@ -182,10 +134,11 @@ class birthday(commands.Cog):
                                 
                     with open("user_info.json") as feedsjson: 
                         data = json.load(feedsjson)
+                    
+                        #last_active, Adds +1 to the users Inactive days
                     for key in data:  
-                       
+                        
                         try:
-                            #print(data[key]["last_active(days)"])
                             data[key]["last_active(days)"] = data[key]["last_active(days)"]+1
                         except:
                             data[key]["last_active(days)"] = 1
@@ -231,36 +184,28 @@ class birthday(commands.Cog):
 
         
 
-            #     print(date)
-       
-       
 
+       
+       
     
+        #Command to se what date it is (I dunno why anyone would use this but it's here)(I use it for testing)
     @commands.command(name='what_date',aliases=["whd"],description='what day is it?',brief='what day is it?')
     async def what_date(self, ctx, *, text: commands.clean_content = ''):
-        
-        await ctx.send(date.today())
+        await ctx.send(f"Time in Buffalo, New York: {date.today()}")
+
+
+
+        #Command to see what time it is for Kenny
     @commands.command(name='kenny_time',aliases=["knt"],brief='What time is it for Kenny?')
     async def kenny_time(self, ctx, *, text: commands.clean_content = ''):
         dt_today = datetime.datetime.today()
         dt_Kenny = dt_today.astimezone(pytz.timezone('America/Edmonton'))
         Kenny_time = (dt_Kenny.strftime('%m/%d %H:%M'))
-        #print(Kenny_time)
         await ctx.send(Kenny_time)
 
-        # @printer.before_loop
-        # async def before_printer(self):
-        #     print('waiting...')
-        #     await self.client.wait_until_ready()
-           
-        
-        
-    #     discord.ctx.send("")
-
-    # print(date.today())
 
 
 def setup(bot):
-    bot.add_cog(birthday(bot))
+    bot.add_cog(day(bot))
 
 

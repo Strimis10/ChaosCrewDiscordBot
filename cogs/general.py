@@ -25,5 +25,9 @@ class fun(commands.Cog):
                 with open("user_info.json", mode='w') as f:
                     f.write(json.dumps(feeds, indent=2))
 
+
 def setup(bot):
     bot.add_cog(fun(bot))
+    
+    
+    
