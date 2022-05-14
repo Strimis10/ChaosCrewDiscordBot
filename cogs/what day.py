@@ -47,9 +47,9 @@ class day(commands.Cog):
                 with open("user_info.json") as oj: 
                     o = json.load(oj)
                 
-                    #if it's a new day this will run:
+                #if it's a new day this will run:
                 if feeds != y:
-                        #removes the "new" role from users if thier 7 days are up
+                    #removes the "new" role from users if thier 7 days are up
                     for user in o:
                         if o[user]["new"] == 420.69:
                             pass
@@ -72,7 +72,7 @@ class day(commands.Cog):
      
                     
                 
-                        #Birthday function, If it's your birthday the bot will anounce it in the server 
+                    #Birthday function, If it's your birthday the bot will anounce it to the server 
                     list = {}
 
                     curren = date.today()
@@ -136,6 +136,7 @@ class day(commands.Cog):
                         data = json.load(feedsjson)
                     
                         #last_active, Adds +1 to the users Inactive days
+
                     for key in data:  
                         
                         try:

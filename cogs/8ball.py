@@ -8,7 +8,7 @@ import random
 class EightBall(commands.Cog):
     def init(self, bot):
         self.bot = bot
-
+        #I think this one is self explanatory
     @commands.command(name='8ball', aliases = ["EightBall"])
     async def EightBall(self, ctx):
         with open("EightBall.json") as f:

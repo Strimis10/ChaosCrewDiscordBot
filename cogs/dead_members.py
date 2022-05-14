@@ -10,7 +10,9 @@ import time
 class inactive(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-
+    
+    
+    #removes all of the "inactive" roles from a user whenever they send a message
     @commands.Cog.listener()
     async def on_message(self, message):
         if message.author.id != 932687176997687316:
@@ -38,7 +40,7 @@ class inactive(commands.Cog):
             
 
 
-
+        #command to see how long a user has been inactive
     @commands.command(name = 'inactive',aliases=["Inactive", "INACTIVE", "iNACTIVE"],brief='"?Inactive @Strimis10" informs you of how long a user has been inactive in this server: ')
     async def inactive(self, ctx, target: Optional[discord.Member]):
         target = target or ctx.author

@@ -16,13 +16,10 @@ class Birthday(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
+
+    #command for everyone to set their birthday
     @commands.command(name='setBirthday', aliases=["setBday", "setbirthday"],brief="Stores your birthday in DAVE's database")
     async def set_Birthday(self, ctx, *, text: commands.clean_content = ''):
-        #                         ^^ This is for pings - mentions being cleaned so you can't do `a!say @everyone`.
-            # if "date:" not in text:
-            #    await ctx.send("send your birthday like this: 'yyyy-mm-dd' if you don't want to share the year type '0000' as the year. Send this with the 'setBrithday' command (?setBirthday yyyy-mm-dd)")
-
-            # elif "date:" in tex4t:
             
             if text == '':
                 await ctx.send("send your birthday like this: 'yyyy-mm-dd' if you don't want to share the year type '0000' as the year. Send this with the 'setBrithday' command (?setBirthday yyyy-mm-dd)")
@@ -30,16 +27,9 @@ class Birthday(commands.Cog):
                 await ctx.send("send your birthday like this: 'yyyy-mm-dd' if you don't want to share the year type '0000' as the year. Send this with the 'setBrithday' command (?setBirthday yyyy-mm-dd)")
             elif text[7] != "-":
                 await ctx.send("send your birthday like this: 'yyyy-mm-dd' if you don't want to share the year type '0000' as the year. Send this with the 'setBrithday' command (?setBirthday yyyy-mm-dd)")
-            #for number in range(5, 9):
-            #    if text[number] != 
-            #elif text[10] != ".":
-            #   await ctx.send("send your birthday like this: 'yyyy-mm-dd.' if you don't want to share the year type '0000' as the year. Send this with the 'setBrithday' command (?setBirthday yyyy-mm-dd.)")
 
             else:
 
-                    
-
-                
                 with open("user_info.json") as feedsjson: 
                     feeds = json.load(feedsjson)
                 feeds[str(ctx.author.id)]['birthday'] = text.lower()
@@ -52,9 +42,9 @@ class Birthday(commands.Cog):
 
 
 
-    
 
 
+    #command for everyone to see what birthday someone has
 
     @commands.command(name='Bday_check',aliases=["Bdaycheck", "bdaycheck", "bday_check"], description='informs you of the persons birthday',brief='informs you of a persons birthday: "?Bdaycheck @Strimis10"')
     async def say(self, ctx, target: Optional[discord.Member]):
@@ -69,13 +59,6 @@ class Birthday(commands.Cog):
         
         except KeyError:
             await ctx.send(f"{name} has not set their birthday yet...")
-
-
-
-
-
-
-
 
 
 def setup(bot):

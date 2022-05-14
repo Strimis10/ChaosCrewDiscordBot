@@ -159,35 +159,30 @@ for filename in os.listdir('./cogs'):
         except Exception as e:
             print(f'\n!!!!!!!!!!!!!!!\nuwu you did a fuckie wuckie\n{e}\n!!!!!!!!!!!!!!!\n')
 
-
+    #adds the new user to the user_info.json file
 @client.event
 async def on_member_join(member):
     import what_server
     if what_server.Kennevo:
         guild = discord.utils.get(client.guilds, id=int(786013884216639509))
         role = discord.utils.get(guild.roles, id=int(953004596882702386))
-        
-        
-        
+
     else:
         guild= discord.utils.get(client.guilds, id=int(932684556572700773))
         role = discord.utils.get(guild.roles, id=int(946936153687347230))
         
-    print(member)
-    print("AAAAAAAAAAAAAAAAAHHHHHHHHHHHHHH")
-    
-    y = {}
-    print(member)
-    print(type(member))
-
+    print(f"{member} has joined the server")
 
     with open("user_info.json") as fj: 
         feeds = json.load(fj)
-
-    try:
-        rt = feeds[str(member.id)]
-        print(f"{member} has rejoined")
         
+    #checks if the user is already in the user_info.json file
+    #if so it will do nothing
+    try:
+        name = feeds[str(member.id)]['name']
+        print(f"{name} has rejoined")
+
+    #else it'll add the user to the user_info.json file and give them the "new_user" role
     except KeyError:
         feeds[int(member.id)] = {"new":1}
 

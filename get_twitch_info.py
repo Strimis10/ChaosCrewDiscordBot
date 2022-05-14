@@ -1,11 +1,17 @@
 import requests
 from dotenv import load_dotenv
 import os 
-
 load_dotenv()
+
+
+
+
 
 secret = ""
 secret = os.getenv("secret") 
+
+
+#returns info about a twitch user, rightnow used for twitch ids but you can also get other info.
 def get_info(username):
     # ================================================================
     # your twitch client id
@@ -50,6 +56,9 @@ def get_info(username):
     return(userid)
 #get_info("Kennevo")
 
+
+
+#returns a boolean, True = Kenny is live, False = Kenny is not live
 def kenny_live():
     
     client_id = 'tf0tlb5p4j8wcblpgw2dit3fnrywqx' 

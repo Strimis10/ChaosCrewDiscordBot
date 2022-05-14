@@ -8,11 +8,10 @@ class meth(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-
-    @commands.command(name='Kenny_live',aliases=['KL'])
-    async def Kenny_live(self, ctx):
-        await self.bot.get_channel(949590152202813453).send(f"69Kennevo_is_live")
-
+        #runs every minute and checks if Kenny is live, if so it sends a command to my pc to start the "stream protocol" 
+        #basically just opens a new tab in the browser and goes to the stream
+        #
+        #could be used for automated stream anouncements 
     @commands.Cog.listener()
     async def on_ready(self):
         live_before = False
@@ -27,6 +26,11 @@ class meth(commands.Cog):
             else:
                 live_before = False
             await asyncio.sleep(60)
+
+        #basically the same as the other one but it's manual
+    @commands.command(name='Kenny_live',aliases=['KL'])
+    async def Kenny_live(self, ctx):
+        await self.bot.get_channel(949590152202813453).send(f"69Kennevo_is_live")
        
     
 

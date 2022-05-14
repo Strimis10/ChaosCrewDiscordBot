@@ -7,6 +7,8 @@ TOKEN = ""
 TOKEN = os.getenv("TOKEN") #get_token()
 BASE = "https://discord.com/api/v9/"
 
+
+#function that makes a request to the discord api to timeout a user as discord.py does not currently support this
 def timeout_user(*, user_id: int, guild_id: int, until: int):
     endpoint = f'guilds/{guild_id}/members/{user_id}'
     headers = {"Authorization": f"Bot {TOKEN}"}
@@ -18,15 +20,3 @@ def timeout_user(*, user_id: int, guild_id: int, until: int):
         return session.json()
     else: 
         return print("Did not find any\n", session.status_code)
-
-
-        
-
-#guild_id = 932684556572700773
-#user_id = 914149753460236289
-#time_in_mins = 1
-#timeout_user(user_id=user_id, guild_id=guild_id,until=time_in_mins)
-
-
-
-

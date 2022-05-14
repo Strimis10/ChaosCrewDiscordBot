@@ -30,7 +30,7 @@ class good_morning(commands.Cog):
 
         
 
-    
+    #responds with good morning to a message that contains the words good morning but only once an hour to prevent responding to responses  
     @commands.Cog.listener()
     async def on_message(self, message):
         if self.has_run == False:
