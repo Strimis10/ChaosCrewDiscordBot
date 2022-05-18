@@ -7,8 +7,13 @@ from discord.ext import commands
 import os
 import time
 import json
+from discord import Client, Intents, Embed
+from discord.ext import commands
+from discord_slash import SlashCommand, SlashContext
+from discord_slash.utils.manage_commands import create_choice, create_option
 from dotenv import load_dotenv
 client = commands.Bot(command_prefix="?",owner_ids=[386826952599928842, 427822985102098434], intents=discord.Intents.all())
+slash = SlashCommand(client, sync_commands=True)
 
 load_dotenv()
 
@@ -26,6 +31,35 @@ token = ""
 
 
 token = os.getenv("TOKEN") #get_token()
+
+
+
+
+@slash.slash(
+name="hello", 
+description="sends test message",
+guild_ids=[932684556572700773],
+options=[create_option(
+        name="option",
+        description="choose your word",
+        required=True,
+        option_type=3,
+        choices=[
+            create_choice(
+                name="world",
+                value="World"
+            ),
+            create_choice(
+                name="you",
+                value="You"
+            )
+    ]
+)]
+
+)
+async def hello(ctx: SlashContext, option: str):
+    embed = Embed(title=option)
+    await ctx.send(embed=embed)
 
 
 @client.event
@@ -66,6 +100,7 @@ async def reload(ctx, extension):
         await msg.edit(content=f"Reloaded {extension} succesfully")
     except Exception as error:
         await ctx.send(f'Error:\n```py\n{error}\n```')
+
 
 
 
@@ -125,6 +160,22 @@ async def reloadall(ctx):
                     except Exception as error:
                         await ctx.send(f'This cog couldn\'t be Reloaded :(\n```py\n{error}\n```')
         await msg.edit(content="Reloaded all extensions successfully")
+
+
+
+# @client.command(name='Master_reloadall', aliases=['mrla'])
+# @commands.is_owner()
+# async def reloadall(ctx):
+#         await client.get_channel(949590152202813453).send(f"69Master_reloadall")
+#         msg = await ctx.send(f"Reloading...")
+#         for filename in os.listdir('./cogs'):
+#                 if filename.endswith('.py'):
+#                     try:
+#                         client.reload_extension(f'cogs.{filename[:-3]}')
+#                     except Exception as error:
+#                         await ctx.send(f'This cog couldn\'t be Reloaded :(\n```py\n{error}\n```')
+#         await msg.edit(content="Reloaded all extensions successfully")
+
 
 @client.command(name='loadall', aliases=['la'])
 @commands.is_owner()

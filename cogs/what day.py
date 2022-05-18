@@ -155,7 +155,7 @@ class day(commands.Cog):
                         one_year = discord.utils.get(guild.roles, id=int(961531454460944406))
                         two_years_or_more = discord.utils.get(guild.roles, id=int(961531735500288062))  
                         for key in data:
-                            days = data[key]["last_active(days)"]
+                            days = data[key]['last_active(days)']
                             if days >= 30 and days <= 89:
                                 member = guild.get_member(int(key))
                                 await member.add_roles(one_month)
