@@ -1,7 +1,7 @@
 discord.py
-uninstall nextcord
 humanfriendly
 numpy
-grpc
+requests
 pytz
 click
+discord-py-slash-command

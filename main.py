@@ -38,7 +38,7 @@ token = os.getenv("TOKEN") #get_token()
 @slash.slash(
 name="hello", 
 description="sends test message",
-guild_ids=[932684556572700773],
+guild_ids=[932684556572700773,786013884216639509],
 options=[create_option(
         name="option",
         description="choose your word",
