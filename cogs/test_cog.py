@@ -11,10 +11,10 @@ class fun(commands.Cog):
 
 
     #slash command test
-    @cog_ext.cog_slash(name="slash_test")
-    async def _test(self, ctx: SlashContext):
-        embed = Embed(title="Embed Test")
-        await ctx.send(embed=embed)
+    # @cog_ext.cog_slash(name="slash_test")
+    # async def _test(self, ctx: SlashContext):
+    #     embed = Embed(title="Embed Test")
+    #     await ctx.send(embed=embed)
 
 
 def setup(bot):

@@ -13,7 +13,7 @@ from discord_slash import SlashCommand, SlashContext
 from discord_slash.utils.manage_commands import create_choice, create_option
 from dotenv import load_dotenv
 client = commands.Bot(command_prefix="?",owner_ids=[386826952599928842, 427822985102098434], intents=discord.Intents.all())
-slash = SlashCommand(client, sync_commands=True)
+slash = SlashCommand(client, sync_commands=True, sync_on_cog_reload=True)
 
 load_dotenv()
 

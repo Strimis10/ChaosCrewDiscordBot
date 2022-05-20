@@ -2,6 +2,9 @@ from discord.ext import commands
 import discord
 import discord.utils
 import random
+from discord_slash import cog_ext, SlashContext 
+from discord_slash import SlashCommand, SlashContext
+from discord_slash.utils.manage_commands import create_choice, create_option
 
 
 lyrics = '''Heard of a dude, that puts your mood up on a pedestal
@@ -51,8 +54,12 @@ class fun(commands.Cog):
                     await message.reply("https://www.twitch.tv/tizzytheprophet")
 
     #just a random "fun" command
-    @commands.command(name='Am_I_alive',aliases=["aia", "am_i_alive"],brief="tells you if you're dead")
-    async def say(self, ctx, *, text: commands.clean_content = ''):
+    #@commands.command(name='Am_I_alive',aliases=["aia", "am_i_alive"],brief="tells you if you're dead")
+    @cog_ext.cog_slash(
+        name="Am_I_alive", 
+        description="tells you if you're dead",
+        guild_ids=[932684556572700773,786013884216639509])
+    async def Am_I_alive(self, ctx):
         bpm = random.randint(0, 270)
         if bpm > 200:
             await ctx.send(f"Your heartrate is {bpm} BPM, you've strained your heart and it's now slowing down... in a minute it will have stopped.")

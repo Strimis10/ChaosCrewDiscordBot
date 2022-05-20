@@ -1,7 +1,6 @@
-from discord import Client, Intents, Embed
+from discord import Client, Intents, Embed, app_commands
 from discord.ext import commands
-from discord_slash import SlashCommand, SlashContext
-from discord_slash.utils.manage_commands import create_choice, create_option
+
 from dotenv import load_dotenv
 import os
 

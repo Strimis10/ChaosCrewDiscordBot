@@ -3,6 +3,9 @@ import discord
 import discord.utils
 import json
 from typing import Optional
+from discord_slash import cog_ext, SlashContext 
+from discord_slash import SlashCommand, SlashContext
+from discord_slash.utils.manage_commands import create_choice, create_option
 
 class general(commands.Cog):
     def __init__(self, bot):
@@ -29,7 +32,11 @@ class general(commands.Cog):
                         f.write(json.dumps(feeds, indent=2))
     
         #command to see what job EEVEE thought a user had
-    @commands.command(name='what_job', aliases=["wj"],breif="sends what EEVEE thinks peoples jobs are ")
+    #@commands.command(name='what_job', aliases=["wj"],breif="sends what EEVEE thinks peoples jobs are ")
+    @cog_ext.cog_slash(
+        name="what_job", 
+        description="What job does eevee think <user> has?",
+        guild_ids=[932684556572700773,786013884216639509])
     async def say(self, ctx, target: Optional[discord.Member]):
         target = target or ctx.author
         with open("jobs.json") as feedsjson: 
