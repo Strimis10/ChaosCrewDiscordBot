@@ -16,11 +16,12 @@ class fun(commands.Cog):
     
     #Command to add a clip to be posted to the reddit
     @cog_ext.cog_slash(name="add_clip",
-    description="sends test message",
-    guild_ids=[932684556572700773,786013884216639509])
-    
-
-    async def add_clip(self, ctx: SlashContext, option: str):
+        description="add the link to the clip as the text",
+        guild_ids=[932684556572700773,786013884216639509])
+        
+    async def add_clip(self, ctx: SlashContext, text: str):
+        #ctx.send(ctx.options.text)
+        print(text)
         import what_server
         if what_server.Kennevo:
             guild = discord.utils.get(self.bot.guilds, id=int(786013884216639509))
@@ -44,17 +45,17 @@ class fun(commands.Cog):
 
 
         if permission:
-            print(option)
-            #link = input("Enter the link: ")
             
-            #with open("clips.json") as f:
-           #     feeds = json.load(f)
+            # link = input("Enter the link: ")
             
-            #feeds.append(link)
+            # with open("clips.json") as f:
+            #    feeds = json.load(f)
+            
+            # feeds.append(link)
 
-            #with open("clips.json", mode='w') as f:
+            # with open("clips.json", mode='w') as f:
             #    f.write(json.dumps(feeds, indent=2)) 
-            print("Added clip")
+            await ctx.send("Added clip")
 
         else:
             await ctx.send("Permission denied")
