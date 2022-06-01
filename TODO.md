@@ -2,24 +2,6 @@
 
 
 
-make one json file for all the user information:
-    {
-    "54232345234623632":{
-        "jobs":0,
-        "birthday":"1970-01-01",
-        "incidents":0
-    },
-    "234535425342543253424":{
-        "jobs":0,
-        "birthday":"1970-01-01",
-        "incidents":0
-    }
-    }
-
-
-!!!
-
-!!!
 
 
 make slash commands

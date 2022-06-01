@@ -8,6 +8,7 @@ from typing import Optional
 import discord
 import timeout_user
 
+
 the_immune = []
 word_immune = []
 a = []
@@ -42,6 +43,7 @@ class usefull(commands.Cog):
                 permission = False
         if ctx.author.id == 427822985102098434:
             permission = True
+       
         
 
         if permission == True: 
