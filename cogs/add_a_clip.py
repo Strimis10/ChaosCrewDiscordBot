@@ -1,3 +1,4 @@
+
 from discord import Embed
 from discord.ext.commands import Bot, Cog
 from discord_slash import cog_ext, SlashContext
@@ -5,8 +6,6 @@ from discord.ext import commands
 import discord
 import discord.utils
 import json
-
-from discord_slash.utils.manage_commands import create_choice, create_option
 from discord_slash import SlashCommand, SlashContext
 
 class fun(commands.Cog):
@@ -20,8 +19,7 @@ class fun(commands.Cog):
         guild_ids=[932684556572700773,786013884216639509])
         
     async def add_clip(self, ctx: SlashContext, text: str):
-        #ctx.send(ctx.options.text)
-        print(text)
+        
         import what_server
         if what_server.Kennevo:
             guild = discord.utils.get(self.bot.guilds, id=int(786013884216639509))
@@ -32,7 +30,7 @@ class fun(commands.Cog):
             roles = [932684901801660526]
             self.channel = self.bot.get_channel(934475802593091636) 
         
-        #checks if the user has permission th use the command
+        #checks if the user has permission the use the command
         for role in ctx.author.roles:
             if role.id in roles:
                 permission = True
@@ -41,21 +39,30 @@ class fun(commands.Cog):
                 permission = False
         if ctx.author.id == 427822985102098434:
             permission = True
+        elif ctx.author.id == 457493058687205377:
+            permission = True 
         
 
 
         if permission:
-            
-            # link = input("Enter the link: ")
-            
-            # with open("clips.json") as f:
-            #    feeds = json.load(f)
-            
-            # feeds.append(link)
+            try:
+                link = text
+                if "clips.twitch.tv" in link:
+                         
+                    with open("clips.json") as f:
+                        feeds = json.load(f)
+                    
+                    feeds.append(link)
 
-            # with open("clips.json", mode='w') as f:
-            #    f.write(json.dumps(feeds, indent=2)) 
-            await ctx.send("Added clip")
+                    with open("clips.json", mode='w') as f:
+                        f.write(json.dumps(feeds, indent=2)) 
+                    await ctx.send("Added clip")
+                
+                else:
+                    await ctx.send(f'"{link}" is not a valid twitch clip')
+            
+            except:
+                ctx.send("error")
 
         else:
             await ctx.send("Permission denied")
