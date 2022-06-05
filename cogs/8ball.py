@@ -18,7 +18,7 @@ class EightBall(commands.Cog):
     #I think this one is self explanatory
     @cog_ext.cog_slash(name="8ball", 
         description="I think this one is self explanatory",
-        guild_ids=[932684556572700773,786013884216639509])
+        guild_ids=[932684556572700773,786013884216639509,983015288910000188])
     async def EightBall(self, ctx: SlashContext, text: str):
         was = False
         question = text.lower()

@@ -1,10 +1,9 @@
+import os
+##install all the modules from dependencies.txt (basically only used for the server)
+#os.system("pip install -r dependencies.txt")
 import discord
-#intents = discord.Intents(messages=True, guilds=True, members=True)
-# intents.reactions = True
-# intents.members = True
 #Kill me
 from discord.ext import commands
-import os
 import time
 import json
 from discord import Client, Intents, Embed

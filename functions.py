@@ -121,16 +121,17 @@ def post_todays_clip():
     token = ""
     client_id = os.getenv("client_id")
     client_secret = os.getenv("client_secret")
-    user_agent = "Strimis10"
+    user_agent = "DAVE_0000000001"
     redirect_uri = "http://localhost:8080"
     refresh_token = os.getenv("refresh_token")
+
     with open("clips.json") as f:
         feeds = json.load(f)
 
     if feeds != []:
         todays_clip = random.choice(feeds)
 
-        subr = 'lightswith'
+        subr = 'Kennevo'
         
 
         reddit = praw.Reddit(client_id=client_id,
@@ -141,7 +142,7 @@ def post_todays_clip():
 
         subreddit = reddit.subreddit(subr)
 
-        title = "Today's Clip (test)"
+        title = "Today's Clip"
 
 
 

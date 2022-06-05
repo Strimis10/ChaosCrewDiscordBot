@@ -36,7 +36,7 @@ class general(commands.Cog):
     @cog_ext.cog_slash(
         name="what_job", 
         description="What job does eevee think <user> has?",
-        guild_ids=[932684556572700773,786013884216639509])
+        guild_ids=[932684556572700773,786013884216639509,983015288910000188])
     async def say(self, ctx, target: Optional[discord.Member]):
         target = target or ctx.author
         with open("jobs.json") as feedsjson: 

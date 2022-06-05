@@ -6,3 +6,4 @@ pytz
 click
 discord-py-slash-command
 praw
+python-dotenv

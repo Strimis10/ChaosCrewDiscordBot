@@ -174,19 +174,20 @@ class day(commands.Cog):
                     #Post clips to reddit
                     with open("clips.json") as f:
                         clips = json.load(f)
-                    if len(clips) >= 10:
-                        functions.post_todays_clip()
-                    else:
-                        with open("day_of_clips.json") as f:
-                            day = json.load(f)
-                        if day == 2:
+                    if clips != []:
+                        if len(clips) >= 10:
                             functions.post_todays_clip()
-                            day = 1
                         else:
-                            day = 2
-                        with open("day_of_clips.json", mode='w') as f:
-                            f.write(json.dumps(day, indent=2))
-
+                            with open("day_of_clips.json") as f:
+                                day = json.load(f)
+                            if day == 2:
+                                functions.post_todays_clip()
+                                day = 1
+                            else:
+                                day = 2
+                                
+                            with open("day_of_clips.json", mode='w') as f:
+                                f.write(json.dumps(day, indent=2))
                         
                     
                 

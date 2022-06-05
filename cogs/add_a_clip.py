@@ -16,7 +16,7 @@ class clips(commands.Cog):
     #Command to add a clip to be posted to the reddit
     @cog_ext.cog_slash(name="add_clip",
         description="add the link to the clip as the text",
-        guild_ids=[932684556572700773,786013884216639509])
+        guild_ids=[932684556572700773,786013884216639509,983015288910000188])
     async def add_clip(self, ctx: SlashContext, text: str):
         
         import what_server

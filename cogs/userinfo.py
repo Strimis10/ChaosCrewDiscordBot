@@ -25,7 +25,7 @@ class userInfo(commands.Cog):
     #Command for everyone to get info about a users discord account
     @cog_ext.cog_slash(name="User_info", 
         description="gives a summary of the user",
-        guild_ids=[932684556572700773,786013884216639509])
+        guild_ids=[932684556572700773,786013884216639509,983015288910000188])
     async def user_info(self, ctx, target: Optional[discord.Member]):
         target = target or ctx.author
 
