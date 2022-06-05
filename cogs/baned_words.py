@@ -6,7 +6,7 @@ import json
 import os
 from typing import Optional
 import discord
-import timeout_user
+import functions
 
 
 the_immune = []
@@ -262,7 +262,7 @@ class usefull(commands.Cog):
                                     elif incidents == 4:
                                         user_id = message.author.id
                                         time_in_mins = 1440
-                                        timeout_user.timeout_user(user_id=user_id, guild_id=guild_id,until=time_in_mins)
+                                        functions.timeout_user(user_id=user_id, guild_id=guild_id,until=time_in_mins)
                                         await message.reply(f"{message.author.mention} That's a Banned word, this is your 4:th incident, you will be timed out for 24 hours")
                                         await message.reply("BAD BOII!!, you can't say that without consequences")
                                         await message.delete()
@@ -272,7 +272,7 @@ class usefull(commands.Cog):
                                         guild_id = 932684556572700773
                                         user_id = message.author.id
                                         time_in_mins = 2
-                                        timeout_user.timeout_user(user_id=user_id, guild_id=guild_id,until=time_in_mins)
+                                        functions.timeout_user(user_id=user_id, guild_id=guild_id,until=time_in_mins)
                                         await message.delete()
                                         await asyncio.sleep(30)
                                         await message.author.kick(reason="BAD BOII!!, you can't say that without consequences")
@@ -282,7 +282,7 @@ class usefull(commands.Cog):
                                         guild_id = 932684556572700773
                                         user_id = message.author.id
                                         time_in_mins = 1
-                                        timeout_user.timeout_user(user_id=user_id, guild_id=guild_id,until=time_in_mins)
+                                        functions.timeout_user(user_id=user_id, guild_id=guild_id,until=time_in_mins)
                                         await message.delete()
                                         await asyncio.sleep(15)
                                         await message.author.ban(reason="BAD BOII!!, you can't say that without consequences")

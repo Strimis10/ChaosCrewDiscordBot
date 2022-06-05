@@ -2,7 +2,7 @@ from discord.ext import commands
 import discord
 import discord.utils
 from typing import Optional
-import get_twitch_info
+import functions
 import json
 import os
 Strimis = "<@427822985102098434>"
@@ -16,7 +16,7 @@ class twitch(commands.Cog):
     @commands.command(name='link_twitch',brief='''"?lt [Twitch_username]" links your twitch account to your discord account ''',aliases=["lt"])
     async def Link_twitch(self, ctx, *, text: commands.clean_content = ''):
         try:
-            twitch_id = get_twitch_info.get_info(text)
+            twitch_id = functions.get_info(text)
             with open("user_info.json") as feedsjson: 
                 feeds = json.load(feedsjson)
             try:

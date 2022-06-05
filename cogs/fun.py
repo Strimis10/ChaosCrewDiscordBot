@@ -33,7 +33,7 @@ small_lyrics = "I choke, me harder daddy"
 file = discord.File("kennevo_rough.mp3")
 
 
-class fun(commands.Cog):
+class funsies(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
@@ -83,4 +83,4 @@ class fun(commands.Cog):
     
 
 def setup(bot):
-    bot.add_cog(fun(bot))
+    bot.add_cog(funsies(bot))

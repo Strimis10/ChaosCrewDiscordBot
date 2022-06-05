@@ -19,17 +19,6 @@ load_dotenv()
 
 token = ""
 
-# def get_token():
-#     ans = input("are you testing y/n: ")
-#     if ans == "y":
-#         return os.getenv("TOKEN")
-#     elif ans == "n":
-#         return os.getenv("testingTOKEN")
-#     else:
-#         print("Unexpected input try again")
-#         get_token()
-
-
 token = os.getenv("TOKEN") #get_token()
 
 
@@ -77,11 +66,7 @@ async def restart(ctx):
 
     
 
-@client.event
-async def on_member_join(ctx):
-    embed=discord.Embed(title=f"Welcome {ctx.name}", description=f"Thanks for joining {ctx.guild.name}, read the rules in <#799334905569345606> and enjoy your stay!!")
-    embed.set_thumbnail(url=ctx.author.avatar_url)
-    await ctx.send(embed=embed)
+
 
 @client.command(name='kill', aliases=['k'])
 @commands.is_owner()
@@ -213,6 +198,7 @@ for filename in os.listdir('./cogs'):
     #adds the new user to the user_info.json file
 @client.event
 async def on_member_join(member):
+    
     import what_server
     if what_server.Kennevo:
         guild = discord.utils.get(client.guilds, id=int(786013884216639509))
@@ -221,7 +207,11 @@ async def on_member_join(member):
     else:
         guild= discord.utils.get(client.guilds, id=int(932684556572700773))
         role = discord.utils.get(guild.roles, id=int(946936153687347230))
-        
+
+
+    
+
+
     print(f"{member} has joined the server")
 
     with open("user_info.json") as fj: 
@@ -235,6 +225,12 @@ async def on_member_join(member):
 
     #else it'll add the user to the user_info.json file and give them the "new_user" role
     except KeyError:
+        #send welcome message to the new user
+        embed=discord.Embed(title=f"Welcome {member.name}", description=f"Thanks for joining {guild.name}, read the rules in <#799334905569345606> and enjoy your stay!!")
+        embed.set_thumbnail(url=member.avatar_url)
+        await member.send(embed=embed)
+
+
         feeds[int(member.id)] = {"new":1}
 
         with open("user_info.json", mode='w') as f:

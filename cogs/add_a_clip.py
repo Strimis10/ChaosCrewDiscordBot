@@ -8,7 +8,7 @@ import discord.utils
 import json
 from discord_slash import SlashCommand, SlashContext
 
-class fun(commands.Cog):
+class clips(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
@@ -17,7 +17,6 @@ class fun(commands.Cog):
     @cog_ext.cog_slash(name="add_clip",
         description="add the link to the clip as the text",
         guild_ids=[932684556572700773,786013884216639509])
-        
     async def add_clip(self, ctx: SlashContext, text: str):
         
         import what_server
@@ -46,8 +45,19 @@ class fun(commands.Cog):
 
         if permission:
             try:
-                link = text
+                link = text.lower()
                 if "clips.twitch.tv" in link:
+                         
+                    with open("clips.json") as f:
+                        feeds = json.load(f)
+                    
+                    feeds.append(link)
+
+                    with open("clips.json", mode='w') as f:
+                        f.write(json.dumps(feeds, indent=2)) 
+                    await ctx.send("Added clip")
+                
+                elif "twitch.tv/kennevo/clip/" in link:
                          
                     with open("clips.json") as f:
                         feeds = json.load(f)
@@ -69,4 +79,4 @@ class fun(commands.Cog):
 
 
 def setup(bot):
-    bot.add_cog(fun(bot))
+    bot.add_cog(clips(bot))

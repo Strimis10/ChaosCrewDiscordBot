@@ -5,6 +5,15 @@ from typing import Optional
 from discord.ext import commands
 import discord
 import discord.utils
+from discord import Embed
+from discord.ext.commands import Bot, Cog
+from discord_slash import cog_ext, SlashContext
+from discord.ext import commands
+import discord
+import discord.utils
+import json
+from discord_slash import SlashCommand, SlashContext
+import random
 
 
 class userInfo(commands.Cog):
@@ -12,8 +21,11 @@ class userInfo(commands.Cog):
         self.bot = bot
 
 
+
     #Command for everyone to get info about a users discord account
-    @commands.command(name='User_info', aliases=["ui", "Memeber_info", "mi"], breif='gives a summary of the user')
+    @cog_ext.cog_slash(name="User_info", 
+        description="gives a summary of the user",
+        guild_ids=[932684556572700773,786013884216639509])
     async def user_info(self, ctx, target: Optional[discord.Member]):
         target = target or ctx.author
 

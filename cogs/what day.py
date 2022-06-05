@@ -6,6 +6,7 @@ import asyncio
 from datetime import date
 import datetime
 import pytz
+import functions
 client = commands.Bot(command_prefix="?",owner_ids=[386826952599928842, 427822985102098434], intents=discord.Intents.all())
 
 
@@ -151,8 +152,9 @@ class day(commands.Cog):
                         six_months = discord.utils.get(guild.roles, id=int(961530872933257246)) 
                         one_year = discord.utils.get(guild.roles, id=int(961531454460944406))
                         two_years_or_more = discord.utils.get(guild.roles, id=int(961531735500288062))  
+                        
+                        days = data[key]["last_active(days)"]
                         for key in data:
-                            days = data[key]["last_active(days)"]
                             if days >= 30 and days <= 89:
                                 member = guild.get_member(int(key))
                                 await member.add_roles(one_month)
@@ -168,6 +170,25 @@ class day(commands.Cog):
                             elif days >= 730:
                                 member = guild.get_member(int(key))
                                 await member.add_roles(two_years_or_more)
+
+                    #Post clips to reddit
+                    with open("clips.json") as f:
+                        clips = json.load(f)
+                    if len(clips) >= 10:
+                        functions.post_todays_clip()
+                    else:
+                        with open("day_of_clips.json") as f:
+                            day = json.load(f)
+                        if day == 2:
+                            functions.post_todays_clip()
+                            day = 1
+                        else:
+                            day = 2
+                        with open("day_of_clips.json", mode='w') as f:
+                            f.write(json.dumps(day, indent=2))
+
+                        
+                    
                 
           
                     
