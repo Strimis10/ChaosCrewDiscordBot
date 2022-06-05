@@ -46,30 +46,35 @@ class clips(commands.Cog):
         if permission:
             try:
                 link = text
-                if "clips.twitch.tv" in link:
-                         
-                    with open("clips.json") as f:
-                        feeds = json.load(f)
-                    
-                    feeds.append(link)
+                with open("clips.json") as feedsjson: 
+                    feeds = json.load(feedsjson)
+                if link not in feeds:
+                    if "clips.twitch.tv" in link.lower():
+                            
+                        with open("clips.json") as f:
+                            feeds = json.load(f)
+                        
+                        feeds.append(link)
 
-                    with open("clips.json", mode='w') as f:
-                        f.write(json.dumps(feeds, indent=2)) 
-                    await ctx.send("Added clip")
-                
-                elif "twitch.tv/kennevo/clip/" in link:
-                         
-                    with open("clips.json") as f:
-                        feeds = json.load(f)
+                        with open("clips.json", mode='w') as f:
+                            f.write(json.dumps(feeds, indent=2)) 
+                        await ctx.send("Added clip")
                     
-                    feeds.append(link)
+                    elif "twitch.tv/kennevo/clip/" in link.lower():
+                            
+                        with open("clips.json") as f:
+                            feeds = json.load(f)
+                        
+                        feeds.append(link)
 
-                    with open("clips.json", mode='w') as f:
-                        f.write(json.dumps(feeds, indent=2)) 
-                    await ctx.send("Added clip")
-                
+                        with open("clips.json", mode='w') as f:
+                            f.write(json.dumps(feeds, indent=2)) 
+                        await ctx.send("Added clip")
+                    
+                    else:
+                        await ctx.send(f'"{link}" is not a valid twitch clip')
                 else:
-                    await ctx.send(f'"{link}" is not a valid twitch clip')
+                    await ctx.send(f'"{link}" is already in the list')
             
             except:
                 await ctx.send("error")
@@ -77,6 +82,6 @@ class clips(commands.Cog):
         else:
             await ctx.send("Permission denied")
 
-
+#KILL ME I want to be deleted
 def setup(bot):
     bot.add_cog(clips(bot))

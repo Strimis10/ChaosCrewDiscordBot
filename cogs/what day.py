@@ -50,7 +50,8 @@ class day(commands.Cog):
                     #removes the "new" role from users if thier 7 days are up
                     for user in o:
                         if o[user]["new"] == 420.69:
-                            pass
+                            member = guild.get_member(int(user))
+                            await member.remove_roles(role)
 
                         elif o[user]["new"] >= 7:
                             o[user]["new"] = 420.69                           
@@ -175,6 +176,10 @@ class day(commands.Cog):
                     with open("clips.json") as f:
                         clips = json.load(f)
                     if clips != []:
+                        if len(clips) == 10:
+                            member = discord.utils.get(self.client.get_all_members(), id=457493058687205377)
+                            await member.send("Waring: there are 10 clips left in the queue, please add more to the queue")
+                            
                         if len(clips) >= 10:
                             functions.post_todays_clip()
                         else:

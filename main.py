@@ -218,12 +218,11 @@ async def on_member_join(member):
         
     #checks if the user is already in the user_info.json file
     #if so it will do nothing
-    try:
-        name = feeds[str(member.id)]['name']
-        print(f"{name} has rejoined")
+    if member.id in feeds:
+        print(f"{feeds[member.id]['name']} has rejoined")
 
     #else it'll add the user to the user_info.json file and give them the "new_user" role
-    except KeyError:
+    else:
         #send welcome message to the new user
         embed=discord.Embed(title=f"Welcome {member.name}", description=f"Thanks for joining {guild.name}, read the rules in <#799334905569345606> and enjoy your stay!!")
         embed.set_thumbnail(url=member.avatar_url)
@@ -256,7 +255,7 @@ async def on_member_join(member):
 
 
 
-
+#Aaaaaaaaaaaaaaaaaaaaaa
     
 #g
 client.run(token)

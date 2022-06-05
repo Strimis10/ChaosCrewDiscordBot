@@ -11,7 +11,7 @@ class general(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
     #adds all users to the user_info.json file
-    @commands.Cog.listener()
+    @commands.command(name = 'update_user_info')
     async def on_ready(self):
         for member in self.bot.get_all_members():
             if member.bot == False:
