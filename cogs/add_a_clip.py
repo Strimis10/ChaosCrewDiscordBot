@@ -45,7 +45,7 @@ class clips(commands.Cog):
 
         if permission:
             try:
-                link = text.lower()
+                link = text
                 if "clips.twitch.tv" in link:
                          
                     with open("clips.json") as f:
@@ -72,7 +72,7 @@ class clips(commands.Cog):
                     await ctx.send(f'"{link}" is not a valid twitch clip')
             
             except:
-                ctx.send("error")
+                await ctx.send("error")
 
         else:
             await ctx.send("Permission denied")
