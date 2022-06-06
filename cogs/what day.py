@@ -40,6 +40,7 @@ class day(commands.Cog):
                 
                 
                 
+                
                 with open("date.json") as fj: 
                     feeds = json.load(fj)
                 with open("user_info.json") as oj: 
@@ -47,6 +48,7 @@ class day(commands.Cog):
                 
                 #if it's a new day this will run:
                 if feeds != y:
+                    print(y)
                     #removes the "new" role from users if thier 7 days are up
                     for user in o:
                         if o[user]["new"] == 420.69:

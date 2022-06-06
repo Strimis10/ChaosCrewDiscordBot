@@ -11,8 +11,9 @@ from discord.ext import commands
 from discord_slash import SlashCommand, SlashContext
 from discord_slash.utils.manage_commands import create_choice, create_option
 from dotenv import load_dotenv
-client = commands.Bot(command_prefix="?",owner_ids=[386826952599928842, 427822985102098434], intents=discord.Intents.all())
+client = commands.Bot(command_prefix="?",owner_ids=[427822985102098434], intents=discord.Intents.all())
 slash = SlashCommand(client, sync_commands=True, sync_on_cog_reload=True)
+
 
 load_dotenv()
 
@@ -26,7 +27,7 @@ token = os.getenv("TOKEN") #get_token()
 @slash.slash(
 name="hello", 
 description="sends test message",
-guild_ids=[932684556572700773,786013884216639509],
+guild_ids=[932684556572700773,786013884216639509, 983015288910000188, 949590152202813450],
 options=[create_option(
         name="option",
         description="choose your word",
@@ -194,7 +195,8 @@ for filename in os.listdir('./cogs'):
         except Exception as e:
             print(f'\n!!!!!!!!!!!!!!!\nuwu you did a fuckie wuckie\n{e}\n!!!!!!!!!!!!!!!\n')
 
-    #adds the new user to the user_info.json file
+
+#adds the new user to the user_info.json file 
 @client.event
 async def on_member_join(member):
     

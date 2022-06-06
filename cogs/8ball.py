@@ -8,7 +8,7 @@ import json
 from discord_slash import SlashCommand, SlashContext
 import random
 
-best_games = ["Portal", "Portal 2", "Aperture Desk job", "Portal Stories: Mel", "Minecraft", "Grand theft auto V"]
+best_games = ["Portal", "Portal 2", "Aperture Desk job", "Portal Stories: Mel", "Minecraft", "Grand theft auto V", "Super Mario bros 3"]
 
 best_games_prompts_i_guess = ["what is the best game", "what is the greatest game", "which are the best games", "best game", "greatest game", "best games", "greatest games"]
 
