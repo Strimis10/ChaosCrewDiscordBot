@@ -144,11 +144,18 @@ def post_todays_clip():
 
         title = "Today's Clip"
 
+        flairs = list(subreddit.flair.link_templates.user_selectable())
 
+        flair_id = None
+        for flair in flairs:
+            if flair['flair_text'] == "twitch clips":
+                flair_id = flair['flair_template_id']
+                break
 
-        subreddit.submit(title,url=todays_clip)
+        subreddit.submit(title,url=todays_clip,flair_id=flair_id)
 
         feeds.remove(todays_clip)
 
         with open("clips.json", mode='w') as f:
             f.write(json.dumps(feeds, indent=2)) 
+
