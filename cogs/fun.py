@@ -4,7 +4,6 @@ import discord.utils
 import random
 from discord_slash import cog_ext, SlashContext 
 from discord_slash import SlashCommand, SlashContext
-from discord_slash.utils.manage_commands import create_choice, create_option
 
 
 lyrics = '''Heard of a dude, that puts your mood up on a pedestal
