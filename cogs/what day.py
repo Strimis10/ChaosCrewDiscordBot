@@ -48,7 +48,10 @@ class day(commands.Cog):
                 
                 #if it's a new day this will run:
                 if feeds != y:
+                    #await asyncio.sleep(10)
+                    print(feeds)
                     print(y)
+                    
                     #removes the "new" role from users if thier 7 days are up
                     for user in o:
                         if o[user]["new"] == 420.69:
@@ -177,7 +180,7 @@ class day(commands.Cog):
                     #Post clips to reddit
                     with open("clips.json") as f:
                         clips = json.load(f)
-                    if clips != []:
+                    if clips != {}:
                         if len(clips) == 10:
                             member = discord.utils.get(self.client.get_all_members(), id=457493058687205377)
                             await member.send("Waring: there are 10 clips left in the queue, please add more to the queue")

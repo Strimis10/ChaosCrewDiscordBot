@@ -127,9 +127,10 @@ def post_todays_clip():
 
     with open("clips.json") as f:
         feeds = json.load(f)
-
-    if feeds != []:
-        todays_clip = random.choice(feeds)
+        
+    if feeds != {}:
+        title = random.choice(list(feeds))
+        todays_clip = feeds[title]
 
         subr = 'Kennevo'
         
@@ -142,7 +143,7 @@ def post_todays_clip():
 
         subreddit = reddit.subreddit(subr)
 
-        title = "Today's Clip"
+        
 
         flairs = list(subreddit.flair.link_templates.user_selectable())
 
@@ -154,7 +155,7 @@ def post_todays_clip():
 
         subreddit.submit(title,url=todays_clip,flair_id=flair_id)
 
-        feeds.remove(todays_clip)
+        del feeds[title]
 
         with open("clips.json", mode='w') as f:
             f.write(json.dumps(feeds, indent=2)) 
