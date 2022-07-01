@@ -56,6 +56,8 @@ class day(commands.Cog):
                     for user in o:
                         if o[user]["new"] == 420.69:
                             member = guild.get_member(int(user))
+                            print(o[user])
+
                             await member.remove_roles(role)
 
                         elif o[user]["new"] >= 7:

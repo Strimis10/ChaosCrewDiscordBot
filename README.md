@@ -27,7 +27,8 @@ Building and Contributing to D.A.V.E requires the following tools:
 - Git or Github Desktop
 - Python 3.7+
 - Knowledge of Python
-- .env file from Strimis or Harry
+- .env file from Strimis
+- ffmpeg
 
 ## Resources
 

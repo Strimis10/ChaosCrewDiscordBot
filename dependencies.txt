@@ -7,3 +7,5 @@ click
 discord-py-slash-command
 praw
 python-dotenv
+youtube_dl
+pafy

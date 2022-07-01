@@ -4,7 +4,7 @@
     "name": "ojsans10",
     "id": 914149753460236289,
     "word_immunity": false,
-    "last_active(days)": 30,
+    "last_active(days)": 33,
     "incidents": 0
   },
   "427822985102098434": {
@@ -12,7 +12,7 @@
     "name": "Strimis10",
     "id": 427822985102098434,
     "word_immunity": false,
-    "last_active(days)": 3,
+    "last_active(days)": 1,
     "birthday": "2000-05-13"
   },
   "163381173375074304": {
@@ -20,48 +20,41 @@
     "name": "piratekender",
     "id": 163381173375074304,
     "word_immunity": false,
-    "last_active(days)": 50
+    "last_active(days)": 53
   },
   "368374868703444992": {
     "new": 420.69,
     "name": "jiacheng",
     "id": 368374868703444992,
     "word_immunity": false,
-    "last_active(days)": 50
+    "last_active(days)": 53
   },
   "386826952599928842": {
     "new": 420.69,
     "name": "DrHooBs",
     "id": 386826952599928842,
     "word_immunity": false,
-    "last_active(days)": 49
-  },
-  "539826606076723235": {
-    "new": 420.69,
-    "name": "TurkisPepar",
-    "id": 539826606076723235,
-    "word_immunity": false,
-    "last_active(days)": 49
+    "last_active(days)": 51
   },
   "932685987916709990": {
     "new": 420.69,
     "name": "Definitely not hoobs",
     "id": 932685987916709990,
     "word_immunity": false,
-    "last_active(days)": 48
+    "last_active(days)": 50
   },
   "938157277981065236": {
     "new": 420.69,
     "name": "hydratee",
     "id": 938157277981065236,
     "word_immunity": false,
-    "last_active(days)": 48
+    "last_active(days)": 50
   },
   "457493058687205377": {
     "new": 420.69,
     "name": "BoxyFoxyLoxy",
     "id": 457493058687205377,
     "word_immunity": false,
-    "last_active(days)": 7
+    "last_active(days)": 9
   }
 }

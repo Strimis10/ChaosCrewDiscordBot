@@ -1,9 +1,6 @@
 from discord.ext import commands
 import discord
 import discord.utils
-import random as r
-
-from numpy import random
 
 class Ticket(commands.Cog):
     def __init__(self, bot):
@@ -25,4 +22,4 @@ class Ticket(commands.Cog):
     #@commands.command(name='CloseTicket', aliases=['Closeticket','closeTicket',)
 
 def setup(bot):
-    bot.add_cog(Ticket(bot))
+    bot.add_cog(Ticket(bot)) 
