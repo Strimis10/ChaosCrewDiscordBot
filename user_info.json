@@ -4,7 +4,7 @@
     "name": "ojsans10",
     "id": 914149753460236289,
     "word_immunity": false,
-    "last_active(days)": 33,
+    "last_active(days)": 34,
     "incidents": 0
   },
   "427822985102098434": {
@@ -12,7 +12,7 @@
     "name": "Strimis10",
     "id": 427822985102098434,
     "word_immunity": false,
-    "last_active(days)": 1,
+    "last_active(days)": 0,
     "birthday": "2000-05-13"
   },
   "163381173375074304": {
@@ -20,14 +20,14 @@
     "name": "piratekender",
     "id": 163381173375074304,
     "word_immunity": false,
-    "last_active(days)": 53
+    "last_active(days)": 54
   },
   "368374868703444992": {
     "new": 420.69,
     "name": "jiacheng",
     "id": 368374868703444992,
     "word_immunity": false,
-    "last_active(days)": 53
+    "last_active(days)": 0
   },
   "386826952599928842": {
     "new": 420.69,

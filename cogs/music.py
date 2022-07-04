@@ -94,7 +94,7 @@ class music(commands.Cog):
 
             
         elif not in_urlls:
-            #await message.edit(content="searching for song, please wait..")
+
             
             result = await self.search_song(amount=1, song=search, get_url=True)
             #result = str(result)

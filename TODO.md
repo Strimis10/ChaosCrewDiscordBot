@@ -8,9 +8,6 @@ make slash commands
 
 master rla
 
-
-
-
 a clean repository is always nice
 
 update readme to include what DAVE can do
