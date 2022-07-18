@@ -2,10 +2,15 @@ from discord.ext import commands
 import discord
 import discord.utils
 from typing import Optional
+from discord import Embed
+from discord.ext.commands import Bot, Cog
+from discord_slash import cog_ext, SlashContext
 import functions
 import json
 import os
 Strimis = "<@427822985102098434>"
+
+
 
 class twitch(commands.Cog):
     def __init__(self, bot):
@@ -13,10 +18,10 @@ class twitch(commands.Cog):
 
 
     #Command for everyone to link thier twitch account to thier discord account
-    @commands.command(name='link_twitch',brief='''"?lt [Twitch_username]" links your twitch account to your discord account ''',aliases=["lt"])
-    async def Link_twitch(self, ctx, *, text: commands.clean_content = ''):
+    @cog_ext.cog_slash(name="link_twitch", description="links your twitch account to your discord account",guild_ids=[932684556572700773,786013884216639509,983015288910000188])
+    async def Link_twitch(self, ctx: SlashContext, name:str):
         try:
-            twitch_id = functions.get_info(text)
+            twitch_id = functions.get_info(name)
             with open("user_info.json") as feedsjson: 
                 feeds = json.load(feedsjson)
             try:

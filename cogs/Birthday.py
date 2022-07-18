@@ -6,6 +6,12 @@ import discord.utils
 import json
 import os
 from typing import Optional
+from discord import Embed
+from discord.ext.commands import Bot, Cog
+from discord_slash import cog_ext, SlashContext
+from discord.ext import commands
+import discord
+import discord.utils
 
 
 a = {}
@@ -18,21 +24,22 @@ class Birthday(commands.Cog):
 
 
     #command for everyone to set their birthday
-    @commands.command(name='setBirthday', aliases=["setBday", "setbirthday"],brief="Stores your birthday in DAVE's database")
-    async def set_Birthday(self, ctx, *, text: commands.clean_content = ''):
+    @cog_ext.cog_slash(name="setBirthday", description="['yyyy-mm-dd' if you don't want to share the year type '0000' as the year]",guild_ids=[932684556572700773,786013884216639509,983015288910000188])
+    async def setBirthday(self, ctx: SlashContext, date:str):
+    
             
-            if text == '':
+            if date == '':
                 await ctx.send("send your birthday like this: 'yyyy-mm-dd' if you don't want to share the year type '0000' as the year. Send this with the 'setBrithday' command (?setBirthday yyyy-mm-dd)")
-            elif text[4] != "-":
+            elif date[4] != "-":
                 await ctx.send("send your birthday like this: 'yyyy-mm-dd' if you don't want to share the year type '0000' as the year. Send this with the 'setBrithday' command (?setBirthday yyyy-mm-dd)")
-            elif text[7] != "-":
+            elif date[7] != "-":
                 await ctx.send("send your birthday like this: 'yyyy-mm-dd' if you don't want to share the year type '0000' as the year. Send this with the 'setBrithday' command (?setBirthday yyyy-mm-dd)")
 
             else:
 
                 with open("user_info.json") as feedsjson: 
                     feeds = json.load(feedsjson)
-                feeds[str(ctx.author.id)]['birthday'] = text.lower()
+                feeds[str(ctx.author.id)]['birthday'] = date.lower()
                 for i in range(len(feeds)):
                     
                     with open("user_info.json", mode='w') as f:

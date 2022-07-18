@@ -10,7 +10,7 @@ from discord.ext import commands
 from discord_slash import SlashCommand, SlashContext
 from discord_slash.utils.manage_commands import create_choice, create_option
 from dotenv import load_dotenv
-client = commands.Bot(command_prefix="?",owner_ids=[427822985102098434], intents=discord.Intents.all())
+client = commands.Bot(command_prefix="?",owner_ids=[427822985102098434, 997619507029868584], intents=discord.Intents.all())
 slash = SlashCommand(client, sync_commands=True, sync_on_cog_reload=True)
 
 
@@ -53,6 +53,15 @@ async def hello(ctx: SlashContext, option: str):
 @client.event
 async def on_ready():
     print("Ready")
+
+# @client.command(name="owner")
+# async def restart(ctx):
+#     owners = []
+#     for id in client.owner_ids:
+#         owners.append(discord.utils.get(client.get_all_members(), id=id))
+#     await ctx.send(owners)
+    
+
 
 
 
@@ -240,8 +249,9 @@ async def on_member_join(member):
             feeds = json.load(fj)
         feeds[str(member.id)]["name"] = member.name 
         feeds[str(member.id)]["id"] = member.id
-        feeds[str(member.id)]["word_immunity"] = False
-
+        feeds[str(member.id)]["last_active(days)"] = 0
+        feeds[str(member.id)]["Timezone"] = ""
+    
         with open("user_info.json", mode='w') as f:
             f.write(json.dumps(feeds, indent=2))
         

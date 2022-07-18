@@ -6,13 +6,14 @@ from typing import Optional
 from discord_slash import cog_ext, SlashContext 
 from discord_slash import SlashCommand, SlashContext
 from discord_slash.utils.manage_commands import create_choice, create_option
+from matplotlib.pyplot import text
 
 class general(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
     #adds all users to the user_info.json file
     @commands.command(name = 'update_user_info')
-    async def on_ready(self):
+    async def on_ready(self, ctx):
         for member in self.bot.get_all_members():
             if member.bot == False:
                 with open("user_info.json") as oj: 
@@ -27,12 +28,12 @@ class general(commands.Cog):
                         feeds = json.load(oj)
                     feeds[str(member.id)]["name"] = member.name
                     feeds[str(member.id)]["id"] = member.id
-                    feeds[str(member.id)]["word_immunity"] = False
+                    feeds[str(member.id)]["last_active(days)"] = 0
+                    feeds[str(member.id)]["Timezone"] = ""
                     with open("user_info.json", mode='w') as f:
                         f.write(json.dumps(feeds, indent=2))
-    
-        #command to see what job EEVEE thought a user had
-    #@commands.command(name='what_job', aliases=["wj"],breif="sends what EEVEE thinks peoples jobs are ")
+
+  
     @cog_ext.cog_slash(
         name="what_job", 
         description="What job does eevee think <user> has?",

@@ -53,20 +53,18 @@ class day(commands.Cog):
                     print(y)
                     
                     #removes the "new" role from users if thier 7 days are up
+                    print("starting new member check")
                     for user in o:
-                        if o[user]["new"] == 420.69:
-                            member = guild.get_member(int(user))
-                            print(o[user])
 
-                            await member.remove_roles(role)
-
-                        elif o[user]["new"] >= 7:
+                        if o[user]["new"] == 7:
                             o[user]["new"] = 420.69                           
                             member = guild.get_member(int(user))
                             await member.remove_roles(role)
+                            print(o[user])
 
                         else:
                             o[user]["new"] = o[user]["new"] + 1
+                    print("done with new member check")
 
                     with open("user_info.json", mode='w') as f:
                         f.write(json.dumps(o, indent=2))
@@ -92,6 +90,7 @@ class day(commands.Cog):
                     
                     with open("user_info.json") as f:       
                         data = json.load(f) 
+                    print("starting birthday check")
                     for user in data:
                     
                         day = []
@@ -132,7 +131,7 @@ class day(commands.Cog):
                             print("Happy birthday!!")
                         except:
                             pass
-
+                    print("done with birthday check")            
 
 
 
@@ -142,7 +141,8 @@ class day(commands.Cog):
                         data = json.load(feedsjson)
                     
                         #last_active, Adds +1 to the users Inactive days
-
+                    
+                    print("starting last active check")
                     for key in data:  
                         
                         try:
@@ -163,23 +163,26 @@ class day(commands.Cog):
                         
                         days = data[key]["last_active(days)"]
                         for key in data:
-                            if days >= 30 and days <= 89:
-                                member = guild.get_member(int(key))
-                                await member.add_roles(one_month)
-                            elif days >= 90 and days <= 119:
-                                member = guild.get_member(int(key))
-                                await member.add_roles(three_months)
-                            elif days >= 182 and days <= 364:
-                                member = guild.get_member(int(key))
-                                await member.add_roles(six_months)
-                            elif days >= 365 and days <= 729:
-                                member = guild.get_member(int(key))
-                                await member.add_roles(one_year)
-                            elif days >= 730:
-                                member = guild.get_member(int(key))
-                                await member.add_roles(two_years_or_more)
+                            if not days < 30:
+                                if days >= 30 and days <= 89:
+                                    member = guild.get_member(int(key))
+                                    await member.add_roles(one_month)
+                                elif days >= 90 and days <= 119:
+                                    member = guild.get_member(int(key))
+                                    await member.add_roles(three_months)
+                                elif days >= 182 and days <= 364:
+                                    member = guild.get_member(int(key))
+                                    await member.add_roles(six_months)
+                                elif days >= 365 and days <= 729:
+                                    member = guild.get_member(int(key))
+                                    await member.add_roles(one_year)
+                                elif days >= 730:
+                                    member = guild.get_member(int(key))
+                                    await member.add_roles(two_years_or_more)
+                    print("done with last active check")
 
                     #Post clips to reddit
+                    
                     with open("clips.json") as f:
                         clips = json.load(f)
                     if clips != {}:
