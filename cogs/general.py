@@ -51,6 +51,15 @@ class general(commands.Cog):
             await ctx.send(f"EEVEE has not guessed {name}'s job yet")
 
 
+    @commands.command(name='say',description='bot says [text]',brief='bot says [text]')
+    async def say(self, ctx, *, text: commands.clean_content = ''):
+        #                         ^^ This is for pings / mentions being cleaned so you can't do `a!say @everyone`.
+        if text == '':
+            await ctx.send("You need to say something")
+        else:
+            await ctx.send(f"{ctx.author.mention} says: {text}")
+            await ctx.message.delete()
+
 def setup(bot):
     bot.add_cog(general(bot))
     

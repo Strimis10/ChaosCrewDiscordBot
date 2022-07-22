@@ -36,16 +36,21 @@ class Birthday(commands.Cog):
                 await ctx.send("send your birthday like this: 'yyyy-mm-dd' if you don't want to share the year type '0000' as the year. Send this with the 'setBrithday' command (?setBirthday yyyy-mm-dd)")
 
             else:
+                try:
+                    int(date.replace("-", ""))
+                except:
+                    await ctx.send(f"{date} is not a valid date")
+                else:
 
-                with open("user_info.json") as feedsjson: 
-                    feeds = json.load(feedsjson)
-                feeds[str(ctx.author.id)]['birthday'] = date.lower()
-                for i in range(len(feeds)):
+                    with open("user_info.json") as feedsjson: 
+                        feeds = json.load(feedsjson)
+                    feeds[str(ctx.author.id)]['birthday'] = date.lower()
                     
+                        
                     with open("user_info.json", mode='w') as f:
                         f.write(json.dumps(feeds, indent=2)) 
-                Birthday = feeds[str(ctx.author.id)]["birthday"] 
-                await ctx.send(f"{ctx.author.name}'s birthday set to {Birthday}")
+                    Birthday = feeds[str(ctx.author.id)]["birthday"] 
+                    await ctx.send(f"{ctx.author.name}'s birthday set to {Birthday}")
 
 
 

@@ -30,8 +30,11 @@ class meth(commands.Cog):
         #basically the same as the other one but it's manual
     @commands.command(name='Kenny_live',aliases=['KL'])
     async def Kenny_live(self, ctx):
-        await self.bot.get_channel(949590152202813453).send(f"69Kennevo_is_live")
-       
+        if ctx.author.id != 427822985102098434:
+            await ctx.send("permission denied")
+        else:
+            await self.bot.get_channel(949590152202813453).send(f"69Kennevo_is_live")
+
     
 
 

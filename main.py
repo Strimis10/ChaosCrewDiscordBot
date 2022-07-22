@@ -77,10 +77,12 @@ async def restart(ctx):
 
 
 @client.command(name='kill', aliases=['k'])
-@commands.is_owner()
 async def unloadall(ctx):
-    await ctx.send("Breaking")
-    exit()
+    if ctx.author.id != 427822985102098434:
+            await ctx.send("permission denied")
+    else:
+        await ctx.send("Breaking")
+        exit()
 
 
 

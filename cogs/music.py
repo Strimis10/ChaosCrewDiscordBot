@@ -66,7 +66,7 @@ class music(commands.Cog):
     async def play_song(self, ctx, song):
         url = pafy.new(song).getbestaudio().url
         ctx.voice_client.play(discord.PCMVolumeTransformer(discord.FFmpegPCMAudio(url)), after=lambda error: self.bot.loop.create_task(self.check_queue(ctx))) 
-        ctx.voice_client.source.volume = 0.5
+        ctx.voice_client.source.volume = 0.3
     
     @cog_ext.cog_slash(name="Play", description="",guild_ids=[932684556572700773,786013884216639509,983015288910000188])
     async def Play(self, ctx: SlashContext, search:str):
@@ -206,7 +206,7 @@ class music(commands.Cog):
         poll = discord.Embed(title=f"Vote to Skip Song by - {ctx.author.name}#{ctx.author.discriminator}", description="**80% of the voice channel must vote to skip for it to pass.**", colour=discord.Colour.blue())
         poll.add_field(name="Skip", value=":white_check_mark:")
         poll.add_field(name="Stay", value=":no_entry_sign:")
-        poll.set_footer(text="Voting ends in 10 seconds.")
+        poll.set_footer(text="Voting ends in 5 seconds.")
 
         poll_msg = await ctx.send(embed=poll) # only returns temporary message, we need to get the cached message to get the reactions
         poll_id = poll_msg.id
@@ -214,7 +214,7 @@ class music(commands.Cog):
         await poll_msg.add_reaction(u"\u2705") # yes
         await poll_msg.add_reaction(u"\U0001F6AB") # no
         
-        await asyncio.sleep(10) # 15 seconds to vote
+        await asyncio.sleep(5) # 5 seconds to vote
 
         poll_msg = await ctx.channel.fetch_message(poll_id)
         

@@ -16,7 +16,7 @@ update dependencies
 
 (role and userids), make them change depending on what server.
 
-fix word imunity
+check out https://stackoverflow.com/questions/2400643/is-there-a-memory-efficient-and-fast-way-to-load-big-json-files
 
 MOST IMPORTANT:
 
