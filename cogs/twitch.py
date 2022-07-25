@@ -19,9 +19,9 @@ class twitch(commands.Cog):
 
     #Command for everyone to link thier twitch account to thier discord account
     @cog_ext.cog_slash(name="link_twitch", description="links your twitch account to your discord account",guild_ids=[932684556572700773,786013884216639509,983015288910000188])
-    async def link_twitch(self, ctx: SlashContext, TwitchName: str):
+    async def link_twitch(self, ctx: SlashContext, name: str):
         try:
-            twitch_id = functions.get_info(TwitchName)
+            twitch_id = functions.get_info(name)
             
             with open("user_info.json") as feedsjson: 
                 feeds = json.load(feedsjson)
