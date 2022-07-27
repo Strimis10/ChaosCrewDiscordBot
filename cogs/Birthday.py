@@ -42,12 +42,12 @@ class Birthday(commands.Cog):
                     await ctx.send(f"{date} is not a valid date")
                 else:
 
-                    with open("user_info.json") as feedsjson: 
+                    with open("jsons/user_info.json") as feedsjson: 
                         feeds = json.load(feedsjson)
                     feeds[str(ctx.author.id)]['birthday'] = date.lower()
                     
                         
-                    with open("user_info.json", mode='w') as f:
+                    with open("jsons/user_info.json", mode='w') as f:
                         f.write(json.dumps(feeds, indent=2)) 
                     Birthday = feeds[str(ctx.author.id)]["birthday"] 
                     await ctx.send(f"{ctx.author.name}'s birthday set to {Birthday}")
@@ -61,7 +61,7 @@ class Birthday(commands.Cog):
     @commands.command(name='Bday_check',aliases=["Bdaycheck", "bdaycheck", "bday_check"], description='informs you of the persons birthday',brief='informs you of a persons birthday: "?Bdaycheck @Strimis10"')
     async def say(self, ctx, target: Optional[discord.Member]):
         target = target or ctx.author
-        with open("user_info.json") as feedsjson: 
+        with open("jsons/user_info.json") as feedsjson: 
             feeds = json.load(feedsjson)
         name = target.name
         target_id = str(target.id)

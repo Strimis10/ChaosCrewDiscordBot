@@ -17,7 +17,7 @@ class inactive(commands.Cog):
     async def on_message(self, message):
         if message.author.id != 932687176997687316:
             try:
-                with open("user_info.json") as feedsjson: 
+                with open("jsons/user_info.json") as feedsjson: 
                     data = json.load(feedsjson)
                 data[str(message.author.id)]["last_active(days)"] = 0
                 with open("user_info.json", mode='w') as f:
@@ -44,7 +44,7 @@ class inactive(commands.Cog):
     @commands.command(name = 'inactive',aliases=["Inactive", "INACTIVE", "iNACTIVE"],brief='"?Inactive @Strimis10" informs you of how long a user has been inactive in this server: ')
     async def inactive(self, ctx, target: Optional[discord.Member]):
         target = target or ctx.author
-        with open("user_info.json") as feedsjson: 
+        with open("jsons/user_info.json") as feedsjson: 
             feeds = json.load(feedsjson)
         if target == None:
             await ctx.send("Please specify a valid user")

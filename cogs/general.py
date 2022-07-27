@@ -16,21 +16,21 @@ class general(commands.Cog):
     async def on_ready(self, ctx):
         for member in self.bot.get_all_members():
             if member.bot == False:
-                with open("user_info.json") as oj: 
+                with open("jsons/user_info.json") as oj: 
                     feeds = json.load(oj)
                 if str(member.id) not in feeds:
                     print(f"Added {member.name} to the user_info.json file")
                     
                     feeds[member.id] = {"new":420.69}
-                    with open("user_info.json", mode='w') as f:
+                    with open("jsons/user_info.json", mode='w') as f:
                         f.write(json.dumps(feeds, indent=2))
-                    with open("user_info.json") as oj: 
+                    with open("jsons/user_info.json") as oj: 
                         feeds = json.load(oj)
                     feeds[str(member.id)]["name"] = member.name
                     feeds[str(member.id)]["id"] = member.id
                     feeds[str(member.id)]["last_active(days)"] = 0
                     feeds[str(member.id)]["Timezone"] = ""
-                    with open("user_info.json", mode='w') as f:
+                    with open("jsons/user_info.json", mode='w') as f:
                         f.write(json.dumps(feeds, indent=2))
 
   
@@ -40,7 +40,7 @@ class general(commands.Cog):
         guild_ids=[932684556572700773,786013884216639509,983015288910000188])
     async def say(self, ctx, target: Optional[discord.Member]):
         target = target or ctx.author
-        with open("jobs.json") as feedsjson: 
+        with open("jsons/jobs.json") as feedsjson: 
             feeds = json.load(feedsjson)
         name = target.name
         target_id = str(target.id)

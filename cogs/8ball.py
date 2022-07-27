@@ -30,7 +30,7 @@ class EightBall(commands.Cog):
                 break
         
         if was == False:
-            with open("EightBall.json") as f:
+            with open("jsons/EightBall.json") as f:
                 data =json.load(f)
             await ctx.send(f"{random.choice(data)}")
 

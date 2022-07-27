@@ -14,14 +14,14 @@ class reddit(commands.Cog):
     #responds with the amount of clips in the clips.json file 
     @commands.command(name="clip-amount", aliases=["ca"])
     async def clip_amount(self, ctx):
-        with open("clips.json") as f:
+        with open("jsons/clips.json") as f:
             feeds = json.load(f)
         await ctx.send(len(feeds))
     
     #responds with the urls from the clips.json file
     @commands.command(name="clip-urls", alias="cus")
     async def clip_urls(self, ctx):
-        with open("clips.json") as f:
+        with open("jsons/clips.json") as f:
             feeds = json.load(f)
         await ctx.send(feeds)
 
@@ -60,28 +60,28 @@ class reddit(commands.Cog):
         if permission:
             try:
                 link = url
-                with open("clips.json") as feedsjson: 
+                with open("jsons/clips.json") as feedsjson: 
                     feeds = json.load(feedsjson)
                 if link not in feeds:
                     if "clips.twitch.tv" in link.lower():
                             
-                        with open("clips.json") as f:
+                        with open("jsons/clips.json") as f:
                             feeds = json.load(f)
                         
                         feeds[title] = link
 
-                        with open("clips.json", mode='w') as f:
+                        with open("jsons/clips.json", mode='w') as f:
                             f.write(json.dumps(feeds, indent=2)) 
                         await ctx.send("Added clip")
                     
                     elif "twitch.tv/kennevo/clip/" in link.lower():
                             
-                        with open("clips.json") as f:
+                        with open("jsons/clips.json") as f:
                             feeds = json.load(f)
                         
                         feeds[title] = link
 
-                        with open("clips.json", mode='w') as f:
+                        with open("jsons/Sclips.json", mode='w') as f:
                             f.write(json.dumps(feeds, indent=2)) 
                         await ctx.send("Added clip")
                     
