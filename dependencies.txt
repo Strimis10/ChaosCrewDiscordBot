@@ -10,3 +10,4 @@ python-dotenv
 youtube_dl
 pafy
 PyNaCl
+matplotlib
