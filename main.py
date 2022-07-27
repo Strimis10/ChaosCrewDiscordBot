@@ -243,12 +243,10 @@ async def on_member_join(member):
     else:
         #send welcome message to the new user
         print(f"{member} has joined the server")
-        embed=discord.Embed(title=f"Welcome {member.name}", description=f'''Thanks for joining {guild.name}, read the rules in <#799334905569345606> and enjoy your stay!!
-        Hey! Kenny here!
-
-Just wanted to remind you to visit the <#919356311043444847> channel in the discord to set your own notifications preferences! Please let me know what you'd like to get pings for so I don't spam you (I hate spamming people).
-
-Welcome to the server!''')
+        embed=discord.Embed(title=f"Welcome {member.name}", description=f'''Hey! Kenny Here!!
+        Thanks for joining {guild.name}, read the rules in <#799334905569345606> and enjoy your stay!!
+        Just wanted to remind you to visit the <#919356311043444847> channel in the discord to set your own notifications preferences! Please let me know what you'd like to get pings for so I don't spam you (I hate spamming people).
+        Welcome to the server!''')
         embed.set_thumbnail(url=guild.icon_url)
         await member.send(embed=embed)
 
