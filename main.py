@@ -209,6 +209,12 @@ for filename in os.listdir('./cogs'):
 
 #adds the new user to the user_info.json file 
 @client.event
+async def on_member_remove(member):
+    print("pussy")
+    channel = client.get_channel(919347348012933191)
+    await channel.send(f"@{member} left. :(")
+    
+@client.event
 async def on_member_join(member):
     import what_server
     if what_server.Kennevo:
