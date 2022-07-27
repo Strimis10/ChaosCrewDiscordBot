@@ -54,7 +54,9 @@ async def hello(ctx: SlashContext, option: str):
 async def on_ready():
     print("Ready")
 
-
+#@client.event
+#async def on_error(arg):
+#    print(arg)
 # @client.command(name="owner")
 # async def restart(ctx):
 #     owners = []
@@ -74,16 +76,37 @@ async def restart(ctx):
 
 
     
-
+@client.command(name="set")
+@commands.is_owner()
+async def _set(ctx, *, args):
+        args = args.split(' ')
+        typeof = args.pop(0)
+        args = ' '.join(args)
+        # make the bot have the streaming activity with the text being the args, set the url to twitch.tv/kennevo
+        if typeof == "streaming":
+            await client.change_presence(activity=discord.Streaming(name=args, url='https://twitch.tv/kennevo'))
+            await ctx.channel.send('Set the streaming activity to: ' + args)
+        elif typeof == "watching":
+            await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=args))
+            await ctx.channel.send('Set the watching activity to: ' + args)
+        elif typeof == "listening":
+            await client.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name=args))
+            await ctx.channel.send('Set the listening activity to: ' + args)
+        elif typeof == "playing":
+            await client.change_presence(activity=discord.Activity(type=discord.ActivityType.playing, name=args))
+            await ctx.channel.send('Set the playing activity to: ' + args)
+        elif typeof == "clear":
+            await ctx.channel.send('Cleared the activity')
+            await client.change_presence(activity=None)
+        else:
+            await ctx.channel.send(f"Type ( `{typeof}` ) or Args ( `{args}` ) are not valid. Try again.")
 
 
 @client.command(name='kill', aliases=['k'])
-async def unloadall(ctx):
-    if ctx.author.id != 427822985102098434:
-            await ctx.send("permission denied")
-    else:
-        await ctx.send("Breaking")
-        exit()
+@commands.is_owner()
+async def kill(ctx):
+    await ctx.send("Breaking")
+    exit()
 
 
 
