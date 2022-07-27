@@ -1,3 +1,4 @@
+from ast import alias
 import os
 ##install all the modules from dependencies.txt (basically only used for the server)
 #os.system("pip install -r dependencies.txt")
@@ -71,19 +72,16 @@ async def on_ready():
 
     print("Ready")
 
-#@client.event
-#async def on_error(arg):
-#    print(arg)
-# @client.command(name="owner")
-# async def restart(ctx):
-#     owners = []
-#     for id in client.owner_ids:
-#         owners.append(discord.utils.get(client.get_all_members(), id=id))
-#     await ctx.send(owners)
-    
+@client.event 
+async def on_command_error(ctx, error):
+    channel = client.get_channel(1001880128269320335)
+    await channel.send(f"```ctx: {ctx}\nerror: {error}```")
 
-
-
+@client.command(name="exception", aliases=["except","e"])
+@commands.is_owner()
+async def exception(ctx):
+    await ctx.send("throwing an exception your way")
+    raise TypeError
 
 @client.command(name="restart")
 @commands.is_owner()
