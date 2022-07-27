@@ -52,6 +52,23 @@ async def hello(ctx: SlashContext, option: str):
 
 @client.event
 async def on_ready():
+    print("Setting status from previous")
+    with open('jsons/Presence.json', 'r') as json_file:
+        data = json.load(json_file)
+        if data["type"] == "streaming":
+            await client.change_presence(activity=discord.Streaming(name=data["text"], url='https://twitch.tv/kennevo'))
+            
+        elif data["type"] == "watching":
+            await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=data["text"]))
+        
+        elif data["type"] == "listening":
+            await client.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name=data["text"]))
+        
+        elif data["type"] == "playing":
+            await client.change_presence(activity=discord.Activity(type=discord.ActivityType.playing, name=data["text"]))
+        else:
+            print("No status to restore")
+
     print("Ready")
 
 #@client.event
@@ -83,21 +100,50 @@ async def _set(ctx, *, args):
         typeof = args.pop(0)
         args = ' '.join(args)
         # make the bot have the streaming activity with the text being the args, set the url to twitch.tv/kennevo
+        
+        
         if typeof == "streaming":
             await client.change_presence(activity=discord.Streaming(name=args, url='https://twitch.tv/kennevo'))
             await ctx.channel.send('Set the streaming activity to: ' + args)
+            statusDict = {"type" : typeof,
+                        "text" : args}
+            with open('jsons/Presence.json', 'w') as json_file:
+                json.dump(statusDict, json_file)
+        
+        
         elif typeof == "watching":
             await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=args))
             await ctx.channel.send('Set the watching activity to: ' + args)
+            statusDict = {"type" : typeof,
+                        "text" : args}
+            with open('jsons/Presence.json', 'w') as json_file:
+                json.dump(statusDict, json_file)
+        
+        
         elif typeof == "listening":
             await client.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name=args))
             await ctx.channel.send('Set the listening activity to: ' + args)
+            statusDict = {"type" : typeof,
+                        "text" : args}
+            with open('jsons/Presence.json', 'w') as json_file:
+                json.dump(statusDict, json_file)
+        
         elif typeof == "playing":
             await client.change_presence(activity=discord.Activity(type=discord.ActivityType.playing, name=args))
             await ctx.channel.send('Set the playing activity to: ' + args)
+            statusDict = {"type" : typeof,
+                        "text" : args}
+            with open('jsons/Presence.json', 'w') as json_file:
+                json.dump(statusDict, json_file)
+        
         elif typeof == "clear":
             await ctx.channel.send('Cleared the activity')
             await client.change_presence(activity=None)
+            statusDict = {"type" : "N/A",
+                        "text" : "N/A"}
+            with open('jsons/Presence.json', 'w') as json_file:
+                json.dump(statusDict, json_file)
+        
         else:
             await ctx.channel.send(f"Type ( `{typeof}` ) or Args ( `{args}` ) are not valid. Try again.")
 
