@@ -219,46 +219,47 @@ async def on_member_join(member):
         guild= discord.utils.get(client.guilds, id=int(932684556572700773))
         role = discord.utils.get(guild.roles, id=int(946936153687347230))
 
-    print(f"{member} has joined the server")
+    
 
-    with open("user_info.json") as fj: 
+    with open("jsons/user_info.json") as fj: 
         feeds = json.load(fj)
         
     #checks if the user is already in the user_info.json file
     #if so it will do nothing
     
-    if member.id in feeds:
-        print(f"{feeds[member.id]['name']} has rejoined")
+    if str(member.id) in feeds:
+        print(f"{feeds[str(member.id)]['name']} has rejoined")
+        
     
     #else it'll add the user to the user_info.json file and give them the "new_user" role
 
 
     else:
         #send welcome message to the new user
-
+        print(f"{member} has joined the server")
         embed=discord.Embed(title=f"Welcome {member.name}", description=f'''Thanks for joining {guild.name}, read the rules in <#799334905569345606> and enjoy your stay!!
         Hey! Kenny here!
 
 Just wanted to remind you to visit the <#919356311043444847> channel in the discord to set your own notifications preferences! Please let me know what you'd like to get pings for so I don't spam you (I hate spamming people).
 
 Welcome to the server!''')
-        embed.set_thumbnail(url=member.avatar_url)
+        embed.set_thumbnail(url=guild.icon_url)
         await member.send(embed=embed)
 
         feeds[int(member.id)] = {"new":1}
 
-        with open("user_info.json", mode='w') as f:
+        with open("jsons/user_info.json", mode='w') as f:
             f.write(json.dumps(feeds, indent=2))
         await member.add_roles(role)
 
-        with open("user_info.json") as fj: 
+        with open("jsons/user_info.json") as fj: 
             feeds = json.load(fj)
         feeds[str(member.id)]["name"] = member.name 
         feeds[str(member.id)]["id"] = member.id
         feeds[str(member.id)]["last_active(days)"] = 0
         feeds[str(member.id)]["Timezone"] = ""
     
-        with open("user_info.json", mode='w') as f:
+        with open("jsons/user_info.json", mode='w') as f:
             f.write(json.dumps(feeds, indent=2))
         
         

@@ -21,18 +21,19 @@ class EightBall(commands.Cog):
         guild_ids=[932684556572700773,786013884216639509,983015288910000188])
     async def EightBall(self, ctx: SlashContext, text: str):
         was = False
-        question = text.lower()
-        await ctx.send(f'"{text}":')
-        for prompt in best_games_prompts_i_guess:
-            if prompt in question:
-                await ctx.send(str(best_games))
-                was = True
-                break
+        question = text.lower().removesuffix("?")
+        print(question)
         
-        if was == False:
+        if question in best_games_prompts_i_guess:
+            await ctx.send(f'"{text}": {str(best_games)}')
+            was = True
+
+        
+        else:
             with open("jsons/EightBall.json") as f:
                 data =json.load(f)
-            await ctx.send(f"{random.choice(data)}")
+            await ctx.send(f'"{text}": {random.choice(data)}')
+            
 
 
 def setup(bot):

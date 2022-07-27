@@ -195,7 +195,7 @@ class music(commands.Cog):
     @cog_ext.cog_slash(name="skip_song", description="",guild_ids=[932684556572700773,786013884216639509,983015288910000188])
     async def skip(self, ctx: SlashContext):
         if ctx.voice_client is None:
-            return await ctx.send("I am not playing any song.")
+            return await ctx.send("No song to skip.")
 
         if ctx.author.voice is None:
             return await ctx.send("You are not connected to any voice channel.")
