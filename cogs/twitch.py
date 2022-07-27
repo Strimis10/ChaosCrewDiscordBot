@@ -23,7 +23,7 @@ class twitch(commands.Cog):
         try:
             twitch_id = functions.get_info(name)
             
-            with open("user_info.json") as feedsjson: 
+            with open("jsons/user_info.json") as feedsjson: 
                 feeds = json.load(feedsjson)
             try:
                 k = feeds[str(ctx.author.id)]["twitch_id"]
@@ -46,7 +46,7 @@ class twitch(commands.Cog):
                     await ctx.send(f"{ctx.author.name} has been linked to {twitch_id}")
                 else:
                     await ctx.send("That twitch account is already linked to another discord account")
-            with open("user_info.json", mode='w') as f:
+            with open("jsons/user_info.json", mode='w') as f:
                 f.write(json.dumps(feeds, indent=2))
                 
         except IndexError:

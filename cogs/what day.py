@@ -41,9 +41,9 @@ class day(commands.Cog):
                 
                 
                 
-                with open("date.json") as fj: 
+                with open("jsons/date.json") as fj: 
                     feeds = json.load(fj)
-                with open("user_info.json") as oj: 
+                with open("jsons/user_info.json") as oj: 
                     o = json.load(oj)
                 
                 #if it's a new day this will run:
@@ -66,10 +66,10 @@ class day(commands.Cog):
                             o[user]["new"] = o[user]["new"] + 1
                     print("done with new member check")
 
-                    with open("user_info.json", mode='w') as f:
+                    with open("jsons/user_info.json", mode='w') as f:
                         f.write(json.dumps(o, indent=2))
                         
-                    with open("date.json", mode='w') as f:
+                    with open("jsons/date.json", mode='w') as f:
                         f.write(json.dumps(y, indent=2))
                     
                     print(self.channel)
@@ -88,7 +88,7 @@ class day(commands.Cog):
                     for number in date1:
                         datel.append(number)
                     
-                    with open("user_info.json") as f:       
+                    with open("jsons/user_info.json") as f:       
                         data = json.load(f) 
                     print("starting birthday check")
                     for user in data:
@@ -137,7 +137,7 @@ class day(commands.Cog):
 
 
                                 
-                    with open("user_info.json") as feedsjson: 
+                    with open("jsons/user_info.json") as feedsjson: 
                         data = json.load(feedsjson)
                     
                         #last_active, Adds +1 to the users Inactive days
@@ -150,9 +150,9 @@ class day(commands.Cog):
                         except:
                             data[key]["last_active(days)"] = 1
 
-                        with open("user_info.json", mode='w') as f:
+                        with open("jsons/user_info.json", mode='w') as f:
                             f.write(json.dumps(data, indent=2))
-                        with open("user_info.json") as feedsjson: 
+                        with open("jsons/user_info.json") as feedsjson: 
                             data = json.load(feedsjson)
                         guild= discord.utils.get(self.client.guilds, id=int(932684556572700773))
                         one_month = discord.utils.get(guild.roles, id=int(961226882534236161)) 
@@ -183,7 +183,7 @@ class day(commands.Cog):
 
                     #Post clips to reddit
                     
-                    with open("clips.json") as f:
+                    with open("jsons/clips.json") as f:
                         clips = json.load(f)
                     if clips != {}:
                         if len(clips) == 10:
@@ -193,7 +193,7 @@ class day(commands.Cog):
                         if len(clips) >= 10:
                             functions.post_todays_clip()
                         else:
-                            with open("day_of_clips.json") as f:
+                            with open("jsons/day_of_clips.json") as f:
                                 day = json.load(f)
                             if day == 2:
                                 functions.post_todays_clip()
@@ -201,7 +201,7 @@ class day(commands.Cog):
                             else:
                                 day = 2
                                 
-                            with open("day_of_clips.json", mode='w') as f:
+                            with open("jsons/day_of_clips.json", mode='w') as f:
                                 f.write(json.dumps(day, indent=2))
                         
                     
