@@ -72,6 +72,9 @@ async def on_ready():
 
     print("Ready")
 
+
+
+
 @client.event 
 async def on_command_error(ctx, error):
     channel = client.get_channel(1001880128269320335)

@@ -125,7 +125,7 @@ def post_todays_clip():
     redirect_uri = "http://localhost:8080"
     refresh_token = os.getenv("refresh_token")
 
-    with open("clips.json") as f:
+    with open("jsons/clips.json") as f:
         feeds = json.load(f)
         
     if feeds != {}:
@@ -157,6 +157,6 @@ def post_todays_clip():
 
         del feeds[title]
 
-        with open("clips.json", mode='w') as f:
+        with open("jsons/clips.json", mode='w') as f:
             f.write(json.dumps(feeds, indent=2)) 
 

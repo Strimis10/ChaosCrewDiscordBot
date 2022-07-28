@@ -61,6 +61,8 @@ class day(commands.Cog):
                             member = guild.get_member(int(user))
                             await member.remove_roles(role)
                             print(o[user])
+                        elif o[user]["new"] > 7:
+                            pass
 
                         else:
                             o[user]["new"] = o[user]["new"] + 1
@@ -77,7 +79,7 @@ class day(commands.Cog):
                     
                 
                     #Birthday function, If it's your birthday the bot will anounce it to the server 
-                    list = {}
+                    
 
                     curren = date.today()
                     
@@ -150,10 +152,8 @@ class day(commands.Cog):
                         except:
                             data[key]["last_active(days)"] = 1
 
-                        with open("jsons/user_info.json", mode='w') as f:
-                            f.write(json.dumps(data, indent=2))
-                        with open("jsons/user_info.json") as feedsjson: 
-                            data = json.load(feedsjson)
+                        
+                        
                         guild= discord.utils.get(self.client.guilds, id=int(932684556572700773))
                         one_month = discord.utils.get(guild.roles, id=int(961226882534236161)) 
                         three_months = discord.utils.get(guild.roles, id=int(961529848369659914)) 
@@ -179,6 +179,9 @@ class day(commands.Cog):
                                 elif days >= 730:
                                     member = guild.get_member(int(key))
                                     await member.add_roles(two_years_or_more)
+                    
+                    with open("jsons/user_info.json", mode='w') as f:
+                        f.write(json.dumps(data, indent=2))
                     print("done with last active check")
 
                     #Post clips to reddit
