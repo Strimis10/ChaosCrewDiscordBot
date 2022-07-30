@@ -3,3 +3,4 @@
 env
 cogs/harrycog.py
 cogs/pycache
+*.env
