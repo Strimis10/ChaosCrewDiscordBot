@@ -5,12 +5,76 @@ from dotenv import load_dotenv
 import json
 import random
 import praw
+
+
 load_dotenv()
-TOKEN = ""
 TOKEN = os.getenv("TOKEN") #get_token()
 BASE = "https://discord.com/api/v9/"
-secret = ""
 secret = os.getenv("secret") 
+Bm_api_key = os.getenv("Bm_api_key")
+
+#get a map view from latitude and longitude coordinates
+def get_map_view(lat:float,lon:float,fname:str):
+    from mpl_toolkits.basemap import Basemap
+    import matplotlib.pyplot as plt
+    import numpy as np
+
+    m = Basemap(width=12000000,height=9000000,projection='lcc', 
+                resolution='c',lat_1=lat,lat_2=lat+10,lat_0=lat+5,lon_0=lon, )#location of camera
+    
+    
+
+    m.drawmapboundary(fill_color='aqua')
+    m.fillcontinents(color='coral',lake_color='aqua')
+
+    parallels = np.arange(0.,81,10.)
+    m.drawparallels(parallels,labels=[False,True,True,False])
+
+    meridians = np.arange(10.,351.,20.)
+    m.drawmeridians(meridians,labels=[True,False,False,True])
+
+
+    xpt,ypt = m(lon,lat) #location of point
+    lonpt, latpt = m(xpt,ypt,inverse=True)
+    m.plot(xpt,ypt,'bo')
+
+
+    #makes a request to get the country the location is in
+    url = f"http://dev.virtualearth.net/REST/v1/Locations/{lat},{lon}?"
+
+    params = {
+        "o":"JSON",
+        "key":Bm_api_key,
+    }
+
+    response = requests.get(url,params=params)
+    response.raise_for_status()
+    try:
+        country = response.json()["resourceSets"][0]["resources"][0]["address"]["countryRegion"]
+        country = f" ({country})"
+    except IndexError:
+        country = ""    
+
+    plt.text(xpt+100000,ypt+100000,f'ISS{country}')
+    #saves the image
+    plt.savefig(fname=fname)
+    plt.close()
+    
+     
+
+
+#get_map_view(56.992883,88.866512,fname="ISS_map_view")
+
+
+def get_ISS_location():
+    response = requests.get(url="http://api.open-notify.org/iss-now.json")
+    response.raise_for_status()
+    data = response.json()
+
+    iss_latitude = float(data["iss_position"]["latitude"])
+    iss_longitude = float(data["iss_position"]["longitude"])
+    return iss_latitude, iss_longitude
+
 
 
 
