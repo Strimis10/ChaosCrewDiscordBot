@@ -246,4 +246,3 @@ class day(commands.Cog):
 def setup(bot):
     bot.add_cog(day(bot))
 
-

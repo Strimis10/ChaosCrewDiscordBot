@@ -74,11 +74,21 @@ async def on_ready():
 
 
 
-
+'''
 @client.event 
 async def on_command_error(ctx, error):
     channel = client.get_channel(1001880128269320335)
     await channel.send(f"```ctx: {ctx}\nerror: {error}```")
+'''
+
+@client.event
+async def on_command_error(ctx, error):
+    channel = client.get_channel(1001880128269320335)
+    errortext = repr(error)
+    if "is not found" in errortext:
+        pass
+    else:
+        await channel.send(f"```ctx: {ctx}\nerror: {error}```")
 
 @client.command(name="exception", aliases=["except","e"])
 @commands.is_owner()
