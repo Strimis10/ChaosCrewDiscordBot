@@ -60,6 +60,15 @@ class general(commands.Cog):
             await ctx.send(f"{ctx.author.mention} says: {text}")
             await ctx.message.delete()
 
+
+        ##command to give DAVE the bot role but is missing perms
+    # @commands.command(name='ups')
+    # async def ups(self, ctx):
+    #     guild= discord.utils.get(self.bot.guilds, id=int(786013884216639509))
+    #     role = discord.utils.get(guild.roles, id=int(803745819869839393))
+    #     member = guild.get_member(932687176997687316)
+    #     await member.add_roles(role)
+
 def setup(bot):
     bot.add_cog(general(bot))
     

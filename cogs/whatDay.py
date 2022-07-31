@@ -52,52 +52,48 @@ class day(commands.Cog):
                     print(feeds)
                     print(y)
                     
+                    print(f"\nStarting checks:\n\n")
                     #removes the "new" role from users if thier 7 days are up
                     print("starting new member check")
                     for user in o:
+                        
 
                         if o[user]["new"] == 7:
-                            o[user]["new"] = 420.69                           
+                            o[user]["new"] = 420.69  
                             member = guild.get_member(int(user))
                             await member.remove_roles(role)
-                            print(o[user])
+                            
                         elif o[user]["new"] > 7:
                             pass
 
                         else:
                             o[user]["new"] = o[user]["new"] + 1
-                    print("done with new member check")
+                    print(f"done with new member check\n")
 
-                    with open("jsons/user_info.json", mode='w') as f:
-                        f.write(json.dumps(o, indent=2))
+                    # with open("jsons/user_info.json", mode='w') as f:
+                    #     f.write(json.dumps(o, indent=2))
                         
-                    with open("jsons/date.json", mode='w') as f:
-                        f.write(json.dumps(y, indent=2))
                     
-                    print(self.channel)
+                    
+                    
      
                     
                 
                     #Birthday function, If it's your birthday the bot will anounce it to the server 
                     
 
-                    curren = date.today()
-                    
-                    current = str(curren)
-
+                    current = str(date.today())
                     datel = []
                     date1 = str(date.today())
                     for number in date1:
                         datel.append(number)
-                    
-                    with open("jsons/user_info.json") as f:       
-                        data = json.load(f) 
+                     
                     print("starting birthday check")
-                    for user in data:
+                    for user in o:
                     
                         day = []
                         try:
-                            for number in data[user]["birthday"]:
+                            for number in o[user]["birthday"]:
                                 day.append(number)
                             match = 0
                             for number in range(4, 10):
@@ -133,24 +129,24 @@ class day(commands.Cog):
                             print("Happy birthday!!")
                         except:
                             pass
-                    print("done with birthday check")            
+                    print("done with birthday check\n")            
 
 
 
 
                                 
-                    with open("jsons/user_info.json") as feedsjson: 
-                        data = json.load(feedsjson)
+                    # with open("jsons/user_info.json") as feedsjson: 
+                    #     data = json.load(feedsjson)
                     
                         #last_active, Adds +1 to the users Inactive days
                     
                     print("starting last active check")
-                    for key in data:  
+                    for key in o:  
                         
                         try:
-                            data[key]["last_active(days)"] = data[key]["last_active(days)"]+1
+                            o[key]["last_active(days)"] = o[key]["last_active(days)"]+1
                         except:
-                            data[key]["last_active(days)"] = 1
+                            o[key]["last_active(days)"] = 1
 
                         
                         
@@ -161,8 +157,8 @@ class day(commands.Cog):
                         one_year = discord.utils.get(guild.roles, id=int(961531454460944406))
                         two_years_or_more = discord.utils.get(guild.roles, id=int(961531735500288062))  
                         
-                        days = data[key]["last_active(days)"]
-                        for key in data:
+                        days = o[key]["last_active(days)"]
+                        for key in o:
                             if not days < 30:
                                 if days >= 30 and days <= 89:
                                     member = guild.get_member(int(key))
@@ -181,8 +177,8 @@ class day(commands.Cog):
                                     await member.add_roles(two_years_or_more)
                     
                     with open("jsons/user_info.json", mode='w') as f:
-                        f.write(json.dumps(data, indent=2))
-                    print("done with last active check")
+                        f.write(json.dumps(o, indent=2))
+                    print("done with last active check\n")
 
                     #Post clips to reddit
                     
@@ -206,6 +202,11 @@ class day(commands.Cog):
                                 
                             with open("jsons/day_of_clips.json", mode='w') as f:
                                 f.write(json.dumps(day, indent=2))
+                    
+                    with open("jsons/date.json", mode='w') as f:
+                        f.write(json.dumps(y, indent=2))
+                    
+                    
                         
                     
                 
