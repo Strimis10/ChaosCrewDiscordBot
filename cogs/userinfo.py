@@ -59,9 +59,9 @@ class userInfo(commands.Cog):
         try:
             with open("jsons/user_info.json") as userData: 
                 data = json.load(userData)
-            raise Error
-        except Error as e:
-            msg.edit("Failed")
+            raise TypeError
+        except:
+            await msg.edit("Failed")
         await ctx.author.send("test")
 
 
