@@ -57,11 +57,12 @@ class userInfo(commands.Cog):
     async def requestData(self, ctx):
         msg = await ctx.send("Gathering your info...")
         try:
-            with open("jsons/user_info.json") as userData: 
-                data = json.load(userData)
+            #with open("jsons/user_info.json") as userData: 
+            #
+            #    data = json.load(userData)
             raise TypeError
         except:
-            await msg.edit("Failed")
+            await ctx.send("Failed")
         await ctx.author.send("test")
 
 
