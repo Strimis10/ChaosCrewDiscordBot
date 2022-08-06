@@ -70,12 +70,25 @@ class music(commands.Cog):
     
     @cog_ext.cog_slash(name="Play", description="",guild_ids=[932684556572700773,786013884216639509,983015288910000188])
     async def Play(self, ctx: SlashContext, search:str):
+        member = ctx.guild.get_member(932687176997687316)
+       
+
         message = await ctx.send(random.choice(please_wait))
         if ctx.author.voice is None:
             return await message.edit(content="You are not connected to any voice channel.")
         channel = ctx.author.voice.channel
         
-        
+        try:
+            users = member.voice.channel.members
+            if len(users) == 1:
+                await channel.disconnect()
+        except:
+            pass
+        try:
+            await channel.connect()
+
+        except discord.errors.ClientException:
+            pass
 
 
     
@@ -108,12 +121,10 @@ class music(commands.Cog):
                     await message.edit(content=f"No matches for {song_name}")
             except TypeError:
                 await message.edit(content=f"No matches for {song_name}")
-            
-        try:
-            await channel.connect()
 
-        except discord.errors.ClientException:
-            pass
+        
+
+        
 
         if ctx.voice_client.source is not None:
             print("in the queue system")
@@ -131,7 +142,7 @@ class music(commands.Cog):
         
             
         await self.play_song(ctx, song)
-        embed = discord.Embed(title="Now playing:", colour=discord.Colour.blue())
+        embed = discord.Embed(title="Now playing:", colour=0x3c005a)
         embed.set_footer(text=song)
         await message.edit(embed=embed)
 

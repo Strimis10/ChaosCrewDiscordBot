@@ -29,7 +29,7 @@ class general(commands.Cog):
                     feeds[str(member.id)]["name"] = member.name
                     feeds[str(member.id)]["id"] = member.id
                     feeds[str(member.id)]["last_active(days)"] = 0
-                    feeds[str(member.id)]["Timezone"] = ""
+                    feeds[str(member.id)]["Timezone"] = []
                     with open("jsons/user_info.json", mode='w') as f:
                         f.write(json.dumps(feeds, indent=2))
 
@@ -68,6 +68,11 @@ class general(commands.Cog):
     #     role = discord.utils.get(guild.roles, id=int(803745819869839393))
     #     member = guild.get_member(932687176997687316)
     #     await member.add_roles(role)
+
+
+
+    
+
 
 def setup(bot):
     bot.add_cog(general(bot))

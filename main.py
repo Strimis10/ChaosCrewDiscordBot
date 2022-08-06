@@ -340,7 +340,8 @@ async def on_member_join(member):
         feeds[str(member.id)]["name"] = member.name 
         feeds[str(member.id)]["id"] = member.id
         feeds[str(member.id)]["last_active(days)"] = 0
-        feeds[str(member.id)]["Timezone"] = ""
+        feeds[str(member.id)]["Timezone"] = []
+
     
         with open("jsons/user_info.json", mode='w') as f:
             f.write(json.dumps(feeds, indent=2))

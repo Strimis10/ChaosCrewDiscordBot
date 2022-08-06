@@ -12,26 +12,26 @@ class fun(commands.Cog):
         self.bot = bot
 
 
-    @cog_ext.cog_slash(name="AM_PM_to_24h", description="converts am/pm to twentyfour hour format",guild_ids=[932684556572700773,786013884216639509,983015288910000188],
-    options=[create_option(
-        name="option",
-        description="Choose am or pm",
-        required=True,
-        option_type=3,
-        choices=[
-            create_choice(
-                name="AM",
-                value="AM"
-            ),
-            create_choice(
-                name="PM",
-                value="PM"
-            )])]
-    )
-    async def AM_PM_to_24h(self, ctx: SlashContext, option:str, time: str):
+    # @cog_ext.cog_slash(name="AM_PM_to_24h", description="converts am/pm to twentyfour hour format",guild_ids=[932684556572700773,786013884216639509,983015288910000188],
+    # options=[create_option(
+    #     name="option",
+    #     description="Choose am or pm",
+    #     required=True,
+    #     option_type=3,
+    #     choices=[
+    #         create_choice(
+    #             name="AM",
+    #             value="AM"
+    #         ),
+    #         create_choice(
+    #             name="PM",
+    #             value="PM"
+    #         )])]
+    # )
+    # async def AM_PM_to_24h(self, ctx: SlashContext, option:str, time: str):
 
-        embed = Embed(title=time, footer=option)
-        await ctx.send(embed=embed)
+    #     embed = Embed(title=time, footer=option)
+    #     await ctx.send(embed=embed)
 
 
 def setup(bot):

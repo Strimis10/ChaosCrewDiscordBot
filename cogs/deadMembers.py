@@ -20,7 +20,7 @@ class inactive(commands.Cog):
                 with open("jsons/user_info.json") as feedsjson: 
                     data = json.load(feedsjson)
                 data[str(message.author.id)]["last_active(days)"] = 0
-                with open("user_info.json", mode='w') as f:
+                with open("jsons/user_info.json", mode='w') as f:
                     f.write(json.dumps(data, indent=2)) 
                 guild= discord.utils.get(self.bot.guilds, id=int(932684556572700773))
                 member = guild.get_member(int(message.author.id))
