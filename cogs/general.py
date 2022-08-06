@@ -32,7 +32,7 @@ class general(commands.Cog):
                     feeds[str(member.id)]["Timezone"] = []
                     with open("jsons/user_info.json", mode='w') as f:
                         f.write(json.dumps(feeds, indent=2))
-
+        print("Done")
   
     @cog_ext.cog_slash(
         name="what_job", 
