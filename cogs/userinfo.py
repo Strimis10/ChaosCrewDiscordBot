@@ -1,6 +1,7 @@
 ##https://www.youtube.com/watch?v=k6eCJDSemu4
 
 from datetime import datetime
+from msilib.schema import Error
 from typing import Optional
 from discord.ext import commands
 import discord
@@ -47,6 +48,22 @@ class userInfo(commands.Cog):
             embed.add_field(name=name, value=value, inline=inline)       
             embed.set_thumbnail(url=target.avatar_url)
         await ctx.send(embed=embed)
+
+
+
+    @cog_ext.cog_slash(name="requestData", 
+        description="Recieve a DM containing the data that is associated with your user.",
+        guild_ids=[932684556572700773,786013884216639509,983015288910000188])
+    async def requestData(self, ctx):
+        msg = await ctx.send("Gathering your info...")
+        try:
+            with open("jsons/user_info.json") as userData: 
+                data = json.load(userData)
+            raise Error
+        except Error as e:
+            msg.edit("Failed")
+        await ctx.author.send("test")
+
 
 
     # @commands.command(name='Server_info', aliases=["si"])
