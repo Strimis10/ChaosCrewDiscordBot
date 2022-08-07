@@ -1,6 +1,7 @@
 ##https://www.youtube.com/watch?v=k6eCJDSemu4
 
 from datetime import datetime
+from email.mime import message
 from msilib.schema import Error
 from typing import Optional
 from discord.ext import commands
@@ -57,13 +58,15 @@ class userInfo(commands.Cog):
     async def requestData(self, ctx):
         msg = await ctx.send("Gathering your info...")
         try:
-            #with open("jsons/user_info.json") as userData: 
-            #
-            #    data = json.load(userData)
-            raise TypeError
+            with open("jsons/user_info.json") as userData: 
+            
+               data = json.load(userData)
+            data = data[str(ctx.author.id)]
         except:
-            await ctx.send("Failed")
-        await ctx.author.send("test")
+            await msg.edit(content="Failed")
+        await msg.edit(content="sending..")
+        await ctx.author.send(data)
+        await msg.edit(content="Sent.")
 
 
 
