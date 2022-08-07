@@ -60,7 +60,11 @@ class userInfo(commands.Cog):
         try:
             with open("jsons/user_info.json") as userData: 
             
-               data = json.load(userData)
+                data = json.load(userData)
+                if ctx.author.id in data:
+                    pass
+                else:
+                    msg.edit("You are not in the database.")
             data = data[str(ctx.author.id)]
             await msg.edit(content="sending..")
             await ctx.author.send(data)
