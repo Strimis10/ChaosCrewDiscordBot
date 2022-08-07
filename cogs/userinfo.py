@@ -62,11 +62,15 @@ class userInfo(commands.Cog):
             
                data = json.load(userData)
             data = data[str(ctx.author.id)]
+            await msg.edit(content="sending..")
+            await ctx.author.send(data)
+        except discord.errors.Forbidden:
+            await msg.edit(content="Failed.")
+            await ctx.send("Please make sure that you have 'Allow direct messages from server members' enabled in the discord settings")
         except:
-            await msg.edit(content="Failed")
-        await msg.edit(content="sending..")
-        await ctx.author.send(data)
-        await msg.edit(content="Sent.")
+            await msg.edit(content="Failed.")
+        else:
+            await msg.edit(content="Sent.")
 
 
 
