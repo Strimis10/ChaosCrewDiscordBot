@@ -30,6 +30,7 @@ class general(commands.Cog):
                     feeds[str(member.id)]["id"] = member.id
                     feeds[str(member.id)]["last_active(days)"] = 0
                     feeds[str(member.id)]["Timezone"] = []
+                    feeds[str(member.id)]["dataAccess"] = 0
                     with open("jsons/user_info.json", mode='w') as f:
                         f.write(json.dumps(feeds, indent=2))
         print("Done")
@@ -59,6 +60,12 @@ class general(commands.Cog):
         else:
             await ctx.send(f"{ctx.author.mention} says: {text}")
             await ctx.message.delete()
+
+
+    
+
+
+
 
 
         ##command to give DAVE the bot role but is missing perms

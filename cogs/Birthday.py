@@ -26,32 +26,47 @@ class Birthday(commands.Cog):
     #command for everyone to set their birthday
     @cog_ext.cog_slash(name="setBirthday", description="['yyyy-mm-dd' if you don't want to share the year type '0000' as the year]",guild_ids=[932684556572700773,786013884216639509,983015288910000188])
     async def setBirthday(self, ctx: SlashContext, date:str):
+        print(len(date))
+        
     
-            
+        try: 
+
             if date == '':
                 await ctx.send("send your birthday like this: 'yyyy-mm-dd' if you don't want to share the year type '0000' as the year. Send this with the 'setBrithday' command (?setBirthday yyyy-mm-dd)")
             elif date[4] != "-":
                 await ctx.send("send your birthday like this: 'yyyy-mm-dd' if you don't want to share the year type '0000' as the year. Send this with the 'setBrithday' command (?setBirthday yyyy-mm-dd)")
             elif date[7] != "-":
                 await ctx.send("send your birthday like this: 'yyyy-mm-dd' if you don't want to share the year type '0000' as the year. Send this with the 'setBrithday' command (?setBirthday yyyy-mm-dd)")
+            elif len(date) != 10:
+                await ctx.send("send your birthday like this: 'yyyy-mm-dd' if you don't want to share the year type '0000' as the year. Send this with the 'setBrithday' command (?setBirthday yyyy-mm-dd)")
+
 
             else:
-                try:
-                    int(date.replace("-", ""))
-                except:
+                datee = date.split("-")
+                if int(datee[1]) > 12:
+                    await ctx.send(f"{date} is not a valid date")
+                elif int(datee[2]) > 31:
                     await ctx.send(f"{date} is not a valid date")
                 else:
-
-                    with open("jsons/user_info.json") as feedsjson: 
-                        feeds = json.load(feedsjson)
-                    feeds[str(ctx.author.id)]['birthday'] = date.lower()
                     
-                        
-                    with open("jsons/user_info.json", mode='w') as f:
-                        f.write(json.dumps(feeds, indent=2)) 
-                    Birthday = feeds[str(ctx.author.id)]["birthday"] 
-                    await ctx.send(f"{ctx.author.name}'s birthday set to {Birthday}")
 
+                    try:
+                        int(date.replace("-", ""))
+                    except:
+                        await ctx.send(f"{date} is not a valid date")
+                    else:
+
+                        with open("jsons/user_info.json") as feedsjson: 
+                            feeds = json.load(feedsjson)
+                        feeds[str(ctx.author.id)]['birthday'] = date.lower()
+                        
+                            
+                        with open("jsons/user_info.json", mode='w') as f:
+                            f.write(json.dumps(feeds, indent=2)) 
+                        Birthday = feeds[str(ctx.author.id)]["birthday"] 
+                        await ctx.send(f"{ctx.author.name}'s birthday set to {Birthday}")
+        except:
+            await ctx.send(f"error")
 
 
 

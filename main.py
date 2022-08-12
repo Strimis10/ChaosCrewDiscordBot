@@ -21,7 +21,15 @@ token = ""
 
 token = os.getenv("TOKEN") #get_token()
 
-
+print('''  
+  /$$$$$$$                                      /$$                   /$$    
+ | $$__  $$                                    | $$                  | $$    
+ | $$  \ $$  /$$$$$$  /$$    /$$ /$$$$$$       | $$$$$$$   /$$$$$$  /$$$$$$  
+ | $$  | $$ |____  $$|  $$  /$$//$$__  $$      | $$__  $$ /$$__  $$l_  $$_/  
+ | $$  | $$  /$$$$$$$ \  $$/$$/| $$$$$$$$      | $$  \ $$| $$  \ $$  | $$    
+ | $$  | $$ /$$__  $$  \  $$$/ | $$_____/      | $$  | $$| $$  | $$  | $$ /$$
+ | $$$$$$$/|  $$$$$$$   \  $/  |  $$$$$$$      | $$$$$$$/|  $$$$$$/  |  $$$$/
+ |_______/  \_______/    \_/    \_______/      |_______/  \______/    \___/  ''')
 
 
 @slash.slash(
@@ -366,6 +374,7 @@ async def on_member_join(member):
         feeds[str(member.id)]["id"] = member.id
         feeds[str(member.id)]["last_active(days)"] = 0
         feeds[str(member.id)]["Timezone"] = []
+        feeds[str(member.id)]["dataAccess"] = 0
 
     
         with open("jsons/user_info.json", mode='w') as f:
@@ -385,3 +394,4 @@ async def on_member_remove(member):
 
     
 client.run(token)
+

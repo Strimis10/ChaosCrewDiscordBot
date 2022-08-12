@@ -40,6 +40,7 @@ class userInfo(commands.Cog):
                 ("Bot", target.bot, True),
                 ("Server Booster", bool(target.premium_since), True),  
                 ("Top role", target.top_role.mention, True),
+                ("Is Bot owner", bool(target.id in [427822985102098434, 386826952599928842]), True),
                 ("Admin", bool(target.guild_permissions.administrator), True),
                 ("User created at", target.created_at.strftime("%d/%m/%Y %H:%M:%S"), False),
                 ("Joined server at", target.joined_at.strftime("%d/%m/%Y %H:%M:%S"), True)
