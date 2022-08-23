@@ -31,6 +31,7 @@ class general(commands.Cog):
                     feeds[str(member.id)]["last_active(days)"] = 0
                     feeds[str(member.id)]["Timezone"] = []
                     feeds[str(member.id)]["dataAccess"] = 0
+                    feeds[str(member.id)]["left"] = False
                     with open("jsons/user_info.json", mode='w') as f:
                         f.write(json.dumps(feeds, indent=2))
         print("Done")
@@ -60,8 +61,31 @@ class general(commands.Cog):
         else:
             await ctx.send(f"{ctx.author.mention} says: {text}")
             await ctx.message.delete()
+    
+    # @commands.command(name='addToAll')
+    # @commands.is_owner()
+    # async def say(self, ctx, *, text: commands.clean_content = ''):
+    #     for member in self.bot.get_all_members():
+    #         with open("jsons/user_info.json") as oj: 
+    #             feeds = json.load(oj)
+    #         feeds[str(member.id)],text
+    #         print(feeds[str(member.id)])
 
 
+    # @cog_ext.cog_slash(
+    #     name="learnProgramming", 
+    #     description="Get the cridentials for the programming course",
+    #     guild_ids=[932684556572700773,786013884216639509,983015288910000188])
+    # async def learn(self, ctx):
+    #     channel = self.bot.get_channel(993292548267331684)
+
+    #     embed = discord.Embed(title="Learn Programming request", description=f"<@{ctx.author.id}> is requesting acces to the programming course", color=0x3c005a) 
+
+    #     await channel.send("request")
+
+    #     await ctx.send("Your request has been sent for approval")
+
+        
     
 
 

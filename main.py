@@ -372,9 +372,11 @@ async def on_member_join(member):
             feeds = json.load(fj)
         feeds[str(member.id)]["name"] = member.name 
         feeds[str(member.id)]["id"] = member.id
+        feeds[str(member.id)]["left"] = False
         feeds[str(member.id)]["last_active(days)"] = 0
         feeds[str(member.id)]["Timezone"] = []
         feeds[str(member.id)]["dataAccess"] = 0
+        
 
     
         with open("jsons/user_info.json", mode='w') as f:
@@ -386,6 +388,7 @@ async def on_member_remove(member):
     with open("jsons/user_info.json") as fj: 
         feeds = json.load(fj)
     
+    #feeds[str(member.id)]["left"] = True
     feeds.pop(str(member.id))
 
     with open("jsons/user_info.json", mode='w') as f:

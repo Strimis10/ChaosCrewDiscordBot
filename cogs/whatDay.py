@@ -56,6 +56,8 @@ class day(commands.Cog):
                     #removes the "new" role from users if thier 7 days are up
                     print("starting new member check")
                     for user in o:
+
+                        #if o[user]["left"]:
                         
 
                         if o[user]["new"] == 7:
