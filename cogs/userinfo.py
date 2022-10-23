@@ -2,7 +2,6 @@
 
 from datetime import datetime
 from email.mime import message
-from msilib.schema import Error
 from typing import Optional
 from discord.ext import commands
 import discord
