@@ -8,7 +8,6 @@ from discord_slash import SlashCommand, SlashContext
 
 
     
-file = discord.File("kennevo_rough.mp3")
 
 
 class funsies(commands.Cog):
@@ -23,7 +22,7 @@ class funsies(commands.Cog):
             if message.author.id != 932687176997687316:
                 what = random.randint(0, 3)
                 if what == 3 or 0:
-                    await message.reply(file=file)
+                    await message.reply(file=discord.File("kennevo_rough.mp3"))
                     await message.channel.send("!!! SONG BY TizzyTheProphet")
 
 

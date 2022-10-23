@@ -56,8 +56,6 @@ class day(commands.Cog):
                     #removes the "new" role from users if thier 7 days are up
                     print("starting new member check")
                     for user in o:
-
-                        #if o[user]["left"]:
                         
 
                         if o[user]["new"] == 7:
@@ -65,11 +63,16 @@ class day(commands.Cog):
                             member = guild.get_member(int(user))
                             await member.remove_roles(role)
                         
-                        # elif o[user]["new"] == 420.69:
-                        #     o[user]["new"] = False 
+                        elif o[user]["new"] >= 420.69:
+                            o[user]["new"] = False 
                             
                         elif o[user]["new"] == False:
-                            pass
+                            member = guild.get_member(int(user))
+                            try:
+                                if role in member.roles:
+                                    await member.remove_roles(role)
+                            except:
+                                pass
 
                         else:
                             o[user]["new"] = o[user]["new"] + 1
@@ -140,46 +143,47 @@ class day(commands.Cog):
 
 
                                 
-                    # with open("jsons/user_info.json") as feedsjson: 
-                    #     data = json.load(feedsjson)
+                   
                     
                         #last_active, Adds +1 to the users Inactive days
                     
-                    print("starting last active check")
-                    for key in o:  
+                            ##Deactivated as there are no roles 
+
+                    # print("starting last active check")
+                    # for key in o:  
                         
-                        try:
-                            o[key]["last_active(days)"] = o[key]["last_active(days)"]+1
-                        except:
-                            o[key]["last_active(days)"] = 1
+                    #     try:
+                    #         o[key]["last_active(days)"] = o[key]["last_active(days)"]+1
+                    #     except:
+                    #         o[key]["last_active(days)"] = 1
 
                         
                         
-                        guild= discord.utils.get(self.client.guilds, id=int(932684556572700773))
-                        one_month = discord.utils.get(guild.roles, id=int(961226882534236161)) 
-                        three_months = discord.utils.get(guild.roles, id=int(961529848369659914)) 
-                        six_months = discord.utils.get(guild.roles, id=int(961530872933257246)) 
-                        one_year = discord.utils.get(guild.roles, id=int(961531454460944406))
-                        two_years_or_more = discord.utils.get(guild.roles, id=int(961531735500288062))  
+                    #     guild= discord.utils.get(self.client.guilds, id=int(932684556572700773))
+                    #     one_month = discord.utils.get(guild.roles, id=int(961226882534236161)) 
+                    #     three_months = discord.utils.get(guild.roles, id=int(961529848369659914)) 
+                    #     six_months = discord.utils.get(guild.roles, id=int(961530872933257246)) 
+                    #     one_year = discord.utils.get(guild.roles, id=int(961531454460944406))
+                    #     two_years_or_more = discord.utils.get(guild.roles, id=int(961531735500288062))  
                         
-                        days = o[key]["last_active(days)"]
-                        for key in o:
-                            if not days < 30:
-                                if days >= 30 and days <= 89:
-                                    member = guild.get_member(int(key))
-                                    await member.add_roles(one_month)
-                                elif days >= 90 and days <= 119:
-                                    member = guild.get_member(int(key))
-                                    await member.add_roles(three_months)
-                                elif days >= 182 and days <= 364:
-                                    member = guild.get_member(int(key))
-                                    await member.add_roles(six_months)
-                                elif days >= 365 and days <= 729:
-                                    member = guild.get_member(int(key))
-                                    await member.add_roles(one_year)
-                                elif days >= 730:
-                                    member = guild.get_member(int(key))
-                                    await member.add_roles(two_years_or_more)
+                    #     days = o[key]["last_active(days)"]
+                    #     for key in o:
+                    #         if not days < 30:
+                    #             if days >= 30 and days <= 89:
+                    #                 member = guild.get_member(int(key))
+                    #                 await member.add_roles(one_month)
+                    #             elif days >= 90 and days <= 119:
+                    #                 member = guild.get_member(int(key))
+                    #                 await member.add_roles(three_months)
+                    #             elif days >= 182 and days <= 364:
+                    #                 member = guild.get_member(int(key))
+                    #                 await member.add_roles(six_months)
+                    #             elif days >= 365 and days <= 729:
+                    #                 member = guild.get_member(int(key))
+                    #                 await member.add_roles(one_year)
+                    #             elif days >= 730:
+                    #                 member = guild.get_member(int(key))
+                    #                 await member.add_roles(two_years_or_more)
                     
                     with open("jsons/user_info.json", mode='w') as f:
                         f.write(json.dumps(o, indent=2))

@@ -4,3 +4,5 @@ env
 cogs/harrycog.py
 cogs/pycache
 *.env
+*jsons/user_info.json
+
