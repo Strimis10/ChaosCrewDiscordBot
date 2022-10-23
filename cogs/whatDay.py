@@ -7,7 +7,9 @@ from datetime import date
 import datetime
 import pytz
 import functions
+import os
 client = commands.Bot(command_prefix="?",owner_ids=[386826952599928842, 427822985102098434], intents=discord.Intents.all())
+currentdir = os.path.dirname(os.path.abspath(__file__))
 
 
 class day(commands.Cog):
@@ -43,9 +45,16 @@ class day(commands.Cog):
                 
                 with open("jsons/date.json") as fj: 
                     feeds = json.load(fj)
-                with open("jsons/user_info.json") as oj: 
-                    o = json.load(oj)
-                
+                if not os.path.isfile(f"jsons/user_info.json"):
+                    print("making a new user_info.json file")
+                    os.mkdir(f"jsons/user_info.json")
+                    with open("jsons/user_info.json") as oj: 
+                        o = json.load(oj)
+                    o = {}
+                else:
+                    with open("jsons/user_info.json") as oj: 
+                        o = json.load(oj)
+
                 #if it's a new day this will run:
                 if feeds != y:
                     #await asyncio.sleep(10)
@@ -83,8 +92,7 @@ class day(commands.Cog):
                         
                     
                     
-                    
-     
+
                     
                 
                     #Birthday function, If it's your birthday the bot will anounce it to the server 
@@ -95,7 +103,7 @@ class day(commands.Cog):
                     date1 = str(date.today())
                     for number in date1:
                         datel.append(number)
-                     
+                    
                     print("starting birthday check")
                     for user in o:
                     
@@ -131,10 +139,10 @@ class day(commands.Cog):
                                         await self.channel.send(f"They are turning {age} and can now legally buy alcohol in Sweden (Systembolaget)")
                                     else:
                                         await self.channel.send(f"They are turning {age}!")
-                            else:
-                                await self.channel.send(f"It's {umention}'s birthday today, Congrats!")
-                            print(f"{user}: match")
-                            print("Happy birthday!!")
+                                else:
+                                    await self.channel.send(f"It's {umention}'s birthday today, Congrats!")
+                                print(f"{user}: match")
+                                print("Happy birthday!!")
                         except:
                             pass
                     print("done with birthday check\n")            
@@ -143,19 +151,19 @@ class day(commands.Cog):
 
 
                                 
-                   
+                
                     
                         #last_active, Adds +1 to the users Inactive days
                     
                             ##Deactivated as there are no roles 
 
-                    # print("starting last active check")
-                    # for key in o:  
+                    print("starting last active check")
+                    for key in o:  
                         
-                    #     try:
-                    #         o[key]["last_active(days)"] = o[key]["last_active(days)"]+1
-                    #     except:
-                    #         o[key]["last_active(days)"] = 1
+                        try:
+                            o[key]["last_active(days)"] = o[key]["last_active(days)"]+1
+                        except:
+                            o[key]["last_active(days)"] = 1
 
                         
                         
@@ -219,7 +227,7 @@ class day(commands.Cog):
                         
                     
                 
-          
+    
                     
 
                     
@@ -228,13 +236,7 @@ class day(commands.Cog):
 
 
     
-         
 
-        
-
-
-       
-       
     
         #Command to se what date it is (I dunno why anyone would use this but it's here)(I use it for testing)
     @commands.command(name='what_date',aliases=["whd"],description='what day is it?',brief='what day is it?')

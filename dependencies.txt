@@ -1,10 +1,10 @@
-discord.py
+discord.py==1.7.3
 humanfriendly
 numpy
 requests
 pytz
 click
-discord-py-slash-command
+discord-py-slash-command==3.0.3
 praw
 python-dotenv
 youtube_dl
