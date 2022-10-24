@@ -13,7 +13,7 @@ class fun(commands.Cog):
     async def say(self, ctx, *, text: commands.clean_content = ''):
         def func2():
             print("Starting API")
-            os.system("python3 api/main.py")
+            os.system("/opt/DAVE/bin/python3 api/main.py")
 
         t2 = Thread(target=func2)
 
