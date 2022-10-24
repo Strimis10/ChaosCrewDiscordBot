@@ -20,7 +20,6 @@ class music(commands.Cog):
         import what_server
         if what_server.Kennevo:
             guild_id = 786013884216639509
-               
         else:
             guild_id = 932684556572700773
         self.bot = bot
@@ -53,12 +52,13 @@ class music(commands.Cog):
             'key': 'FFmpegExtractAudio',
             'preferredcodec': 'mp3',
             'preferredquality': '192',
+            "source_address":"144.126.210.176"
         }],
 }
         info = youtube_dl.YoutubeDL(ydl_opts).extract_info(f"ytsearch{amount}:{song}", download=False, ie_key="YoutubeSearch")
         
         # print(info["entries"])
-        # print(entry["webpage_url"] for entry in info["entries"])
+        #print(entry["webpage_url"] for entry in info["entries"])
         if len(info["entries"]) == 0: return None
 
         return [entry["webpage_url"] for entry in info["entries"]] if get_url else info
@@ -71,7 +71,7 @@ class music(commands.Cog):
     @cog_ext.cog_slash(name="Play", description="",guild_ids=[932684556572700773,786013884216639509,983015288910000188])
     async def Play(self, ctx: SlashContext, search:str):
         member = ctx.guild.get_member(932687176997687316)
-       
+
 
         message = await ctx.send(random.choice(please_wait))
         if ctx.author.voice is None:
