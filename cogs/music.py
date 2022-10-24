@@ -51,11 +51,10 @@ class music(commands.Cog):
         'postprocessors': [{
             'key': 'FFmpegExtractAudio',
             'preferredcodec': 'mp3',
-            'preferredquality': '192',
-            "source_address":"144.126.210.176"
+            'preferredquality': '192'
         }],
 }
-        info = youtube_dl.YoutubeDL(ydl_opts).extract_info(f"ytsearch{amount}:{song}", download=False, ie_key="YoutubeSearch")
+        info = youtube_dl.YoutubeDL({"source_address":"144.126.210.176"},ydl_opts).extract_info(f"ytsearch{amount}:{song}", download=False, ie_key="YoutubeSearch")
         
         # print(info["entries"])
         #print(entry["webpage_url"] for entry in info["entries"])
