@@ -13,12 +13,12 @@ class fun(commands.Cog):
     async def say(self, ctx, *, text: commands.clean_content = ''):
         def func2():
             print("Starting API")
-            os.system("python api/main.py")
+            os.system("python3 api/main.py")
 
         t2 = Thread(target=func2)
 
         t2.start()
-        await ctx.send("API running on thread 2, port 666")
+        await ctx.send("API running")
         #                         ^^ This is for pings / mentions being cleaned so you can't do `a!say @everyone`.
         #command content
 
