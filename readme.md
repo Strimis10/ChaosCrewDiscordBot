@@ -16,7 +16,7 @@ Running D.A.V.E requires Python 3.7+.
 
 Install requirements:
 ```shell
-python3 -m pip install -r requirements.txt
+python3 -m pip install -r dependencies.txt
 python3 main.py
 ```
 
