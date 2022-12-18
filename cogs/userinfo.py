@@ -61,7 +61,7 @@ class userInfo(commands.Cog):
         msg = await ctx.send("Gathering your info...")
         print(currentdir)
         try:
-            with open(f"{currentdir}jsons/user_info.json") as userData: 
+            with open(f"{currentdir}../jsons/user_info.json") as userData: 
             
                 data = json.load(userData)
                 if ctx.author.id in data:
