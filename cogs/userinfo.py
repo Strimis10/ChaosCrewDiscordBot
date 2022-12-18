@@ -16,8 +16,12 @@ import json
 from discord_slash import SlashCommand, SlashContext
 import random
 import os
+jsons = ""
 currentdir = os.path.dirname(os.path.abspath(__file__))
-
+jso = currentdir.split("/")
+for folder in jso:
+    if folder != "cogs":
+        jsons =+ folder + "/"
 
 class userInfo(commands.Cog):
     def __init__(self, bot):
@@ -59,9 +63,9 @@ class userInfo(commands.Cog):
         guild_ids=[932684556572700773,786013884216639509,983015288910000188])
     async def requestData(self, ctx):
         msg = await ctx.send("Gathering your info...")
-        print(currentdir)
+        print(jsons)
         try:
-            with open(f"{currentdir}../jsons/user_info.json") as userData: 
+            with open(f"{jsons}/user_info.json") as userData: 
             
                 data = json.load(userData)
                 if ctx.author.id in data:
