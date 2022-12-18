@@ -59,6 +59,7 @@ class userInfo(commands.Cog):
         guild_ids=[932684556572700773,786013884216639509,983015288910000188])
     async def requestData(self, ctx):
         msg = await ctx.send("Gathering your info...")
+        print(currentdir)
         try:
             with open(f"{currentdir}jsons/user_info.json") as userData: 
             
