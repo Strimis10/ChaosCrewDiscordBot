@@ -80,7 +80,7 @@ class userInfo(commands.Cog):
             await ctx.send("Please make sure that you have 'Allow direct messages from server members' enabled in the discord settings")
         except Exception as e:
             await msg.edit(content="Failed.")
-            await msg.send(content=e)
+            await ctx.send(e)
         else:
             await msg.edit(content="Sent.")
 
