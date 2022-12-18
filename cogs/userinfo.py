@@ -65,7 +65,7 @@ class userInfo(commands.Cog):
         msg = await ctx.send("Gathering your info...")
         print(jsons)
         try:
-            with open(f"{jsons}/user_info.json") as userData: 
+            with open(f"{jsons}/jsons/user_info.json") as userData: 
             
                 data = json.load(userData)
                 if ctx.author.id in data:
@@ -78,8 +78,9 @@ class userInfo(commands.Cog):
         except discord.errors.Forbidden:
             await msg.edit(content="Failed.")
             await ctx.send("Please make sure that you have 'Allow direct messages from server members' enabled in the discord settings")
-        except:
+        except Exception as e:
             await msg.edit(content="Failed.")
+            await msg.send(content=e)
         else:
             await msg.edit(content="Sent.")
 
