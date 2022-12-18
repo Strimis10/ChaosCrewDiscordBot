@@ -15,6 +15,8 @@ import discord.utils
 import json
 from discord_slash import SlashCommand, SlashContext
 import random
+import os
+currentdir = os.path.dirname(os.path.abspath(__file__))
 
 
 class userInfo(commands.Cog):
@@ -58,7 +60,7 @@ class userInfo(commands.Cog):
     async def requestData(self, ctx):
         msg = await ctx.send("Gathering your info...")
         try:
-            with open("jsons/user_info.json") as userData: 
+            with open(f"{currentdir}jsons/user_info.json") as userData: 
             
                 data = json.load(userData)
                 if ctx.author.id in data:
