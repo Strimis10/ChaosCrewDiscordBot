@@ -21,7 +21,7 @@ currentdir = os.path.dirname(os.path.abspath(__file__))
 jso = currentdir.split("/")
 for folder in jso:
     if folder != "cogs":
-        jsons =+ folder + "/"
+        jsons += folder + "/"
 
 class userInfo(commands.Cog):
     def __init__(self, bot):
