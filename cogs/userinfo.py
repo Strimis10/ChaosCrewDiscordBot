@@ -71,7 +71,8 @@ class userInfo(commands.Cog):
                 if ctx.author.id in data:
                     pass
                 else:
-                    msg.edit("You are not in the database.")
+                    msg.edit(content="You are not in the database.")
+                    print(data)
             data = data[str(ctx.author.id)]
             await msg.edit(content="sending..")
             await ctx.author.send(data)
